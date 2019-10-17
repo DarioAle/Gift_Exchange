@@ -1,0 +1,29 @@
+body{
+    background-color: #dad0d0;
+    color: #29252a;
+}
+input{
+    border-color: #7e777c;
+}
+input:focus{
+    border-color: #7e777c;
+}
+
+nav.nav {
+    background-color: #29252a;
+    color: #dad0d0;
+    font-size: 20px;
+    height: 60px;
+}
+nav.nav a {
+    align-content: center;
+    color: #dad0d0;
+}
+
+footer {
+    background-color: #29252a;
+    color: #dad0d0;
+    font-size: 20px;
+    height: 60px;
+    bottom: 0px;
+}
