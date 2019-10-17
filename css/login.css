@@ -1,0 +1,9 @@
+body{
+    background-color: #dad0d0;
+}
+#login-image-container img {
+    width: 100%;;
+}
+#input-container>div:last-child {
+    padding: 10px;
+}
