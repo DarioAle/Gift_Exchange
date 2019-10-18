@@ -7,3 +7,7 @@ body{
 #input-container>div:last-child {
     padding: 10px;
 }
+
+#input-container > div{
+    margin: 1em;
+}
