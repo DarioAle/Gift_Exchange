@@ -27,3 +27,16 @@ footer {
     height: 60px;
     bottom: 0px;
 }
+
+a {
+    color: #545c6c ;
+}
+
+.table {
+    min-width: 1000px !important;
+    width: 100%;
+}
+.table .thead-primary{
+    background-color: #29252a;
+    color: #dad0d0d0;
+}
