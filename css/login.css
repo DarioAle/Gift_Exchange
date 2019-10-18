@@ -11,3 +11,7 @@ body{
 #input-container > div{
     margin: 1em;
 }
+
+div h1 {
+    margin-bottom: 1em;
+}

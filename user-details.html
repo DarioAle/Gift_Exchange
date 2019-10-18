@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ingresa</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/giftex.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Gift Exchange</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link">Ingresa</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Salir</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <img src="img/sample.png" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
+        <form action="./updateAccount" method="POST" enctype='multipart/form-data'>
+            <h1>Actualizar cuenta</h1>
+            <input type="number" value="{{user.id}}" name="id" style="display:none"/>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label for="nombre">
+                        <h4>Nombre</h4>
+                    </label>
+                    <input type="text" class="form-control" name="username" id="username" value="Usuario"
+                        title="Ingrese el nombre completo">
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-xs-12 col-sm-6">
+                    <label for="correo">
+                        <h4>Correo electrónico</h4>
+                    </label>
+                    <input type="email" class="form-control" name="email" id="email" value="Correo electrónico"
+                        title="Ingrese su correo electrónico.">
+                </div>
+
+                <div class="col-xs-12 col-sm-6">
+                    <label for="correo">
+                        <h4>Foto de perfil</h4>
+                    </label>
+                    <input type="file" class="form-control" name="photo" id="photo"
+                        title="Seleccione una foto.">
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-xs-12 col-sm-6">
+                    <label for="passConfirm">
+                        <h4>Contraseña actual</h4>
+                    </label>
+                    <input type="password" class="form-control" name="passConfirm" id="passConfirm"
+                        title="Ingrese su contraseña.">
+                </div>
+
+                <div class="col-xs-12 col-sm-6">
+                    <label for="newPass">
+                        <h4>Nueva contraseña</h4>
+                    </label>
+                    <input type="password" class="form-control" name="newPass" id="newPass"
+                        title="Ingrese nuevamente su contraseña.">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <br>
+                    <button class="btn btn-lg btn-dark" type="submit">Actualizar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
