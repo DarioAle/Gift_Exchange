@@ -12,6 +12,19 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/giftex.css">
     <link rel="stylesheet" href="css/login.css">
+    <style>
+        form
+        {
+            margin-bottom: 3em;
+        }
+        #more-info
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 2em;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +40,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="index.html" class="nav-link">Inicio</a></li>
                     <li class="nav-item"><a href="login.html" class="nav-link">Ingresa</a></li>
-                    <li class="nav-item"><a href="signup.html" class="nav-link">Salir</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link">Salir</a></li>
 
                 </ul>
             </div>
@@ -91,6 +104,15 @@
                 </div>
             </div>
         </form>
+
+        <hr>
+
+        <h1>Información adicional</h1>
+        <div id="more-info">
+            <a href="./post-history.html"><button class="btn btn-lg btn-dark">Publicaciones</button></a>
+            <a href="./transaction-history.html"><button class="btn btn-lg btn-dark">Transacciones</button></a>
+            <a href="./adquired-history.html"><button class="btn btn-lg btn-dark">Mis regalos</button></a>
+        </div>
     </div>
 </body>
 
