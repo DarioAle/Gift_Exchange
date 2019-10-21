@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/giftex.css">
     <link rel="stylesheet" href="css/entry.css">
 </head>
@@ -35,36 +36,71 @@
             </div>
         </div>
     </nav>
+    <!--- END NAV-->
 
-    <section id="content">
+    <div class="hero-wrap hero-bread" style="background-image: url('img/eastwood-order-completed.png');">
         <div class="container">
-            <div class="row justify-content-lg-center">
-                <img src="img/eastwood-order-completed.png">
-            </div>
-            <div class="row justify-content-lg-center">
-                <div class="col-lg-3 col-md-6"><img src="img/camera-icon.png"> </div>
-                <div class="col-lg-3 col-md-6"><img src="img/camera-icon.png"> </div>
-                <div class="col-lg-3 col-md-6"><img src="img/camera-icon.png"> </div>
-                <div class="col-lg-3 col-md-6"><img src="img/camera-icon.png"> </div>
-            </div>
-            <div class="row justify-content-lg-center">
-                <span>Nombre de la prenda</span>
-                <form id="input-container">
-                    <div class="form-goup">
-                        <label for="login-input-username">Usuario</label>
-                        <input type="text" class="form-control" id="login-input-username" placeholder="Usuario">
-                    </div>
-                    <div class="form-goup">
-                        <label for="login-input-passw">Contraseña</label>
-                        <input class="form-control" id="login-input-passw" placeholder="Contraseña" type="password">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Ingresa</button>
-                    </div>
-                </form>
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
             </div>
         </div>
+    </div>
+    </div>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 ftco-animate hero-wrap" id="input-file">
+                    <label class="input-image-placeholder mb-0 js-upload-image" data-input="image_paths[1]" wfd-id="120">
+                            <div class="bg" wfd-id="124"></div>
+                            <span class="icon-camera" wfd-id="123"></span>
+                            <div class="w-100 js-spinner text-center d-none" wfd-id="122">
+                                <div class="spinner-grow text-primary" role="status">
+                                    <span class="sr-only">Cargando...</span>
+                                </div>
+                            </div>
+                            <div class="form-group" wfd-id="121"><input class="file-input" name="images[1]" type="file" value="" id="id-5dacebf4bc6a4" accept="image/*" wfd-id="223"></div>
+                    </label>
+                </div>
+                <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                    <form class="publish-container js-first" action="/publish/first_step/" method="post" wfd-id="90">
+                        <input type="hidden" class="csrf_token" name="csrf_for_security" value="727e834da14c83674609e05229c44a37" wfd-id="225">
+                        <input name="redirect_to" type="hidden" value="" id="id-5dacebf4bc22d" wfd-id="224">
+                        <div class="row py-2 align-items-center fs-20" wfd-id="129">
+                            <div class="col text-left" wfd-id="133"></div>
+                            <div class="col-8 text-center text-body" wfd-id="132">
+                                <h3 id="js-publish-step-title" class="mb-0">Regalar</h3>
+                            </div>
+                            <div class="col text-right" wfd-id="130">
+                                <a href="/u/darias39" class="text-body d-inline d-lg-none js-publish-close">
+                                    <span class="icon-close" wfd-id="131"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row" wfd-id="101">
+                            <div class="col" wfd-id="102">
+                                <small class="form-text text-muted mt-2">Debes subir mínimo una foto.</small>
+                            </div>
+                        </div>
+                        <div class="row mt-4" wfd-id="96">
+                            <div class="col" wfd-id="97">
+                                <div class="form-group" wfd-id="99"><label for="id-5dacebf4bc693" wfd-id="100">Nombre del regalo *</label><input name="product[s_product_title]" value="" class="form-control" id="id-5dacebf4bc693" type="text" required="" minlength="4" maxlength="40" wfd-id="215"></div>
+                                <div class="invalid-feedback" style="display: none;" wfd-id="98">Máximo 40 carácteres</div>
+                            </div>
+                        </div>
+                        <div class="row mt-4" wfd-id="92">
+                            <div class="col mb-5" wfd-id="93">
+                                <div class="form-group" wfd-id="94"><label for="id-5dacebf4bc69d" wfd-id="95">Descripción del regalo</label><textarea name="product[s_product_description]" class="form-control" id="id-5dacebf4bc69d" rows="4" wfd-id="228"></textarea></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <div class="p-3 px-lg-0" wfd-id="91">
+                <button type="submit" class="btn btn-primary btn-block py-3 fs-16" disabled="" wfd-id="239">Continuar</button>
+        </div>
+        </div>
     </section>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
