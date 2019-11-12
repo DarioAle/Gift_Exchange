@@ -1,3 +1,4 @@
+
 .hero-wrap.hero-bread {
     padding: 10em 0;
 }
@@ -23,6 +24,8 @@ div {
     position: relative;
 }
 
+/* .ftco-section .container  */
+
 .btn-block {
     display: block;
     width: 100%;
@@ -30,9 +33,10 @@ div {
 
 .btn-primar, .btn-primary:disabled {
     color: #fff;
-    background-color: #29252a;
-    border-color: #29252a;
+    background-color: #38A99A;
+    border-color: #38A99A;
     opacity: 100;
+    font-size: 1.5em;
 }
 
 .input-image-placeholder {
@@ -54,7 +58,38 @@ div {
     display: none;
 }
 
-#input-file {
-    text-align: center;
-    background-image: url('../img/large-camera.png');
+div.camera-icon {
+    align-content: center;
+    border : 3px dashed #51679c; 
+    flex: 1;
+    margin : 5px;
+    border-radius: 25px;
+}
+
+span.camera-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
+}
+
+.camera-icon img {
+    max-width: 150px;
+    max-height: auto;
+    /* margin : 5px; */
+}
+
+h1.imHead {
+    color : white;
+
+}
+
+div > input[type="file"] {
+    opacity: 0;
+    display: none;
+}
+
+div.col-lg-6.camera-icon:hover {
+    background-color:  #C5BDB7;
+    
 }
