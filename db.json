@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "id": "carlossope6",
+      "nombre": "Carlos Soto Pérez",
+      "usuario": "carlossope6",
+      "correo": "carlos348@outlook.com",
+      "contrasena": "123456",
+      "imagen": "/img/sample.png",
+      "puntaje": 4
+    },
+    {
+      "id": "pedro.paramo",
+      "nombre": "Pedro Páramo",
+      "usuario": "pedro.paramo",
+      "correo": "pedro.paramo@elllanoenllamas.mx",
+      "contrasena": "123456",
+      "imagen": "/img/63.jpg",
+      "puntaje": 5
+    },
+    {
+      "id": "juanrulfo",
+      "nombre": "Juan Rulfo",
+      "usuario": "juanrulfo",
+      "correo": "juanrulfo@elllanoenllamas.com",
+      "contrasena": "123456",
+      "imagen": "/img/63.jpg",
+      "puntaje": 4
+    }
+  ],
+  "gifts": [
+    {
+      "nombre": "Mochila Cool",
+      "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
+      "imagen": [
+        "/img/cool-backpack.jpg"
+      ],
+      "creacion": "2019-11-18",
+      "categoria": "Otros",
+      "subCategoria": "Mochilas",
+      "edicion": "2019-11-18",
+      "cantidad": 1
+    }
+  ],
+  "chat": [
+    {
+      "owner": "carlossope6",
+      "reciever": "pedrio.paramo",
+      "time:": "",
+      "message": "Hola"
+    },
+    {
+      "reciever": "carlossope6",
+      "owner": "pedrio.paramo",
+      "time:": "",
+      "message": "Hola"
+    }
+  ]
+}
