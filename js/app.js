@@ -45,7 +45,7 @@ function loadGift(callback){
 
 function renderHorizontalUserCard(user){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id=${user.id} data-user-name=${user.nombre}>
+        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id="${user.id}" data-user-name="${user.nombre}">
             <a href="${user.redirectURL}" data-toggle="modal" data-target="#selection-modal">
                 <div class="row no-gutters">
                     <div class="col-md-3">
