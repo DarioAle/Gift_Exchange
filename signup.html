@@ -42,14 +42,14 @@
                     <div id="login-image-container">
                         <img src="./img/logo.jpeg" alt="login-image">
                     </div>
-                    <form id="input-container" action="./user-details.html">
+                    <form id="input-container" action="./user-details.html" method="post">
                         <div class="form-goup">
                             <label for="login-input-username">Usuario</label>
                             <input type="text" class="form-control" id="login-input-username" placeholder="Usuario" required>
                         </div>
                         <div class="form-goup">
                             <label for="login-input-username">Correo electrónico</label>
-                            <input type="text" class="form-control" id="login-input-mail" placeholder="Correo electrónico" required>
+                            <input type="email" class="form-control" id="login-input-mail" placeholder="Correo electrónico" required>
                         </div>
                         <div class="form-goup">
                             <label for="login-input-passw">Contraseña</label>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-goup">
                             <label for="login-input-passw">Repetir contraseña</label>
-                            <input class="form-control" id="login-input-confirm-passw" placeholder="Contraseña" required type="password">
+                            <input class="form-control" id="login-input-confirm-passw" placeholder="Contraseña" type="password" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Registrar</button>
