@@ -1,6 +1,7 @@
 "use strict";
 
 const BASE_URL = 'http://localhost:3000';
+const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
 
 let loggedInNavbar = document.getElementById('logged-navbar');
@@ -9,8 +10,10 @@ let notLoggedNavbar = document.getElementById('not-logged-navbar');
 let user;
 
 function renderNavbar(){
-    notLoggedNavbar.hidden = false;
-    loggedInNavbar.hidden = true;
+    if(notLoggedNavbar != null){
+        notLoggedNavbar.hidden = false;
+        loggedInNavbar.hidden = true;
+    }
     if(window.sessionStorage.getItem("username") != undefined){
         let xhr = new XMLHttpRequest();
         let username = window.sessionStorage.getItem("username");
@@ -18,8 +21,10 @@ function renderNavbar(){
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
-                notLoggedNavbar.hidden = true;
-                loggedInNavbar.hidden = false;
+                if(notLoggedNavbar != null){
+                    notLoggedNavbar.hidden = false;
+                    loggedInNavbar.hidden = true;
+                }
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
                 }); 
@@ -62,20 +67,20 @@ function renderHorizontalUserCard(user){
 
 function renderHorizontalGiftCard(gift){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-2">
-                    <a href="${gift.redirectURL}">
-                        <img src="${gift.imagen[0]}" class="card-img" alt="${gift.imagen[0]}">
-                    </a>
-                </div>
-                <div class="col-md-6">
+        <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card">
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <a href="${gift.redirectURL}">
+                            <img src="${gift.imagen[0]}" class="card-img" alt="${gift.imagen[0]}" />
+                        </a>
+                    </div>
+                <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombre}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><a href="">${gift.publicadoPor}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?usuario=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
                         <p class="card-text">${gift.descripcion}</p>
-                        <small>Publicado hace <span>${gift.estado} días</span></small>
-                        <small>Publicado hace <span>${gift.creacion} días</span></small>
+                        <small>Estado <span>${gift.estado}</span></small><br>
+                        <small>Publicado el <span>${gift.creacion}</span></small>
                     </div>
                 </div>
             </div>
