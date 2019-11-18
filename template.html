@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Project Template</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,11 +10,31 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/2.css"> -->
 
     <style>
-
         nav ul#large-nav-user-dropdown-container {
             display: none !important;
+        }
+
+        nav div.container button.navbar-toggler {
+            padding: 0px;
+        }
+
+        nav div.container img.nav-user-image {
+            height: 32px;
+        }
+
+        @media (min-width: 576px) {
+            nav div.container img.nav-user-image {
+                height: 32px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            nav div.container img.nav-user-image {
+                height: 32px;
+            }
         }
 
         @media (min-width: 992px) {
@@ -22,13 +42,36 @@
                 display: none !important;
             }
 
-            #profile-img {
-                height: 60px;
+            nav div.container img.nav-user-image {
+                height: 40px;
             }
 
             nav ul#large-nav-user-dropdown-container {
                 display: block !important;
             }
+
+        }
+
+        @media (min-width: 1200px) {
+            nav div.container img.nav-user-image {
+                height: 40px;
+            }
+        }
+
+        .hero-wrap.hero-bread {
+            padding: 10em 0;
+        }
+
+        .hero-wrap {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+        }
+
+        .hero-wrap {
+            width: 100%;
+            position: relative;
         }
     </style>
 </head>
@@ -36,7 +79,7 @@
 
 <body style="background-color: #FFFFFF;">
 
-    <nav hidden class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="ftco-navbar">
+    <nav  class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="not-logged-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Gift Exchange</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
@@ -52,8 +95,8 @@
             </div>
         </div>
     </nav>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="ftco-navbar">
+
+    <nav hidden class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Gift Exchange</a>
 
@@ -61,7 +104,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img alt="SourceLink" style="border-radius: 100%;" style="height:auto" id="profile-img" src="./img/63.jpg" />
+                        <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                            id="profile-img" src="./img/63.jpg" />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Action</a>
@@ -71,9 +115,11 @@
                     </div>
                 </li>
             </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#small-nav-user-dropdwon-container"
-                aria-controls="small-nav-user-dropdwon-container" aria-expanded="false" aria-label="Toggle navigation">
-                <img alt="SourceLink" style="border-radius: 100%;" style="height:auto" src="./img/63.jpg" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#small-nav-user-dropdwon-container" aria-controls="small-nav-user-dropdwon-container"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                    src="./img/63.jpg" />
             </button>
             <div class="collapse navbar-collapse user-collapse" id="small-nav-user-dropdwon-container">
                 <ul class="navbar-nav ml-auto">
@@ -85,24 +131,75 @@
         </div>
     </nav>
 
+    <div class="hero-wrap hero-bread cart" style="background-image: url('img/gift_1.jpg'); background-size:cover">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+                    <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> </p> -->
+                    <h1 class="mb-0 bread imHead" style="color: white;"> Regalar </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+
+        <div class="row pb-3">
+            <div class="card post-card shadow-sm bg-white rounded">
+                <img src="./img/cool-backpack.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Mochila cool</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
+                    <p class="card-text">Nuevo</p>
+                    <small>Publicado hace <span>3 días</span></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card mb-3 shadow-sm col-md-12">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
+                        <a href="https://google.com">
+                            <img src="./img/cool-backpack.jpg" class="card-img" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                                <h5 class="card-title">Mochila cool</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
+                                <p class="card-text">Nuevo</p>
+                                <small>Publicado hace <span>3 días</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-3 col-md-6 pt-3 pb-3">
-                <a href="/">
-                    <div class="card post-card shadow-sm bg-white rounded">
-                        <img src="./img/cool-backpack.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
+            <div class="card post-card shadow-sm bg-white rounded">
+                <a href="/hola.html">
+                    <div class="col-12 col-lg-3 col-md-6 pt-3 pb-3">
+                            <img src="./img/cool-backpack.jpg" class="card-img-top" alt="...">
+                        </div>
+                    <div class="card-body col-12 col-lg-6 col-md-6 pt-3 pb-3">
+                        <div>
                             <h5 class="card-title">Mochila cool</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
                             <p class="card-text">Nuevo</p>
-                            <small>Publicado hace <span>3 días</span></small>
+                            <small>Publicado hace 
+                                <span>3 días</span>
+                            </small>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
