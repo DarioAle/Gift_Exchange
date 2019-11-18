@@ -14,7 +14,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/giftex.css">
-    <link rel="stylesheet" href="css/entry.css">
+    <link rel="stylesheet" href="css/detail.css">
 </head>
 
 <body>
@@ -41,12 +41,63 @@
 
     <main id="content-wrapper" class="container pt-3 pt-md-5">
         <div class="row js-ec-impression" id="product-sheet" wfd-id="104">
-            <div class="col-md-6 col-12 mb-5" wfd-id="165">
-                <div class="row" id="gift-picture">
+            <div class="col-md-7 col-12" wfd-id="165">
+                <div class="row img-container" id="gift-picture">
                     <div class="col" wfd-id="189">
                         <img src="./img/cool-backpack.jpg">
                     </div>
                 </div>
+
+            </div>
+            <div class="col-md-5 col-12" wfd-id="165">
+                <div class="row">
+                    <div class="  d-md-block">
+                        <div class="row" wfd-id="163">
+                            <div class="col mb-4" wfd-id="164">
+                                <h4 class="mb-0">Estado del producto</h4>
+                                <h2 class="text-primary d-inline-block ">Nuevo</h2>
+                            </div>
+                        </div>
+                        <div class="row mb-4" wfd-id="161">
+                            <div class="col" wfd-id="162">
+                                <h5>Catergoría | Escolar</h5>
+                                <h2 class="text-primary">Mochila que usaba para ir a la escuela en la primaria </h2>
+                                <p class="text-neutral03">
+                                    Publicado 26 de septiembre 2019
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mb-5" wfd-id="159">
+                            <div class="col" wfd-id="160">
+                                <h5>Descripción:</h5>
+                                <p class="text-break">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+                                    ratione accusantium voluptatum sint veritatis saepe magnam totam expedita reiciendis
+                                    accusamus nesciunt nemo non, nisi magni fugit repellendus qui tempora. Totam. </p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col btn-reg">
+                                <button type="button" class="btn btn-lg btn-primary">Régalamelo</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="text-primary border-top mb-2 mt-md-5 pt-5 pt-md-5">Sobre quien regala:</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <span><img class="gifter" src="https://randomuser.me/api/portraits/men/94.jpg"> </span>
+                            </div>
+
+                            <div class="col-8">
+                                <span>Texto para ver de que tamaño quedó</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-12">
                 <div class="row comments px-md-3" wfd-id="168">
                     <a name="comments"></a>
                     <div class="col comment-box-wrapper mb-4 border-top" wfd-id="177">
@@ -57,7 +108,7 @@
                         <div class="w-100" wfd-id="170">
                             <form action="/ajax/do_comment" method="POST" class="js-comment-product d-flex"
                                 wfd-id="171">
-                                <img src="https://d27fb5w7nyh7dj.cloudfront.net/media/users/4/2/2/5/2/3/1/m_usr_20191016141051_1325224.jpg"
+                                <img class="uscom" src="./img/63.jpg"
                                     class="user-avatar user-avatar-small mr-2 js-self-avatar" alt="">
                                 <div class="input-group flex-grow-1" wfd-id="172">
                                     <div class="input-group rounded" wfd-id="173">
@@ -87,38 +138,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12" wfd-id="165">
-                <div class=" d-none d-md-block">
-                    <div class="row" wfd-id="163">
-                        <div class="col mb-4" wfd-id="164">
-                            <h4 class="mb-0">Precio estimado</h4>
-                            <h2 class="text-primary d-inline-block ml-2">$900</h2>
-                        </div>
-                    </div>
-                    <div class="row mb-4" wfd-id="161">
-                        <div class="col" wfd-id="162">
-                            <h5>Mochila</h5>
-                            <h2 class="text-primary">Adidas </h2>
-                            <p class="text-neutral03">
-                                Nuevo sin etiqueta |
-                                Hace 6 minutos
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row mb-5" wfd-id="159">
-                        <div class="col" wfd-id="160">
-                            <h5>Descripción:</h5>
-                            <p class="text-break">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-                                ratione accusantium voluptatum sint veritatis saepe magnam totam expedita reiciendis
-                                accusamus nesciunt nemo non, nisi magni fugit repellendus qui tempora. Totam. </p>
-                        </div>
-                    </div>
 
-                </div>
-
-
-
-            </div>
         </div>
 
     </main>
