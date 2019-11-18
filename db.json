@@ -6,7 +6,7 @@
             "usuario": "carlossope6",
             "correo": "carlos348@outlook.com",
             "contrasena": "123456",
-            "imagen": "/img/sample.png",
+            "imagen": "/img/hackerman.jfif",
             "puntaje": 4
         },
         {
@@ -39,8 +39,7 @@
             "estado": "usado",
             "publicadoPor": "pedro.paramo",
             "creacion": "2019-11-18",
-            "categoria": "Otros",
-            "subCategoria": "Mochilas",
+            "categoria": "otros",
             "edicion": "2019-11-18",
             "cantidad": 1,
             "pub": "activo",
@@ -61,11 +60,62 @@
             "estado": "usado",
             "publicadoPor": "pedro.paramo",
             "creacion": "2019-11-18",
-            "categoria": "Otros",
-            "subCategoria": "Mochilas",
+            "categoria": "otros",
             "edicion": "2019-11-18",
             "cantidad": 1,
             "pub": "activo",
+            "interesados": [
+                {
+                    "usuario": "juanrulfo",
+                    "razon": "Lo necesito y me gusta mucho"
+                },
+                {
+                    "usuario": "carlossope6",
+                    "razon": "Está muy cool"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nombre": "Alberca de pelotas 2",
+            "descripcion": "Una alberca de pelotas infantil, para toda ocasión",
+            "imagen": [
+                "/img/pelotas.png"
+            ],
+            "estado": "usado",
+            "publicadoPor": "carlossope6",
+            "adquiridoPor": "pedro.paramo",
+            "creacion": "2019-11-18",
+            "categoria": "hogar",
+            "edicion": "2019-11-18",
+            "cantidad": 1,
+            "pub": "inactivo",
+            "interesados": [
+                {
+                    "usuario": "juanrulfo",
+                    "razon": "Lo necesito y me gusta mucho"
+                },
+                {
+                    "usuario": "carlossope6",
+                    "razon": "Está muy cool"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "nombre": "Un auto",
+            "descripcion": "Si, es el carro de Mr Bean",
+            "imagen": [
+                "http://motorsports.com.uy/wp-content/uploads/cabezal-bean1.png"
+            ],
+            "estado": "usado",
+            "publicadoPor": "pedro.paramo",
+            "adquiridoPor": "carlossope6",
+            "creacion": "2019-11-18",
+            "categoria": "automoviles",
+            "edicion": "2019-11-18",
+            "cantidad": 1,
+            "pub": "inactivo",
             "interesados": [
                 {
                     "usuario": "juanrulfo",
