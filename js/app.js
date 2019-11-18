@@ -1,6 +1,7 @@
 "use strict";
 
 const BASE_URL = 'http://localhost:3000';
+const urlParams = new URLSearchParams(window.location.search);
 
 let loggedInNavbar = document.getElementById('logged-navbar');
 let notLoggedNavbar = document.getElementById('not-logged-navbar');
@@ -27,6 +28,14 @@ function renderNavbar(){
         }
         xhr.send();
     }
+}
+
+function loadGift(callback){
+    let giftId = urlParams.get('gift');
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `${BASE_URL}/gifts/${giftId}`);
+    xhr.onload = callback(xhr)
+    xhr.send();
 }
 
 renderNavbar();

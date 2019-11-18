@@ -30,6 +30,7 @@
   ],
   "gifts": [
     {
+      "id": 1,
       "nombre": "Mochila Cool",
       "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
       "imagen": [
