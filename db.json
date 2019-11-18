@@ -1,67 +1,95 @@
 {
-  "users": [
-    {
-      "id": "carlossope6",
-      "nombre": "Carlos Soto Pérez",
-      "usuario": "carlossope6",
-      "correo": "carlos348@outlook.com",
-      "contrasena": "123456",
-      "imagen": "/img/sample.png",
-      "puntaje": 4
-    },
-    {
-      "id": "pedro.paramo",
-      "nombre": "Pedro Páramo",
-      "usuario": "pedro.paramo",
-      "correo": "pedro.paramo@elllanoenllamas.mx",
-      "contrasena": "123456",
-      "imagen": "/img/63.jpg",
-      "puntaje": 5
-    },
-    {
-      "id": "juanrulfo",
-      "nombre": "Juan Rulfo",
-      "usuario": "juanrulfo",
-      "correo": "juanrulfo@elllanoenllamas.com",
-      "contrasena": "123456",
-      "imagen": "/img/63.jpg",
-      "puntaje": 4
-    }
-  ],
-  "gifts": [
-    {
-      "id": 1,
-      "nombre": "Mochila Cool",
-      "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
-      "imagen": [
-        "/img/cool-backpack.jpg"
-      ],
-      "publicadoPor": "pedro.paramo",
-      "creacion": "2019-11-18",
-      "categoria": "Otros",
-      "subCategoria": "Mochilas",
-      "edicion": "2019-11-18",
-      "cantidad": 1,
-      "interesados": [
+    "users": [
         {
-          "usuario":"carlossope6",
-          "razon": "Lo necesito y me gusta mucho"
+            "id": "carlossope6",
+            "nombre": "Carlos Soto Pérez",
+            "usuario": "carlossope6",
+            "correo": "carlos348@outlook.com",
+            "contrasena": "123456",
+            "imagen": "/img/sample.png",
+            "puntaje": 4
+        },
+        {
+            "id": "pedro.paramo",
+            "nombre": "Pedro Páramo",
+            "usuario": "pedro.paramo",
+            "correo": "pedro.paramo@elllanoenllamas.mx",
+            "contrasena": "123456",
+            "imagen": "/img/63.jpg",
+            "puntaje": 5
+        },
+        {
+            "id": "juanrulfo",
+            "nombre": "Juan Rulfo",
+            "usuario": "juanrulfo",
+            "correo": "juanrulfo@elllanoenllamas.com",
+            "contrasena": "123456",
+            "imagen": "/img/63.jpg",
+            "puntaje": 4
         }
-      ]
-    }
-  ],
-  "chat": [
-    {
-      "owner": "carlossope6",
-      "reciever": "pedrio.paramo",
-      "time:": "",
-      "message": "Hola"
-    },
-    {
-      "reciever": "carlossope6",
-      "owner": "pedrio.paramo",
-      "time:": "",
-      "message": "Hola"
-    }
-  ]
+    ],
+    "gifts": [
+        {
+            "id": 1,
+            "nombre": "Mochila Cool",
+            "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
+            "imagen": [
+                "/img/cool-backpack.jpg"
+            ],
+            "estado": "usado",
+            "publicadoPor": "pedro.paramo",
+            "creacion": "2019-11-18",
+            "categoria": "Otros",
+            "subCategoria": "Mochilas",
+            "edicion": "2019-11-18",
+            "cantidad": 1,
+            "pub": "activo",
+            "interesados": [
+                {
+                    "usuario": "carlossope6",
+                    "razon": "Lo necesito y me gusta mucho"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Alberca de pelotas",
+            "descripcion": "Una alberca de pelotas infantil, para toda ocasión",
+            "imagen": [
+                "/img/pelotas.png"
+            ],
+            "estado": "usado",
+            "publicadoPor": "pedro.paramo",
+            "creacion": "2019-11-18",
+            "categoria": "Otros",
+            "subCategoria": "Mochilas",
+            "edicion": "2019-11-18",
+            "cantidad": 1,
+            "pub": "activo",
+            "interesados": [
+                {
+                    "usuario": "juanrulfo",
+                    "razon": "Lo necesito y me gusta mucho"
+                },
+                {
+                    "usuario": "carlossope6",
+                    "razon": "Está muy cool"
+                }
+            ]
+        }
+    ],
+    "chat": [
+        {
+            "owner": "carlossope6",
+            "reciever": "pedrio.paramo",
+            "time:": "",
+            "message": "Hola"
+        },
+        {
+            "reciever": "carlossope6",
+            "owner": "pedrio.paramo",
+            "time:": "",
+            "message": "Hola"
+        }
+    ]
 }

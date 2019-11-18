@@ -38,94 +38,38 @@
     </nav>
     <!-- navbar -->
     <section>
-        <div class="container">
-            <div class="row align-items-center h-100" id="section-header">
-                <div class="col-md-6">
-                    <img src="./img/posts.png" alt="payent-2">
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <h1>
-                            Historial de publicaciones
-                        </h1>
-                    </div>
-                    <div>
-                        <div class="form-group">
-                            <label for="input-name-filter">Nombre</label>
-                            <input type="text" class="form-control" id="input-name-filter" placeholder="Usuario">
-                        </div>
-                        <div class="form-group">
-                            <label for="input-cat-filter">Filtro</label>
-                            <select class="form-control" id="input-cat-filter">
-                                <option selected value="-1">Seleciona</option>
-                                <option value="ropa">Ropa</option>
-                                <option value="electrónocos">Electrónocos</option>
-                                <option value="automóviles">Automóviles</option>
-                            </select>
+        <div class="hero-wrap hero-bread cart" style="background-image: url('img/gift_1.jpg'); background-size:cover">
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+                        <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> </p> -->
+                        <div>
+                            <div class="form-group">
+                                <label for="input-name-filter">Nombre</label>
+                                <input type="text" class="form-control" id="input-name-filter" placeholder="Usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-cat-filter">Filtro</label>
+                                <select class="form-control" id="input-cat-filter">
+                                    <option selected value="-1">Seleciona</option>
+                                    <option value="ropa">Ropa</option>
+                                    <option value="electrónocos">Electrónocos</option>
+                                    <option value="automóviles">Automóviles</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive-md">
-                <table class="table table-striped">
-                    <thead class="thead-primary">
-                        <tr class="text-center">
-                            <td>Título</td>
-                            <td>Artículo</td>
-                            <td>Fecha</td>
-                        </tr>
-                    </thead>
-                    <tbody class="thread-content">
-                        <tr class="text-center">
-                            <td class="action-column">
-                                <div>
-                                    <p class="card-text">Artículo espectacular</p>
-                                </div>
-                            </td>
-                            <td class="article-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="./img/sample.png" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Artículo Genérico</h5>
-                                    <p class="card-text">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos distinctio qui
-                                        facilis quaerat debitis officia natus velit minus fuga praesentium, eligendi
-                                        pariatur numquam. Neque, nam enim sed facilis eaque vel!
-                                </div>
-                            </td>
-                            <td class="date-column">
-                                <div>
-                                    <p class="card-text">hace 5 horas</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td class="action-column">
-                                <div>
-                                    <p class="card-text">Artículo espectacular</p>
-                                </div>
-                            </td>
-                            <td class="article-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="./img/sample.png" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Artículo Genérico</h5>
-                                    <p class="card-text">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos distinctio qui
-                                        facilis quaerat debitis officia natus velit minus fuga praesentium, eligendi
-                                        pariatur numquam. Neque, nam enim sed facilis eaque vel!
-                                </div>
-                            </td>
-                            <td class="date-column">
-                                <div>
-                                    <p class="card-text">hace 5 horas</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        </div>
+        <div class="container pt-5">
+            <div class="row"><h4>Activas</h4></div>
+            <div class="row" id="warper-activas">
+
+            </div>
+            <div class="row"><h4>Inactivas</h4></div>
+            <div class="row" id="warper-inactivas">
+
             </div>
         </div>
     </section>
@@ -140,6 +84,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/post-history.js"></script>
 </body>
 
 </html>
