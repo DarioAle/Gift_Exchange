@@ -74,117 +74,20 @@
     <!-- Optional JavaScript -->
     <section>
         <div class="container">
-            <div class="row" id="section-header">
+            <div hidden class="row" id="selection-header">
                 <div class="col-md-6">
-                    <img src="./img/payment-processed-2.png" alt="payent-2">
+                    <img id="selection-gift-image" src="./img/payment-processed-2.png" alt="payent-2">
                 </div>
                 <div class="col-md-6">
                     <h1>
-                        Selecciona el ganador de [Regalo genérico]
+                        Selecciona el ganador de <span id="selection-gift-name"></span>
                     </h1>
                 </div>
             </div>
-            <div class="table-responsive-md">
-                <table class="table table-striped">
-                    <thead class="thead-primary">
-                        <tr class="text-center">
-                            <td>Persona</td>
-                            <td>Razon</td>
-                        </tr>
-                    </thead>
-                    <tbody class="thread-content">
-                        <tr class="text-center">
-                            <td class="wisher-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Persona Genérica</h5>
-                                    <p class="text-left mr-4">
-                                        <a href="#" class="mr-2">5.0</a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                    </p>
-                                    <p class="card-text">Some quick example text to build on the Persona Genérica
-                                        and make
-                                        up the bulk of the card's conten
-                                </div>
-                            </td>
-                            <td class="rationale-column">
-                                <div>
-                                    <p class="card-text">ME gusta mucho y lo necesito</p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#selection-modal">Escojer</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td class="wisher-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Persona Genérica</h5>
-                                    <p class="text-left mr-4">
-                                        <a href="#" class="mr-2">5.0</a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                    </p>
-                                    <p class="card-text">Some quick example text to build on the Persona Genérica
-                                        and make
-                                        up the bulk of the card's conten
-                                </div>
-                            </td>
-                            <td class="rationale-column">
-                                <div>
-                                    <p class="card-text">ME gusta mucho y lo necesito</p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#selection-modal">Escojer</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td class="wisher-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Persona Genérica</h5>
-                                    <p class="text-left mr-4">
-                                        <a href="#" class="mr-2">5.0</a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                    </p>
-                                    <p class="card-text">Some quick example text to build on the Persona Genérica
-                                        and make
-                                        up the bulk of the card's conten
-                                </div>
-                            </td>
-                            <td class="rationale-column">
-                                <div>
-                                    <p class="card-text">ME gusta mucho y lo necesito</p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#selection-modal">Escojer</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        </div>
+        <div class="container pt-5">
+            <div class="row" id="warper">
+
             </div>
         </div>
     </section>
@@ -199,7 +102,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que deceas regalarle este artículo a <strong>Persona Genérica</strong>?
+                    ¿Seguro que deceas regalarle este artículo a <strong id ="selection-moda-name-span">Persona Genérica</strong>?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -220,6 +123,7 @@
         crossorigin="anonymous"></script>
 
         <script src="/js/app.js"></script>
+        <script src="/js/winner-selector.js"></script>
 </body>
 
 </html>

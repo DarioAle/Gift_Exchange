@@ -30,16 +30,24 @@
   ],
   "gifts": [
     {
+      "id": 1,
       "nombre": "Mochila Cool",
       "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
       "imagen": [
         "/img/cool-backpack.jpg"
       ],
+      "publicadoPor": "pedro.paramo",
       "creacion": "2019-11-18",
       "categoria": "Otros",
       "subCategoria": "Mochilas",
       "edicion": "2019-11-18",
-      "cantidad": 1
+      "cantidad": 1,
+      "interesados": [
+        {
+          "usuario":"carlossope6",
+          "razon": "Lo necesito y me gusta mucho"
+        }
+      ]
     }
   ],
   "chat": [
