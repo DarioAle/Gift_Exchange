@@ -4,8 +4,6 @@ let warper = document.getElementById('warper');
 let catFilter  = document.getElementById('input-cat-filter');
 let nameFilter = document.getElementById('input-name-filter');
 
-const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
-
 function getAdquiredGifts() {
     let xhr = new XMLHttpRequest();
     let queryString = `${BASE_URL}/gifts?adquiridoPor=${window.sessionStorage.getItem("username")}&pub=inactivo`;

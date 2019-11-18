@@ -125,21 +125,19 @@
                     "usuario": "carlossope6",
                     "razon": "Está muy cool"
                 }
+            ],
+            "chat": [
+                {
+                    "sender": "carlossope6",
+                    "reciever": "pedrio.paramo",
+                    "message": "Hola"
+                },
+                {
+                    "reciever": "carlossope6",
+                    "sender": "pedrio.paramo",
+                    "message": "Hola"
+                }
             ]
-        }
-    ],
-    "chat": [
-        {
-            "owner": "carlossope6",
-            "reciever": "pedrio.paramo",
-            "time:": "",
-            "message": "Hola"
-        },
-        {
-            "reciever": "carlossope6",
-            "owner": "pedrio.paramo",
-            "time:": "",
-            "message": "Hola"
         }
     ]
 }

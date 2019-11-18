@@ -3,7 +3,7 @@
 let warperActivas = document.getElementById('warper-activas');
 let warperInactivas = document.getElementById('warper-inactivas');
 
-const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
+
 
 function getAGifts(pub, w) {
     let xhr = new XMLHttpRequest();

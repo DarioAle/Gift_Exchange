@@ -1,6 +1,7 @@
 "use strict";
 
 const BASE_URL = 'http://localhost:3000';
+const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
 
 let loggedInNavbar = document.getElementById('logged-navbar');
@@ -68,11 +69,11 @@ function renderHorizontalGiftCard(gift){
     let html = `
         <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card">
                 <div class="row no-gutters">
-                    <a href="${gift.redirectURL}">
-                        <div class="col-md-3">
+                    <div class="col-md-3">
+                        <a href="${gift.redirectURL}">
                             <img src="${gift.imagen[0]}" class="card-img" alt="${gift.imagen[0]}" />
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombre}</h5>
