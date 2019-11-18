@@ -40,21 +40,21 @@ function loadGift(callback){
 
 function renderHorizontalUserCard(user){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-3">
-                    <a href="${user.redirectURL}">
-                        <img src=".${user.imagen}" class="card-img" style alt="${user.username}">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                            <h5 class="card-title">${user.nombre}</h5>
-                            <p class="card-text">${user.usernae}</p>
-                            <small>Puntaje <span>${user.puntaje}</span></small>
+        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id=${user.id} data-user-name=${user.nombre}>
+            <a href="${user.redirectURL}" data-toggle="modal" data-target="#selection-modal">
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                            <img src=".${user.imagen}" class="card-img" style alt="${user.id}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                                <h5 class="card-title">${user.nombre}</h5>
+                                <p class="card-text">${user.usuario}</p>
+                                <small>Puntaje <span>${user.puntaje}</span></small>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     `;
     return html;

@@ -100,3 +100,8 @@ nav div.container img.nav-user-image {
     width: 100%;
     position: relative;
 }
+
+.user-horizontal-card img{
+    max-height: 150px;
+    width: auto;
+}
