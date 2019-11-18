@@ -9,8 +9,10 @@ let notLoggedNavbar = document.getElementById('not-logged-navbar');
 let user;
 
 function renderNavbar(){
-    notLoggedNavbar.hidden = false;
-    loggedInNavbar.hidden = true;
+    if(notLoggedNavbar != null){
+        notLoggedNavbar.hidden = false;
+        loggedInNavbar.hidden = true;
+    }
     if(window.sessionStorage.getItem("username") != undefined){
         let xhr = new XMLHttpRequest();
         let username = window.sessionStorage.getItem("username");
@@ -18,8 +20,10 @@ function renderNavbar(){
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
-                notLoggedNavbar.hidden = true;
-                loggedInNavbar.hidden = false;
+                if(notLoggedNavbar != null){
+                    notLoggedNavbar.hidden = false;
+                    loggedInNavbar.hidden = true;
+                }
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
                 }); 
