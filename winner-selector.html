@@ -18,173 +18,62 @@
 
 <body>
     <!-- navbar -->
-    <nav  class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="not-logged-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Gift Exchange</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item active"><a href="login.html" class="nav-link">Ingresa</a></li>
-                    <li class="nav-item"><a href="signup.html" class="nav-link">Registo</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Gift Exchange</a>
+    
+                <ul class="navbar-nav ml-auto" id="large-nav-user-dropdown-container">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                                id="profile-img" src="./img/63.jpg" />
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Cuenta</a>
+                            <a class="dropdown-item" href="#">Publicar</a>
+                            <a class="dropdown-item" href="#">Historial</a>
+                            <a class="dropdown-item" href="#">Usuarios</a>
+                            <a class="dropdown-item" href="#">Chat</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Salir</a>
+                        </div>
+                    </li>
                 </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#small-nav-user-dropdwon-container" aria-controls="small-nav-user-dropdwon-container"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                        src="./img/63.jpg" />
+                </button>
+                <div class="collapse navbar-collapse user-collapse" id="small-nav-user-dropdwon-container">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                        <li class="nav-item active"><a href="login.html" class="nav-link">Ingresa</a></li>
+                        <li class="nav-item"><a href="signup.html" class="nav-link">Registo</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <nav hidden class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Gift Exchange</a>
-
-            <ul class="navbar-nav ml-auto" id="large-nav-user-dropdown-container">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
-                            id="profile-img" src="./img/63.jpg" />
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#small-nav-user-dropdwon-container" aria-controls="small-nav-user-dropdwon-container"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
-                    src="./img/63.jpg" />
-            </button>
-            <div class="collapse navbar-collapse user-collapse" id="small-nav-user-dropdwon-container">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item active"><a href="login.html" class="nav-link">Ingresa</a></li>
-                    <li class="nav-item"><a href="signup.html" class="nav-link">Registo</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>
     <!-- navbar -->
 
     <!-- Optional JavaScript -->
     <section>
         <div class="container">
-            <div class="row" id="section-header">
+            <div hidden class="row" id="selection-header">
                 <div class="col-md-6">
-                    <img src="./img/payment-processed-2.png" alt="payent-2">
+                    <img id="selection-gift-image" src="./img/payment-processed-2.png" alt="payent-2">
                 </div>
                 <div class="col-md-6">
                     <h1>
-                        Selecciona el ganador de [Regalo genérico]
+                        Selecciona el ganador de <span id="selection-gift-name"></span>
                     </h1>
                 </div>
             </div>
-            <div class="table-responsive-md">
-                <table class="table table-striped">
-                    <thead class="thead-primary">
-                        <tr class="text-center">
-                            <td>Persona</td>
-                            <td>Razon</td>
-                        </tr>
-                    </thead>
-                    <tbody class="thread-content">
-                        <tr class="text-center">
-                            <td class="wisher-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Persona Genérica</h5>
-                                    <p class="text-left mr-4">
-                                        <a href="#" class="mr-2">5.0</a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                    </p>
-                                    <p class="card-text">Some quick example text to build on the Persona Genérica
-                                        and make
-                                        up the bulk of the card's conten
-                                </div>
-                            </td>
-                            <td class="rationale-column">
-                                <div>
-                                    <p class="card-text">ME gusta mucho y lo necesito</p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#selection-modal">Escojer</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td class="wisher-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Persona Genérica</h5>
-                                    <p class="text-left mr-4">
-                                        <a href="#" class="mr-2">5.0</a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                    </p>
-                                    <p class="card-text">Some quick example text to build on the Persona Genérica
-                                        and make
-                                        up the bulk of the card's conten
-                                </div>
-                            </td>
-                            <td class="rationale-column">
-                                <div>
-                                    <p class="card-text">ME gusta mucho y lo necesito</p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#selection-modal">Escojer</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td class="wisher-column">
-                                <div class="col-4 image-warpper">
-                                    <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Persona">
-                                </div>
-                                <div class="col-8 text-warpper">
-                                    <h5 class="card-title">Persona Genérica</h5>
-                                    <p class="text-left mr-4">
-                                        <a href="#" class="mr-2">5.0</a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                        <a href="#"><span class="ion-ios-star"></span></a>
-                                    </p>
-                                    <p class="card-text">Some quick example text to build on the Persona Genérica
-                                        and make
-                                        up the bulk of the card's conten
-                                </div>
-                            </td>
-                            <td class="rationale-column">
-                                <div>
-                                    <p class="card-text">ME gusta mucho y lo necesito</p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#selection-modal">Escojer</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        </div>
+        <div class="container pt-5">
+            <div class="row" id="warper">
+
             </div>
         </div>
     </section>
@@ -199,7 +88,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que deceas regalarle este artículo a <strong>Persona Genérica</strong>?
+                    ¿Seguro que deceas regalarle este artículo a <strong id ="selection-moda-name-span">Persona Genérica</strong>?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -220,6 +109,7 @@
         crossorigin="anonymous"></script>
 
         <script src="/js/app.js"></script>
+        <script src="/js/winner-selector.js"></script>
 </body>
 
 </html>
