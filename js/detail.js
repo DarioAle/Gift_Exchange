@@ -1,7 +1,5 @@
 'use strict'
 
-document.querySelector("");
-
 function loadGift(){
     let giftId = urlParams.get('gift');
     let xhr = new XMLHttpRequest();

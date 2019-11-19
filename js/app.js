@@ -24,8 +24,10 @@ function renderNavbar(){
                 user = JSON.parse(xhr.response);
                 console.log(user);
                 if(notLoggedNavbar != null){
-                    notLoggedNavbar.hidden = false;
-                    loggedInNavbar.hidden = true;
+                    notLoggedNavbar.hidden = true;
+                    loggedInNavbar.hidden = false;
+                }else{
+                    loggedInNavbar.hidden = false;
                 }
                 loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
