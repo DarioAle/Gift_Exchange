@@ -15,8 +15,7 @@
     <link rel="shortcut icon" href="./img/icono.png">
 
     <style>
-        form
-        {
+        form {
             margin-bottom: 3em;
         }
     </style>
@@ -73,63 +72,27 @@
         </div>
     </div>
 
-    <div class="container">
-        <img id="profile" src="img/sample.png" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
-        <form action="./updateAccount" method="POST" enctype='multipart/form-data'>
-            <h1>Actualizar información</h1>
-            <input type="number" value="{{user.id}}" name="id" style="display:none"/>
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <label for="nombre">
+    <div class="container pt-5">
+        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id=${user.id}
+            data-user-name=${user.nombre}>
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <img id="profile" src="" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 id="id-user"></h1>
+                        <hr>
                         <h4>Nombre</h4>
-                    </label>
-                    <input type="text" class="form-control" name="username" id="username" value="Usuario"
-                        title="Ingrese el nombre completo">
-                </div>
-            </div>
-            <div class="form-group row">
-
-                <div class="col-xs-12 col-sm-6">
-                    <label for="correo">
+                        <h6 id="name"></h6>
                         <h4>Correo electrónico</h4>
-                    </label>
-                    <input type="email" class="form-control" name="email" id="email" value="correo"
-                        title="Ingrese su correo electrónico.">
-                </div>
-
-                <div class="col-xs-12 col-sm-6">
-                    <label>
-                        <h4>Foto de perfil</h4>
-                    </label>
-                    <button class="form-control" id="pick-photo">Seleccionar</button>
+                        <h6 id="mail"></h6>
+                        <h4>Puntaje</h4>
+                        <h6 id="points"></h6>
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group row">
-
-                <div class="col-xs-12 col-sm-6">
-                    <label for="passConfirm">
-                        <h4>Contraseña actual</h4>
-                    </label>
-                    <input type="password" class="form-control" name="passConfirm" id="passConfirm"
-                        title="Ingrese su contraseña.">
-                </div>
-
-                <div class="col-xs-12 col-sm-6">
-                    <label for="newPass">
-                        <h4>Nueva contraseña</h4>
-                    </label>
-                    <input type="password" class="form-control" name="newPass" id="newPass"
-                        title="Ingrese nuevamente su contraseña.">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <br>
-                    <button class="btn btn-lg btn-dark" type="submit">Actualizar</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 
     <script src="js/user-details.js"></script>
