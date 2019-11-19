@@ -50,7 +50,7 @@ function winnerGiftCallback(xhr) {
     }
 }
 
-btnConfirm.addEventListener('click', (evt) => {
+function onConfirmClick (evt) {
     let xhr = new XMLHttpRequest();
     let id = urlParams.get('gift');
     xhr.open('PATCH', `${BASE_URL}/gifts/${id}`);
@@ -64,6 +64,8 @@ btnConfirm.addEventListener('click', (evt) => {
         "adquiridoPor": targetUserID,
         "pub": "inactivo" 
     }));
-});
+}
+
+btnConfirm.addEventListener('click', onConfirmClick);
 
 loadGift(winnerGiftCallback);

@@ -96,7 +96,7 @@
                     "razon": "Lo necesito y me gusta mucho"
                 },
                 {
-                    "usuario": "carlossope6",
+                    "usuario": "pedro.paramo",
                     "razon": "Está muy cool"
                 }
             ]
@@ -125,19 +125,30 @@
                     "usuario": "carlossope6",
                     "razon": "Está muy cool"
                 }
-            ],
-            "chat": [
-                {
-                    "sender": "carlossope6",
-                    "reciever": "pedrio.paramo",
-                    "message": "Hola"
-                },
-                {
-                    "reciever": "carlossope6",
-                    "sender": "pedrio.paramo",
-                    "message": "Hola"
-                }
             ]
+        }
+    ],
+    "chat": [
+        {
+            "id": 1574123313415,
+            "gift": 4,
+            "sender": "carlossope6",
+            "reciever": "pedrio.paramo",
+            "message": "Hola"
+        },
+        {
+            "id": 1574123339288,
+            "gift": 4,
+            "reciever": "carlossope6",
+            "sender": "pedro.paramo",
+            "message": "Hola"
+        },
+        {
+            "id": 1574123632318,
+            "gift": 4,
+            "sender": "carlossope6",
+            "reciever": "pedro.paramo",
+            "message": "Me gustó mucho ¿Dónde nos podemos ver?"
         }
     ]
 }
