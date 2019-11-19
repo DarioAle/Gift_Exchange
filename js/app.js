@@ -89,4 +89,22 @@ function renderHorizontalGiftCard(gift){
     return html;
 }
 
+function renderVerticalGiftCard(gift) {
+    let html = 
+    `
+    <div class="col-12 col-lg-4 col xl-3 px-4 px-lg-2 mb-3">
+        <div class="card post-card shadow-sm bg-white rounded">
+            <img src="./img/cool-backpack.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${gift.nombre}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
+                <p class="card-text">${gift.estado}</p>
+                <small>Publicado hace <span>${gift.creacion}</span></small>
+            </div>
+        </div>
+    </div>
+    `;
+    return html;
+}
+
 renderNavbar();

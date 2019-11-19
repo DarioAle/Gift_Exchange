@@ -57,42 +57,44 @@ continueButton.addEventListener("click", event => {
         "pub": "activo",
         "interesados": []
     }
+    let s = document.querySelector("section");
+    s.removeChild(s.querySelector(".container"));
+    s.insertAdjacentHTML("afterbegin", 
+        `   
+        <div class="container">
+            <div class="row text-center suc-msg">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <br><br>
+                    <h2 style="color:#0fad00">Éxito</h2>
+                    <h3>Querido usuario</h3>
+                    <p style="font-size:20px;color:#5C5C5C;">Gracias por hacer un nuevo regalo, seguro harás muy feliz a alguien</p>
+                    <a href="giftEntry.html" class="btn btn-success">     Dar otro regalo     </a>
+                    <a href="index.html" class="btn btn-success">     Inicio     </a>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        `
+    );
+
+    // let postEntry = new XMLHttpRequest();
+    // postEntry.open("POST", "http://127.0.0.1:3000/gifts/");
+    // postEntry.setRequestHeader('Content-Type', 'application/json');
+    // postEntry.setRequestHeader('x-auth', localStorage.token);
 
 
-    let postEntry = new XMLHttpRequest();
-    postEntry.open("POST", "http://127.0.0.1:3000/gifts/");
-    postEntry.setRequestHeader('Content-Type', 'application/json');
-    postEntry.setRequestHeader('x-auth', localStorage.token);
-
-    postEntry.onload = (ev) => {
-        console.log("Petición de registro de regalo realizada");
-        if (postEntry.status != 201) {
-            console.log("Algo salió mal");
-            console.log(postEntry.responseText);
+    // postEntry.onload = (ev) => {
+    //     console.log("Petición de registro de regalo realizada");
+    //     if (postEntry.status != 201) {
+    //         console.log("Algo salió mal");
+    //         console.log(postEntry.responseText);
             
-        } else {
-            console.log("Si lo recibió y se almacenó el regalo");
-            // let s = document.querySelector("section");
-            // s.removeChild(s.firstChild);
-            // s.insertAdjacentHTML("afterbegin", `<div class="container">
-            // 	<div class="row text-center">
-            //         <div class="col-sm-6 col-sm-offset-3">
-            //         <br><br> <h2 style="color:#0fad00">Success</h2>
-            //         <img src="http://osmhotels.com//assets/check-true.jpg">
-            //         <h3>Dear, Faisal khan</h3>
-            //         <p style="font-size:20px;color:#5C5C5C;">Thank you for verifying your Mobile No.We have sent you an email "faisalkhan.chat@gmail.com" with your details
-            // Please go to your above email now and login.</p>
-            //         <a href="" class="btn btn-success">     Log in      </a>
-            //     <br><br>
-            //         </div>
-            
-            // 	</div>
-            // </div>`);
-            // console.log(postEntry.responseText);
-        }
-        
-    }
-    postEntry.send(JSON.stringify(valuesFilled));
+    //     } else {
+    //         console.log("Si lo recibió y se almacenó el regalo");
+    //         console.log(postEntry.responseText);
+    //     }
+    // }
+    // postEntry.send(JSON.stringify(valuesFilled));
 });
 
 
