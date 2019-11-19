@@ -14,6 +14,10 @@ function fetchData() {
             document.querySelector("title").innerHTML = usuario.nombre;
             document.getElementById("header").innerHTML = usuario.nombre;
             document.getElementById("profile").setAttribute("src", "." + usuario.imagen);
+            document.getElementById("id-user").innerHTML = usuario.id;
+            document.getElementById("name").innerHTML = usuario.nombre;
+            document.getElementById("mail").innerHTML = usuario.correo;
+            document.getElementById("points").innerHTML = usuario.puntaje;
         } else {
             alert(xhr.statusText);
         }

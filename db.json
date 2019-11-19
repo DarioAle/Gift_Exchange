@@ -106,7 +106,7 @@
       "nombre": "Un auto",
       "descripcion": "Si, es el carro de Mr Bean",
       "imagen": [
-        "http://motorsports.com.uy/wp-content/uploads/cabezal-bean1.png"
+        "/img/auto.jpg"
       ],
       "estado": "usado",
       "publicadoPor": "pedro.paramo",
@@ -237,7 +237,7 @@
       "nombre": "Motor NEMA 23",
       "descripcion": "Este poderosísimo",
       "imagen": [
-        "/img/stepper.jfif"
+        "/img/stepper.jpg"
       ],
       "estado": "usado",
       "publicadoPor": "pedro.paramo",
