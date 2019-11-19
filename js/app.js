@@ -10,6 +10,7 @@ let notLoggedNavbar = document.getElementById('not-logged-navbar');
 let user;
 
 function renderNavbar(){
+    console.log("Hola");
     if(notLoggedNavbar != null){
         notLoggedNavbar.hidden = false;
         loggedInNavbar.hidden = true;
@@ -21,6 +22,7 @@ function renderNavbar(){
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
+                console.log(user);
                 if(notLoggedNavbar != null){
                     notLoggedNavbar.hidden = false;
                     loggedInNavbar.hidden = true;
@@ -45,7 +47,7 @@ function loadGift(callback){
 
 function renderHorizontalUserCard(user){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id=${user.id} data-user-name=${user.nombre}>
+        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id="${user.id}" data-user-name="${user.nombre}">
             <a href="${user.redirectURL}" data-toggle="modal" data-target="#selection-modal">
                 <div class="row no-gutters">
                     <div class="col-md-3">
