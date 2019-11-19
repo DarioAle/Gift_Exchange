@@ -66,7 +66,7 @@
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
                     <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> </p> -->
-                    <h1 id="header" class="mb-0 bread imHead" style="color: white;"> Usuario </h1>
+                    <h1 class="mb-0 bread imHead" style="color: white;"> Mi cuenta </h1>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
 
     <div class="container">
         <img id="profile" src="img/sample.png" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
-        <form action="./updateAccount" method="POST" enctype='multipart/form-data'>
+        <form action="./updateAccount" method="POST">
             <h1>Actualizar información</h1>
             <input type="number" value="{{user.id}}" name="id" style="display:none"/>
             <div class="form-group">
@@ -131,7 +131,7 @@
         </form>
     </div>
 
-    <script src="js/user-details.js"></script>
+    <script src="./js/user-info.js"></script>
 
 </body>
 
