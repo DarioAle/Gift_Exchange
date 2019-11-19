@@ -18,21 +18,40 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Gift Exchange</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
 
-            <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto" id="large-nav-user-dropdown-container">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                            id="profile-img" src="./img/63.jpg" />
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./user-info.html" id="cuenta-a">Cuenta</a>
+                        <a class="dropdown-item" href="./giftEntry.html">Publicar</a>
+                        <a class="dropdown-item" href="./adquired-history.html">Historial</a>
+                        <a class="dropdown-item" href="./post-history.html">Mis Publicaciones</a>
+                        <a class="dropdown-item" href="./user-list.html">Usuarios</a>
+                        <a class="dropdown-item" href="./chat.html">Chat</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Salir</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#small-nav-user-dropdwon-container" aria-controls="small-nav-user-dropdwon-container"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                    src="./img/63.jpg" />
+            </button>
+            <div class="collapse navbar-collapse user-collapse" id="small-nav-user-dropdwon-container">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="user-ranking.html" class="nav-link">Ranking</a></li>
-                    <li class="nav-item"><a href="user-list.html" class="nav-link">Social</a></li>
-                    <li class="nav-item"><a href="user-details.html" class="nav-link">Me</a></li>
-                    <li class="nav-item"><a href="chat.html" class="nav-link">Chat</a></li>
+                    <li class="nav-item active"><a href="login.html" class="nav-link">Ingresa</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Registo</a></li>
                 </ul>
             </div>
         </div>

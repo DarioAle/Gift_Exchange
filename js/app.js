@@ -27,6 +27,7 @@ function renderNavbar(){
                     notLoggedNavbar.hidden = false;
                     loggedInNavbar.hidden = true;
                 }
+                loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
                 }); 
@@ -79,7 +80,7 @@ function renderHorizontalGiftCard(gift){
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombre}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?usuario=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-info.html?usuario=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
                         <p class="card-text">${gift.descripcion}</p>
                         <small>Estado <span>${gift.estado}</span></small><br>
                         <small>Publicado el <span>${gift.creacion}</span></small>
