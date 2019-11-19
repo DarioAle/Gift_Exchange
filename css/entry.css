@@ -31,7 +31,7 @@ div {
     width: 100%;
 }
 
-.btn-primar, .btn-primary:disabled {
+ .btn-primary:disabled, .btn-primary, .btn-primary:hover {
     color: #fff;
     background-color: #38A99A;
     border-color: #38A99A;
