@@ -93,3 +93,8 @@ div.col-lg-6.camera-icon:hover {
     background-color:  #C5BDB7;
     
 }
+
+.suc-msg {
+    display: flex;
+    justify-content: center;
+}
