@@ -10,6 +10,7 @@ let notLoggedNavbar = document.getElementById('not-logged-navbar');
 let user;
 
 function renderNavbar(){
+    console.log("Hola");
     if(notLoggedNavbar != null){
         notLoggedNavbar.hidden = false;
         loggedInNavbar.hidden = true;
@@ -21,6 +22,7 @@ function renderNavbar(){
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
+                console.log(user);
                 if(notLoggedNavbar != null){
                     notLoggedNavbar.hidden = false;
                     loggedInNavbar.hidden = true;

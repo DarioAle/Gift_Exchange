@@ -1,10 +1,11 @@
 "use strict";
 
 let reciever;
-let giftId;
+let giftId = 4;
 let pagenumber = 0;
-let conversationWarper = document.getElementById('content-panel');
+let conversationWarper = document.getElementById('message-warp');
 let messages = [];
+let btnSend = document.getElementById('btn-message-send');
 
 function renderRecieverMessage(message){
     let html = `
@@ -38,12 +39,12 @@ function fetchMessages(){
     xhr.open('GET', url);
     xhr.onload = (evt) => {
         if(xhr.status == 200){
-            messages = JSON.stringify(xhr.response);
-            messages.forEach(message, index => {
+            messages = JSON.parse(xhr.response);
+            messages.forEach((message, index) => {
                 if(message.sender == user.id){
-                    renderSenderMessage(message)
+                    conversationWarper.innerHTML += renderSenderMessage(message)
                 }else{
-                    renderRecieverMessage(message);
+                    conversationWarper.innerHTML += renderRecieverMessage(message);
                 }
             });
         }
@@ -66,6 +67,16 @@ function sendMessages(message){
         "sender": user.id,
         "reciever": reciever,
         "message": message,
+        "gift": giftId,
         "id": now 
     }));
 }
+
+function onMessageSned(evt){
+    evt.preventDefault();
+    sendMessages(document.getElementById('in-message-text').value);
+}
+
+btnSend.addEventListener('click', onMessageSned);
+
+fetchMessages();
