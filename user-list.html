@@ -44,7 +44,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loadUsers()">
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
         <div class="container">
@@ -58,11 +58,12 @@
                             id="profile-img" src="./img/63.jpg" />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/">Cuenta</a>
-                        <a class="dropdown-item" href="#">Publicar</a>
-                        <a class="dropdown-item" href="#">Historial</a>
-                        <a class="dropdown-item" href="#">Usuarios</a>
-                        <a class="dropdown-item" href="#">Chat</a>
+                        <a class="dropdown-item" href="./user-info.html" id="cuenta-a">Cuenta</a>
+                        <a class="dropdown-item" href="./giftEntry.html">Publicar</a>
+                        <a class="dropdown-item" href="./adquired-history.html">Historial</a>
+                        <a class="dropdown-item" href="./post-history.html">Mis Publicaciones</a>
+                        <a class="dropdown-item" href="./user-list.html">Usuarios</a>
+                        <a class="dropdown-item" href="./chat.html">Chat</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Salir</a>
                     </div>
@@ -95,81 +96,21 @@
         </div>
     </div>
 
-    <nav class="navbar pt-5" id="filters">
+    <nav class="navbar pt-5 pb-5" id="filters">
         <div class="container">
-            <select class="browser-default custom-select">
-                <option selected>Filters</option>
-                <option value="1">Filter 1</option>
-                <option value="2">Filter 2</option>
-                <option value="3">Filter 3</option>
+            <select id="sel" class="browser-default custom-select">
+                <option selected>Ordenar</option>
+                <option value="1">Ranking</option>
+                <option value="2">Nombre</option>
+                <option value="3">Alias</option>
             </select>
         </div>
     </nav>
 
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 1</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
+    <div class="container" id="users-cont">
+
     </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 2</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 3</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 4</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 5</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 6</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 7</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
-    <div class='user'>
-        <div>
-            <h1>Usuario ficticio 8</h1>
-            <b>Email:</b> example@example.com<br>
-            <b>Birthday:</b> 1 enero 1970
-        </div>
-        <img src="img/sample.png">
-    </div>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -180,6 +121,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/user-list.js"></script>
 </body>
 
 </html>

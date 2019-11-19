@@ -10,6 +10,7 @@ let notLoggedNavbar = document.getElementById('not-logged-navbar');
 let user;
 
 function renderNavbar(){
+    console.log("Hola");
     if(notLoggedNavbar != null){
         notLoggedNavbar.hidden = false;
         loggedInNavbar.hidden = true;
@@ -21,10 +22,12 @@ function renderNavbar(){
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
+                console.log(user);
                 if(notLoggedNavbar != null){
                     notLoggedNavbar.hidden = false;
                     loggedInNavbar.hidden = true;
                 }
+                loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
                 }); 
@@ -45,7 +48,7 @@ function loadGift(callback){
 
 function renderHorizontalUserCard(user){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id=${user.id} data-user-name=${user.nombre}>
+        <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id="${user.id}" data-user-name="${user.nombre}">
             <a href="${user.redirectURL}" data-toggle="modal" data-target="#selection-modal">
                 <div class="row no-gutters">
                     <div class="col-md-3">
@@ -77,7 +80,7 @@ function renderHorizontalGiftCard(gift){
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombre}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?usuario=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-info.html?usuario=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
                         <p class="card-text">${gift.descripcion}</p>
                         <small>Estado <span>${gift.estado}</span></small><br>
                         <small>Publicado el <span>${gift.creacion}</span></small>

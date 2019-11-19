@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Usuario</title>
+    <title>Mi cuenta</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,45 +11,70 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/giftex.css">
-    <link rel="stylesheet" href="css/login.css">
+
+    <link rel="shortcut icon" href="./img/icono.png">
+
     <style>
         form
         {
             margin-bottom: 3em;
         }
-        #more-info
-        {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            margin: 2em;
-        }
     </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<body onload="fetchData()">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Gift Exchange</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
 
-            <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto" id="large-nav-user-dropdown-container">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                            id="profile-img" src="./img/63.jpg" />
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./user-info.html" id="cuenta-a">Cuenta</a>
+                        <a class="dropdown-item" href="./giftEntry.html">Publicar</a>
+                        <a class="dropdown-item" href="./adquired-history.html">Historial</a>
+                        <a class="dropdown-item" href="./post-history.html">Mis Publicaciones</a>
+                        <a class="dropdown-item" href="./user-list.html">Usuarios</a>
+                        <a class="dropdown-item" href="./chat.html">Chat</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Salir</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#small-nav-user-dropdwon-container" aria-controls="small-nav-user-dropdwon-container"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                    src="./img/63.jpg" />
+            </button>
+            <div class="collapse navbar-collapse user-collapse" id="small-nav-user-dropdwon-container">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="user-ranking.html" class="nav-link">Ranking</a></li>
-                    <li class="nav-item"><a href="user-list.html" class="nav-link">Social</a></li>
-                    <li class="nav-item active"><a href="user-details.html" class="nav-link">Me</a></li>
-                    <li class="nav-item"><a href="chat.html" class="nav-link">Chat</a></li>
+                    <li class="nav-item active"><a href="login.html" class="nav-link">Ingresa</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Registo</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <div class="hero-wrap hero-bread cart" style="background-image: url('img/gift_1.jpg'); background-size:cover">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+                    <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> </p> -->
+                    <h1 id="header" class="mb-0 bread imHead" style="color: white;"> Usuario </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <img src="img/sample.png" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
+        <img id="profile" src="img/sample.png" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
         <form action="./updateAccount" method="POST" enctype='multipart/form-data'>
             <h1>Actualizar información</h1>
             <input type="number" value="{{user.id}}" name="id" style="display:none"/>
@@ -105,16 +130,10 @@
                 </div>
             </div>
         </form>
-
-        <hr>
-
-        <h1>Información adicional</h1>
-        <div id="more-info">
-            <a href="./post-history.html"><button class="btn btn-lg btn-dark">Publicaciones</button></a>
-            <a href="./transaction-history.html"><button class="btn btn-lg btn-dark">Transacciones</button></a>
-            <a href="./adquired-history.html"><button class="btn btn-lg btn-dark">Mis regalos</button></a>
-        </div>
     </div>
+
+    <script src="js/user-details.js"></script>
+
 </body>
 
 </html>

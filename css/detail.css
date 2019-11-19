@@ -1,3 +1,86 @@
-div > img {
+img.uscom {
+    max-width: 10%;
+    max-height: auto;
+    border-radius: 50%;
+    vertical-align: center;
     text-align: center;
+}
+
+img.gifter {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.btn-reg {
+   text-align: center;
+   display: block;
+}
+
+.btn-reg > button {
+    width : 100%;
+}
+
+div.img-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+body {
+    padding-bottom: 50px;
+}
+
+input.input-main-comment {
+    margin-left: 5%;
+    min-height: 100%;
+}
+
+.comments input, .comments input:focus {
+    background-color: #f6f6f6;
+}
+
+.input-group>input.form-control:not(:last-child) {
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    border-top-right-radius: 0;
+}
+
+.input-group>.custom-select:not(:last-child), .input-group>.form-control:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .input-main-commment {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+
+.comments input, .comments input:focus {
+    background-color: #f6f6f6;
+}
+
+.comments input {
+    border: 0;
+    height: 2.625rem;
+}
+
+.comments input {
+    border: 0;
+    height: 2.625rem;
+}   
+
+.pl-2, .px-2 {
+    padding-left: .5rem!important;
+}
+
+.rounded-left {
+    border-top-left-radius: .25rem!important;
+}
+
+.rounded-bottom, .rounded-left {
+    border-bottom-left-radius: .25rem!important;
 }

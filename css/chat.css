@@ -91,3 +91,20 @@
     background-color: #545c6c;
     color: #dad0d0;
 }
+
+div#mesage-send {
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+div#mesage-send #in-message-text{
+    width: 75%;
+    padding: 10px;
+}
+
+div#message-send #btn-message-send {
+    width: 20%;
+    padding: 10px;
+    background-color: #dad0d0;
+
+}

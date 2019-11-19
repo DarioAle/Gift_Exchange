@@ -15,61 +15,140 @@
 
     <link rel="stylesheet" href="css/giftex.css">
     <link rel="stylesheet" href="css/entry.css">
+
+    <link rel="shortcut icon" href="./img/icono.png">
+
+    <style>
+
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="not-logged-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Gift Exchange</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
-
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="user-ranking.html" class="nav-link">Ranking</a></li>
-                    <li class="nav-item"><a href="user-list.html" class="nav-link">Social</a></li>
-                    <li class="nav-item"><a href="user-details.html" class="nav-link">Me</a></li>
-                    <li class="nav-item"><a href="chat.html" class="nav-link">Chat</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link">Ingresa</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Registro</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #51679C" id="logged-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Gift Exchange</a>
+
+            <ul class="navbar-nav ml-auto" id="large-nav-user-dropdown-container">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                            id="profile-img" src="./img/63.jpg" />
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./user-info.html" id="cuenta-a">Cuenta</a>
+                        <a class="dropdown-item" href="./giftEntry.html">Publicar</a>
+                        <a class="dropdown-item" href="./adquired-history.html">Historial</a>
+                        <a class="dropdown-item" href="./post-history.html">Mis Publicaciones</a>
+                        <a class="dropdown-item" href="./user-list.html">Usuarios</a>
+                        <a class="dropdown-item" href="./chat.html">Chat</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Salir</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#small-nav-user-dropdwon-container" aria-controls="small-nav-user-dropdwon-container"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <img class="nav-user-image" alt="SourceLink" style="border-radius: 100%;" style="height:auto"
+                    src="./img/63.jpg" />
+            </button>
+            <div class="collapse navbar-collapse user-collapse" id="small-nav-user-dropdwon-container">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item active"><a href="login.html" class="nav-link">Ingresa</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link">Registo</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <!--- END NAV-->
 
-    <div class="hero-wrap hero-bread" style="background-image: url('img/eastwood-order-completed.png');">
+    <div class="hero-wrap hero-bread cart" style="background-image: url('img/gift_1.jpg'); background-size:cover">
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+                    <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> </p> -->
+                    <h1 class="mb-0 bread imHead"> Regalar </h1>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <section class="ftco-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mb-5 ftco-animate hero-wrap" id="input-file">
-                    <label class="input-image-placeholder mb-0 js-upload-image" data-input="image_paths[1]" wfd-id="120">
-                            <div class="bg" wfd-id="124"></div>
-                            <span class="icon-camera" wfd-id="123"></span>
-                            <div class="w-100 js-spinner text-center d-none" wfd-id="122">
-                                <div class="spinner-grow text-primary" role="status">
-                                    <span class="sr-only">Cargando...</span>
-                                </div>
-                            </div>
-                            <div class="form-group" wfd-id="121"><input class="file-input" name="images[1]" type="file" value="" id="id-5dacebf4bc6a4" accept="image/*" wfd-id="223"></div>
-                    </label>
+                <div class="col-lg-6  pl-md-5">
+                    <!---id="input-file"-->
+                    <div class="row">
+                        <div class="col-lg-6 camera-icon">
+                            <span class="camera-icon">
+                                <label data-input="image_paths[1]">
+                                    <img src="./img/cam-icon-last.png">
+                                    <div>
+                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                    </div>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="col-lg-6 camera-icon">
+                            <span class="camera-icon">
+                                <label data-input="image_paths[1]">
+                                    <img src="./img/cam-icon-last.png">
+                                    <div>
+                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                    </div>
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 camera-icon">
+                            <span class="camera-icon">
+                                <label data-input="image_paths[1]">
+                                    <img src="./img/cam-icon-last.png">
+                                    <div>
+                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                    </div>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="col-lg-6 camera-icon">
+                            <span class="camera-icon">
+                                <label data-input="image_paths[1]">
+                                    <img src="./img/cam-icon-last.png">
+                                    <div>
+                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                    </div>
+                                </label>
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 product-details pl-md-5 ftco-animate">
-                    <form class="publish-container js-first" action="/publish/first_step/" method="post" wfd-id="90">
-                        <input type="hidden" class="csrf_token" name="csrf_for_security" value="727e834da14c83674609e05229c44a37" wfd-id="225">
-                        <input name="redirect_to" type="hidden" value="" id="id-5dacebf4bc22d" wfd-id="224">
+                    <form onsubmit="return false;" class="publish-container js-first" action="/publish/first_step/"
+                        method="post" wfd-id="90">
                         <div class="row py-2 align-items-center fs-20" wfd-id="129">
                             <div class="col text-left" wfd-id="133"></div>
-                            <div class="col-8 text-center text-body" wfd-id="132">
-                                <h3 id="js-publish-step-title" class="mb-0">Regalar</h3>
+                            <div class="col-8 text-center" wfd-id="132">
+                                <h3 id="js-publish-step-title" class="mb-0">Información del regalo</h3>
                             </div>
                             <div class="col text-right" wfd-id="130">
                                 <a href="/u/darias39" class="text-body d-inline d-lg-none js-publish-close">
@@ -79,41 +158,53 @@
                         </div>
                         <div class="row" wfd-id="101">
                             <div class="col" wfd-id="102">
-                                <small class="form-text text-muted mt-2">Debes subir mínimo una foto.</small>
+                                <small class="form-text mt-2">Debes subir mínimo una foto.</small>
                             </div>
                         </div>
                         <div class="row mt-4" wfd-id="96">
                             <div class="col" wfd-id="97">
-                                <div class="form-group" wfd-id="99"><label for="id-5dacebf4bc693" wfd-id="100">Nombre del regalo *</label><input name="product[s_product_title]" value="" class="form-control" id="id-5dacebf4bc693" type="text" required="" minlength="4" maxlength="40" wfd-id="215"></div>
-                                <div class="invalid-feedback" style="display: none;" wfd-id="98">Máximo 40 carácteres</div>
+                                <div class="form-group" wfd-id="99"><label for="id-5dacebf4bc693" wfd-id="100">Nombre
+                                        del regalo *</label><input name="product[s_product_title]" value=""
+                                        class="form-control" id="id-5dacebf4bc693" type="text" required="" minlength="4"
+                                        maxlength="40" wfd-id="215"></div>
+                                <div class="invalid-feedback" style="display: none;" wfd-id="98">Máximo 40 carácteres
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-4" wfd-id="92">
                             <div class="col mb-5" wfd-id="93">
-                                <div class="form-group" wfd-id="94"><label for="id-5dacebf4bc69d" wfd-id="95">Descripción del regalo</label><textarea name="product[s_product_description]" class="form-control" id="id-5dacebf4bc69d" rows="4" wfd-id="228"></textarea></div>
+                                <div class="form-group" wfd-id="94"><label for="id-5dacebf4bc69d"
+                                        wfd-id="95">Descripción del regalo</label><textarea
+                                        name="product[s_product_description]" class="form-control" id="id-5dacebf4bc69d"
+                                        rows="4" wfd-id="228"></textarea></div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-        <div class="p-3 px-lg-0" wfd-id="91">
-                <button type="submit" class="btn btn-primary btn-block py-3 fs-16" disabled="" wfd-id="239">Continuar</button>
-        </div>
+            <div class="p-3 px-lg-0" wfd-id="91">
+                <button id="continue-btn" class="btn btn-primary btn-block py-3 fs-16" disabled=""
+                    wfd-id="239">Continuar</button>
+            </div>
         </div>
     </section>
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/app.js">
+    </script>
+    <script src="js/entry.js">
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 </html>

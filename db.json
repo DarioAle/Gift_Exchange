@@ -1,143 +1,286 @@
 {
-    "users": [
+  "users": [
+    {
+      "id": "carlossope6",
+      "nombre": "Carlos Soto Pérez",
+      "usuario": "carlossope6",
+      "correo": "carlos348@outlook.com",
+      "contrasena": "123456",
+      "imagen": "/img/hackerman.jfif",
+      "puntaje": 4
+    },
+    {
+      "id": "pedro.paramo",
+      "nombre": "Pedro Páramo",
+      "usuario": "pedro.paramo",
+      "correo": "pedro.paramo@elllanoenllamas.mx",
+      "contrasena": "123456",
+      "imagen": "/img/63.jpg",
+      "puntaje": 5
+    },
+    {
+      "id": "juanrulfo",
+      "nombre": "Juan Rulfo",
+      "usuario": "juanrulfo",
+      "correo": "juanrulfo@elllanoenllamas.com",
+      "contrasena": "123456",
+      "imagen": "/img/63.jpg",
+      "puntaje": 4
+    }
+  ],
+  "gifts": [
+    {
+      "id": 1,
+      "nombre": "Mochila Cool",
+      "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
+      "imagen": [
+        "/img/cool-backpack.jpg"
+      ],
+      "estado": "usado",
+      "publicadoPor": "pedro.paramo",
+      "creacion": "2019-11-18",
+      "categoria": "otros",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
         {
-            "id": "carlossope6",
-            "nombre": "Carlos Soto Pérez",
-            "usuario": "carlossope6",
-            "correo": "carlos348@outlook.com",
-            "contrasena": "123456",
-            "imagen": "/img/hackerman.jfif",
-            "puntaje": 4
-        },
-        {
-            "id": "pedro.paramo",
-            "nombre": "Pedro Páramo",
-            "usuario": "pedro.paramo",
-            "correo": "pedro.paramo@elllanoenllamas.mx",
-            "contrasena": "123456",
-            "imagen": "/img/63.jpg",
-            "puntaje": 5
-        },
-        {
-            "id": "juanrulfo",
-            "nombre": "Juan Rulfo",
-            "usuario": "juanrulfo",
-            "correo": "juanrulfo@elllanoenllamas.com",
-            "contrasena": "123456",
-            "imagen": "/img/63.jpg",
-            "puntaje": 4
+          "usuario": "carlossope6",
+          "razon": "Lo necesito y me gusta mucho"
         }
-    ],
-    "gifts": [
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Alberca de pelotas",
+      "descripcion": "Una alberca de pelotas infantil, para toda ocasión",
+      "imagen": [
+        "/img/pelotas.png"
+      ],
+      "estado": "usado",
+      "publicadoPor": "pedro.paramo",
+      "creacion": "2019-11-18",
+      "categoria": "otros",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
         {
-            "id": 1,
-            "nombre": "Mochila Cool",
-            "descripcion": "Una mochila muy cool donde podrás cargar todo lo que quieras",
-            "imagen": [
-                "/img/cool-backpack.jpg"
-            ],
-            "estado": "usado",
-            "publicadoPor": "pedro.paramo",
-            "creacion": "2019-11-18",
-            "categoria": "otros",
-            "edicion": "2019-11-18",
-            "cantidad": 1,
-            "pub": "activo",
-            "interesados": [
-                {
-                    "usuario": "carlossope6",
-                    "razon": "Lo necesito y me gusta mucho"
-                }
-            ]
+          "usuario": "juanrulfo",
+          "razon": "Lo necesito y me gusta mucho"
         },
         {
-            "id": 2,
-            "nombre": "Alberca de pelotas",
-            "descripcion": "Una alberca de pelotas infantil, para toda ocasión",
-            "imagen": [
-                "/img/pelotas.png"
-            ],
-            "estado": "usado",
-            "publicadoPor": "pedro.paramo",
-            "creacion": "2019-11-18",
-            "categoria": "otros",
-            "edicion": "2019-11-18",
-            "cantidad": 1,
-            "pub": "activo",
-            "interesados": [
-                {
-                    "usuario": "juanrulfo",
-                    "razon": "Lo necesito y me gusta mucho"
-                },
-                {
-                    "usuario": "carlossope6",
-                    "razon": "Está muy cool"
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "nombre": "Alberca de pelotas 2",
-            "descripcion": "Una alberca de pelotas infantil, para toda ocasión",
-            "imagen": [
-                "/img/pelotas.png"
-            ],
-            "estado": "usado",
-            "publicadoPor": "carlossope6",
-            "adquiridoPor": "pedro.paramo",
-            "creacion": "2019-11-18",
-            "categoria": "hogar",
-            "edicion": "2019-11-18",
-            "cantidad": 1,
-            "pub": "inactivo",
-            "interesados": [
-                {
-                    "usuario": "juanrulfo",
-                    "razon": "Lo necesito y me gusta mucho"
-                },
-                {
-                    "usuario": "carlossope6",
-                    "razon": "Está muy cool"
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "nombre": "Un auto",
-            "descripcion": "Si, es el carro de Mr Bean",
-            "imagen": [
-                "http://motorsports.com.uy/wp-content/uploads/cabezal-bean1.png"
-            ],
-            "estado": "usado",
-            "publicadoPor": "pedro.paramo",
-            "adquiridoPor": "carlossope6",
-            "creacion": "2019-11-18",
-            "categoria": "automoviles",
-            "edicion": "2019-11-18",
-            "cantidad": 1,
-            "pub": "inactivo",
-            "interesados": [
-                {
-                    "usuario": "juanrulfo",
-                    "razon": "Lo necesito y me gusta mucho"
-                },
-                {
-                    "usuario": "carlossope6",
-                    "razon": "Está muy cool"
-                }
-            ],
-            "chat": [
-                {
-                    "sender": "carlossope6",
-                    "reciever": "pedrio.paramo",
-                    "message": "Hola"
-                },
-                {
-                    "reciever": "carlossope6",
-                    "sender": "pedrio.paramo",
-                    "message": "Hola"
-                }
-            ]
+          "usuario": "carlossope6",
+          "razon": "Está muy cool"
         }
-    ]
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Alberca de pelotas 2",
+      "descripcion": "Una alberca de pelotas infantil, para toda ocasión",
+      "imagen": [
+        "/img/pelotas.png"
+      ],
+      "estado": "usado",
+      "publicadoPor": "carlossope6",
+      "adquiridoPor": "pedro.paramo",
+      "creacion": "2019-11-18",
+      "categoria": "hogar",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "inactivo",
+      "interesados": [
+        {
+          "usuario": "juanrulfo",
+          "razon": "Lo necesito y me gusta mucho"
+        },
+        {
+          "usuario": "pedro.paramo",
+          "razon": "Está muy cool"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Un auto",
+      "descripcion": "Si, es el carro de Mr Bean",
+      "imagen": [
+        "http://motorsports.com.uy/wp-content/uploads/cabezal-bean1.png"
+      ],
+      "estado": "usado",
+      "publicadoPor": "pedro.paramo",
+      "adquiridoPor": "carlossope6",
+      "creacion": "2019-11-18",
+      "categoria": "automoviles",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "inactivo",
+      "interesados": [
+        {
+          "usuario": "juanrulfo",
+          "razon": "Lo necesito y me gusta mucho"
+        },
+        {
+          "usuario": "carlossope6",
+          "razon": "Está muy cool"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Rover lunar",
+      "descripcion": "Un excelente rover, pero con problemas de financiamiento",
+      "imagen": [
+        "/img/rover.jpeg"
+      ],
+      "estado": "usado",
+      "publicadoPor": "juanrulfo",
+      "creacion": "2019-11-18",
+      "categoria": "electronicos",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
+        {
+          "usuario": "carlossope6",
+          "razon": "Lo necesito para un concurso, ayuda"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nombre": "Bateria LIPO muy potente",
+      "descripcion": "Esta potente bateria te ayudará a sacar el mayor porovecho a inductores",
+      "imagen": [
+        "/img/bateria.jfif"
+      ],
+      "estado": "usado",
+      "publicadoPor": "juanrulfo",
+      "creacion": "2019-11-18",
+      "categoria": "electronicos",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
+        {
+          "usuario": "carlossope6",
+          "razon": "Lo necesito para un concurso, ayuda"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nombre": "Cuchillo japonés",
+      "descripcion": "Un cuchicllo ancestral artesanal, ideal para cortar verduras, frutas y carnes",
+      "imagen": [
+        "/img/cuchillo.jfif"
+      ],
+      "estado": "usado",
+      "publicadoPor": "juanrulfo",
+      "creacion": "2019-11-18",
+      "categoria": "hogar",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
+        {
+          "usuario": "pedro.paramo",
+          "razon": "Me interesa este cuchillo"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Gato hidráulico",
+      "descripcion": "Un cuchicllo ancestral artesanal, ideal para cortar verduras, frutas y carnes",
+      "imagen": [
+        "/img/gatoh.jfif"
+      ],
+      "estado": "usado",
+      "publicadoPor": "carlossope6",
+      "creacion": "2019-11-18",
+      "categoria": "automoviles",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
+        {
+          "usuario": "pedro.paramo",
+          "razon": "Me interesa este gato, buena pieza para un kit básico de emergencia"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Lavadora 15kg",
+      "descripcion": "Esta poderosísima lavadora que podrás tener en tu casa, yo ya no tengo espacio para ella",
+      "imagen": [
+        "/img/gatoh.jfif"
+      ],
+      "estado": "usado",
+      "publicadoPor": "pedro.paramo",
+      "creacion": "2019-11-18",
+      "categoria": "hogar",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
+        {
+          "usuario": "carlossope6",
+          "razon": "Me interesa, no tengo lavadora"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Motor NEMA 23",
+      "descripcion": "Este poderosísimo",
+      "imagen": [
+        "/img/stepper.jfif"
+      ],
+      "estado": "usado",
+      "publicadoPor": "pedro.paramo",
+      "creacion": "2019-11-18",
+      "categoria": "electronicos",
+      "edicion": "2019-11-18",
+      "cantidad": 1,
+      "pub": "activo",
+      "interesados": [
+        {
+          "usuario": "carlossope6",
+          "razon": "Me interesa, es para una impresora"
+        }
+      ]
+    }
+  ],
+  "chat": [
+    {
+      "id": 1574123313415,
+      "gift": 4,
+      "sender": "carlossope6",
+      "reciever": "pedrio.paramo",
+      "message": "Hola"
+    },
+    {
+      "id": 1574123339288,
+      "gift": 4,
+      "reciever": "carlossope6",
+      "sender": "pedro.paramo",
+      "message": "Hola"
+    },
+    {
+      "id": 1574123632318,
+      "gift": 4,
+      "sender": "carlossope6",
+      "reciever": "pedro.paramo",
+      "message": "Me gustó mucho ¿Dónde nos podemos ver?"
+    },
+    {
+      "sender": "carlossope6",
+      "message": "Si",
+      "gift": 4,
+      "id": 1574130657179
+    }
+  ]
 }
