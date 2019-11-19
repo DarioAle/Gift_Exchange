@@ -1,7 +1,5 @@
 "use strict";
 
-const urlParams = new URLSearchParams(window.location.search);
-
 let usuario;
 
 function fetchData() {

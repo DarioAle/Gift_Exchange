@@ -44,14 +44,14 @@ function loadGift(callback){
     let giftId = urlParams.get('gift');
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `${BASE_URL}/gifts/${giftId}`);
-    xhr.onload = callback
+    xhr.onload = callback(xhr);
     xhr.send();
 }
 
-function renderHorizontalUserCard(user){
+function renderHorizontalUserCard(user, modal){
     let html = `
         <div class="card mb-3 shadow-sm col-md-12 user-horizontal-card" data-user-id="${user.id}" data-user-name="${user.nombre}">
-            <a href="${user.redirectURL}" data-toggle="modal" data-target="#selection-modal">
+            <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
                     <div class="col-md-3">
                             <img src=".${user.imagen}" class="card-img" style alt="${user.id}">
@@ -82,7 +82,7 @@ function renderHorizontalGiftCard(gift){
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombre}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-info.html?usuario=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?id=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
                         <p class="card-text">${gift.descripcion}</p>
                         <small>Estado <span>${gift.estado}</span></small><br>
                         <small>Publicado el <span>${gift.creacion}</span></small>
