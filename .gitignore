@@ -9,3 +9,6 @@ config/database.json
 config/parameters.json
 # JWT key
 config/jwt.key
+
+# node_modules
+node_modules/**
