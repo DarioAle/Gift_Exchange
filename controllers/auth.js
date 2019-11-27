@@ -1,33 +1,39 @@
 'use strict';
 
-const config = require('./../config/parameters.json');
+const config = require('./../shared');
 const JWT = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 const User = require('./../db/User');
 
-router.post('/login', (req, res) => {
-    User.getByUsername(req.body.username)
-        .then(result => {
+router.post('/login', function (req, res) {
+    if(req.body.username == undefined){
+        res.status(401).json({ errors: ["No username"] });
+        return;
+    }
+    if(req.body.password == undefined){
+        res.status(401).json({ errors: ["No password"] });
+        return;
+    }
 
-        })
-        .then(result => {
+    User.authenticate(req.body.username, req.body.password)
+        .then(function (result) {
             let token = JWT.sign({
                     username: req.body.username
                 },
                 config.jwt.secret,
                 {
                     issuer: config.jwt.issuer,
-                    algorithm: config.jwt.algorithm,
                     subject: config.jwt.subject,
-                    expiresIn: config.jwt.expiresIn,
-                    jwtid: "1111"
+                    expiresIn: config.jwt.expiresIn
                 }
-                );
+            );
             res.setHeader('X-Auth', token);
             res.status(201).json({ token });
         })
-        .catch(err => {
+        .catch(function (err) {
             res.status(501).json({ errors: ["Internal server error"] });
         });
 });
+
+module.exports = router;
