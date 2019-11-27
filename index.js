@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/public'));
 
-app.use('/api/auth', authController);
+app.use('/api/auth', require('./middlewares/authMiddleware').authenticate, authController);
 
 app.listen(PORT, (e) => {
     console.info("App running at port " + PORT);

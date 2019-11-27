@@ -66,7 +66,7 @@ schema.statics.authenticate = function(username, password) {
 
 schema.statics.findOneByUsernae = function(username) {
     return new Promise(function (resolve, reject) {
-        db.model('User').findOne({username}, {select: userProjectionMask}, function (err, user) {
+        db.model('User').findOne({username}, function (err, user) {
             if(err || user == undefined){
                 reject(err);
                 return;
