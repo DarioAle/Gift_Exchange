@@ -79,6 +79,19 @@ schema.statics.findOneByUsernae = function (username) {
     });
 }
 
+schema.statics.registerUser = function(user) {
+    newUser = User(user);
+    newUser.save();
+}
+
+// for testing
+schema.statics.getUsers = function() {
+    User.find({}, (err, docs) =>{
+        if(docs)
+            console.log(docs);
+    });
+}
+
 const User = db.model('User', schema);
 
 module.exports = User;

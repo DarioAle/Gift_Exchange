@@ -17,7 +17,7 @@ btnSubmit.addEventListener('click', (evt) => {
 function login(username, contrasena) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", `${BASE_URL}/users/${username}?password=${contrasena}`);
+        xhr.open("GET", `${BASE_URL}/api/user/${username}?password=${contrasena}`);
         xhr.onload = (evt) => {
             if (xhr.status == 200) {
                 let user = JSON.parse(xhr.responseText);
