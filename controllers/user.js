@@ -33,7 +33,6 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/validate', auth.authenticate, (req, res) => {
-    console.log(req.user);
     res.status(200).send(req.user);
 });
 

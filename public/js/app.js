@@ -18,12 +18,11 @@ function renderNavbar(){
     if(window.sessionStorage.getItem("token") != undefined){
         let xhr = new XMLHttpRequest();
         let token = window.sessionStorage.getItem("token");
+        xhr.open("POST", `${BASE_URL}/user/validate`);
         xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
-        xhr.open("POST", `${BASE_URL}/api/validate`);
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
-                console.log(user);
                 if(notLoggedNavbar != null){
                     notLoggedNavbar.hidden = true;
                     loggedInNavbar.hidden = false;
@@ -33,7 +32,7 @@ function renderNavbar(){
                 loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
-                }); 
+                });
                 return;
             }
         }

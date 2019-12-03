@@ -6,7 +6,7 @@ let giftArray;
 // Load the page before anything and add all the cards to the maing page
 (function getToken() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", BASE_URL + "/api/posts/main");
+    xhr.open("GET", BASE_URL + "/posts/main");
     xhr.send();
     
     xhr.onload = () => {

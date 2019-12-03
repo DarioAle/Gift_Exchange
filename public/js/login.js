@@ -17,7 +17,7 @@ btnSubmit.addEventListener('click', (evt) => {
 function login(username, password) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", `${BASE_URL}/api/auth/login`);
+        xhr.open("POST", `${BASE_URL}/auth/login`);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onload = (evt) => {
             if (xhr.status == 201) {
