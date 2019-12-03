@@ -2,7 +2,7 @@
 
 const db = require('./mongodb-connect');
 
-const schema = {
+const schema = db.Schema({
     timeId: {
         type: Number,
         required: true
@@ -23,7 +23,7 @@ const schema = {
         type: String,
         required: true
     }
-};
+});
 
 schema.statics.getAllMessages = function (user) {
     return new Promise((resolve, reject) => {
