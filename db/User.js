@@ -77,8 +77,9 @@ schema.statics.findOneByUsernae = function(username) {
 }
 
 schema.statics.registerUser = function(user) {
-    newUser = User(user);
-    newUser.save();
+    console.log(user);
+    // newUser = User(user);
+    // newUser.save();
 }
 
 // for testing
