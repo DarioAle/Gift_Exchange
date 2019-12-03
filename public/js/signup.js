@@ -28,8 +28,10 @@ registerBtn.addEventListener("click", (evt) => {
         }
         xhr.send(JSON.stringify(user));
         xhr.onload = (evt) => {
-            if (xhr.status == 201)
+            if (xhr.status == 201) {
+                alert("You can login now");
                 window.location.href = "/";
+            }
             else
                 alert(xhr.responseText);
         };
