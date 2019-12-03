@@ -76,16 +76,16 @@ function renderHorizontalGiftCard(gift){
                 <div class="row no-gutters">
                     <div class="col-md-3">
                         <a href="${gift.redirectURL}">
-                            <img src="${gift.imagen[0]}" class="card-img" alt="${gift.imagen[0]}" />
+                            <img src="${gift.image[0]}" class="card-img" alt="${gift.image[0]}" />
                         </a>
                     </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">${gift.nombre}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?id=${gift.publicadoPor}">${gift.publicadoPor}</a></h6>
-                        <p class="card-text">${gift.descripcion}</p>
-                        <small>Estado <span>${gift.estado}</span></small><br>
-                        <small>Publicado el <span>${gift.creacion}</span></small>
+                        <h5 class="card-title">${gift.nombrePost}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
+                        <p class="card-text">${gift.descripcionPost}</p>
+                        <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
+                        <small>Publicado el <span>${gift.date}</span></small>
                     </div>
                 </div>
             </div>
@@ -101,12 +101,12 @@ function renderVerticalGiftCard(gift) {
     <div class="col-12 col-lg-4 col xl-3 px-4 px-lg-2 mb-3">
         <div class="card post-card shadow-sm bg-white rounded">
             <a href = 'giftDetail.html?gift=${3}'>
-                <img src=".${"https://randomuser.me/api/portraits/men/94.jpg"}" class="card-img-top" alt="...">
+                <img src=".${gift.image[0]}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
                 <h5 class="card-title">${gift.nombrePost}</h5>
                 <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
-                <p class="card-text">${gift.isNewGift}</p>
+                <p class="card-text">${gift.isNewGift ? "Si" : "No"}</p>
                 <small>Publicado hace <span>${gift.date}</span></small>
             </div>
         </div>

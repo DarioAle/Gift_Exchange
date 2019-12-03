@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO: Get render sender and reciever
+
 let reciever;
 let postId = 4;
 let pagenumber = 0;
@@ -106,23 +108,27 @@ function fetchConversations() {
 }
 
 function sendMessages(message) {
-    let url = `${BASE_URL}/chat`;
+    let url = `${BASE_URL}/chat/${postId}`;
     let now = new Date().getTime();
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = (evt) => {
         if (xhr.status == 201) {
             console.log("Cool");
         }
     }
-    xhr.send(JSON.stringify({
-        "sender": user.id,
-        "reciever": reciever,
+    let timeId = new Date().getTime();
+    let newMsg = {
+        "reciever": "jtec",
         "message": message,
-        "gift": giftId,
-        "id": now
-    }));
+        "post": postId,
+        "timestamp": timeId
+    };
+    timeId += 1;
+    conversationWarper.innerHTML += renderSenderMessage(newMsg);
+    xhr.send(JSON.stringify(newMsg));
 }
 
 function onContactClick(evt) {

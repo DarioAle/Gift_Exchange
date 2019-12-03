@@ -46,7 +46,7 @@ schema.statics.getAllMessages = function (post, timestamp) {
 schema.statics.createMessage = function (timestamp, reciever, sender, message, post) {
     return new Promise((resolve, reject) => {
         let entry = new Chat({
-            timeId: timestamp,
+            "timeId": timestamp,
             reciever,
             sender,
             post, 

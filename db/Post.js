@@ -121,6 +121,19 @@ postSchema.statics.getConversations = function(usuario){
     });
 }
 
+// --- Get the posts posted by a user
+postSchema.statics.findAllByPoster = function name(usuario) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').find({ 'owner' : usuario}, postProjectionMask, function (err, docs) {
+            if (err || docs == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(docs);
+        });
+    });
+} 
+
 // Return all post regardless of the data that is needed.
 postSchema.statics.getAllPosts = function() {
     return new Promise(function (resolve, reject)  {
