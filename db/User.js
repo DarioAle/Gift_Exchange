@@ -4,12 +4,11 @@ const db = require('./mongodb-connect');
 const bcrypt = require('bcryptjs');
 const userProjectionMask = {
     _id: 0,
-    username: 1,
+    usuario: 1,
     nombre: 1,
     correo: 1,
     imagen: 1,
-    puntaje: 1,
-    password: 0
+    puntaje: 1
 };
 
 const schema = db.Schema({
@@ -41,22 +40,26 @@ const schema = db.Schema({
     }
 });
 
-schema.statics.authenticate = function(username, password) {
-    return new Promise(function (resolve, reject){
-        db.model('User').findOne({"username": username}, function (err, user) {
-            if(err || user == undefined){
+schema.statics.authenticate = function (username, password) {
+    return new Promise(function (resolve, reject) {
+        db.model('User').findOne({ "username": username }, {
+                _id: 0, 
+                usuario: 1, 
+                password: 1 
+            }, function (err, user) {
+            if (err || user == undefined) {
                 reject(err);
                 return;
             }
-            
-            bcrypt.compare(password, user.password, function(err, ok) {
-                if(ok){
+
+            bcrypt.compare(password, user.password, function (err, ok) {
+                if (ok) {
                     resolve(true);
                     return;
-                }else if(err){
+                } else if (err) {
                     reject(err);
                     return;
-                }else{
+                } else {
                     reject("Bad password");
                 }
             });
@@ -64,10 +67,10 @@ schema.statics.authenticate = function(username, password) {
     });
 }
 
-schema.statics.findOneByUsernae = function(username) {
+schema.statics.findOneByUsernae = function (username) {
     return new Promise(function (resolve, reject) {
-        db.model('User').findOne({username}, function (err, user) {
-            if(err || user == undefined){
+        db.model('User').findOne({ username }, userProjectionMask, function (err, user) {
+            if (err || user == undefined) {
                 reject(err);
                 return;
             }
