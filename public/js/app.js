@@ -17,8 +17,9 @@ function renderNavbar(){
     }
     if(window.sessionStorage.getItem("token") != undefined){
         let xhr = new XMLHttpRequest();
-        let username = window.sessionStorage.getItem("username");
-        xhr.open("GET", `${BASE_URL}/users/${username}`);
+        let token = window.sessionStorage.getItem("token");
+        xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
+        xhr.open("POST", `${BASE_URL}/api/validate`);
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);

@@ -6,6 +6,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('./../db/User');
 
+const auth = require('./../middlewares/authMiddleware');
+
 router.get('/get', (req, res) => {
     res.send(User.getUsers());
 
@@ -28,6 +30,11 @@ router.post('/register', (req, res) => {
         else
             res.sendStatus(520);
     });
+});
+
+router.post('/validate', auth.authenticate, (req, res) => {
+    console.log(req.user);
+    res.status(200).send(req.user);
 });
 
 module.exports = router;

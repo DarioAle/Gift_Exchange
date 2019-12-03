@@ -7,6 +7,7 @@ const router = express.Router();
 const User = require('./../db/User');
 
 router.post('/login', function (req, res) {
+    console.log(req.body);
     if(req.body.username == undefined){
         res.status(401).json({ errors: ["No username"] });
         return;
