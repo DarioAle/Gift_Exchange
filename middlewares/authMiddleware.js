@@ -20,7 +20,7 @@ function authenticate(req, res, next) {
             res.status(401).send('INVALID X-AUTH HEADER').end();
             return;
         }
-        User.findOneByUsernae(decoded.username)
+        User.findOneByUsername(decoded.username)
             .then(function (user) {
                 req.user = user;
                 next();

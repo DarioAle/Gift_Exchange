@@ -1,6 +1,6 @@
 "use strict";
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:3000/api';
 const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
 
