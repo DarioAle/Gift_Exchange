@@ -1,21 +1,22 @@
 'use strict';
 
+const bcrypt = require('bcryptjs');
 
 const express = require('express');
 const router = express.Router();
 const User = require('./../db/User');
 
-router.get('/:username', (req, res) => {
-    console.log(req.params);
-    console.log(req.query);
-
+router.get('/get', (req, res) => {
     res.send(User.getUsers());
 
 });
 
 router.post('/register', (req, res) => {
-    console.log(req.body);
-    res.sendStatus(200);
+    let user = req.body;
+    user.password = bcrypt.hashSync(user.password, 8);
+    user.imagen = "";
+    user.puntaje = 0;
+    User.registerUSer(user);
 });
 
 module.exports = router;
