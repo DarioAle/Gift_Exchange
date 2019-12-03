@@ -15,7 +15,7 @@ function renderNavbar(){
         notLoggedNavbar.hidden = false;
         loggedInNavbar.hidden = true;
     }
-    if(window.sessionStorage.getItem("username") != undefined){
+    if(window.sessionStorage.getItem("token") != undefined){
         let xhr = new XMLHttpRequest();
         let username = window.sessionStorage.getItem("username");
         xhr.open("GET", `${BASE_URL}/users/${username}`);

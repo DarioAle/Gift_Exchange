@@ -8,28 +8,24 @@ btnSubmit.addEventListener('click', (evt) => {
     evt.preventDefault();
     login(inputUsername.value, inputPassword.value)
         .then(res => {
-            window.sessionStorage.setItem("username", res)
-            window.location.href = "./index.html";
+            window.sessionStorage.setItem("token", res)
+            window.location.href = "/";
         })
         .catch(err => console.error(err));
 });
 
-function login(username, contrasena) {
+function login(username, password) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", `${BASE_URL}/api/user/${username}?password=${contrasena}`);
+        xhr.open("POST", `${BASE_URL}/api/auth/login`);
         xhr.onload = (evt) => {
-            if (xhr.status == 200) {
-                let user = JSON.parse(xhr.responseText);
-                if (user.contrasena == contrasena) {
-                    resolve(username);
-                } else {
-                    reject("Bad password");
-                }
+            if (xhr.status == 201) {
+                resolve(xhr.getResponseHeader('X-Auth'));
             }else {
                 reject(xhr.statusText);
             }
         };
-        xhr.send();
+        let user = {username, password};
+        xhr.send(JSON.stringify(user));
     });
 }

@@ -6,6 +6,7 @@ const userProjectionMask = {
     _id: 0,
     usuario: 1,
     nombre: 1,
+    apellido: 1,
     correo: 1,
     imagen: 1,
     puntaje: 1
@@ -13,6 +14,10 @@ const userProjectionMask = {
 
 const schema = db.Schema({
     nombre: {
+        type: String,
+        required: true
+    },
+    apellido: {
         type: String,
         required: true
     },
@@ -42,13 +47,17 @@ const schema = db.Schema({
 
 schema.statics.authenticate = function (username, password) {
     return new Promise(function (resolve, reject) {
-        db.model('User').findOne({ "username": username }, {
+        db.model('User').findOne({ "usuario" : username }, {
                 _id: 0, 
                 usuario: 1, 
                 password: 1 
             }, function (err, user) {
-            if (err || user == undefined) {
+            console.log(username, password);
+            if (err) {
                 reject(err);
+                return;
+            }else if (!user) {
+                reject(false);
                 return;
             }
 
@@ -67,9 +76,9 @@ schema.statics.authenticate = function (username, password) {
     });
 }
 
-schema.statics.findOneByUsernae = function (username) {
+schema.statics.findOneByUsername = function (username) {
     return new Promise(function (resolve, reject) {
-        db.model('User').findOne({ username }, userProjectionMask, function (err, user) {
+        db.model('User').findOne({ 'usuario' : username }, userProjectionMask, function (err, user) {
             if (err || user == undefined) {
                 reject(err);
                 return;
@@ -80,8 +89,16 @@ schema.statics.findOneByUsernae = function (username) {
 }
 
 schema.statics.registerUser = function(user) {
-    newUser = User(user);
-    newUser.save();
+    return new Promise((resolve, reject) => {
+        let newUser = User(user);
+        newUser.save((err, product) => {
+            if(err) {
+                reject(err);
+                return;
+            }
+            resolve(product);
+        });
+    });
 }
 
 // for testing

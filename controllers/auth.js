@@ -32,7 +32,11 @@ router.post('/login', function (req, res) {
             res.status(201).json({ token });
         })
         .catch(function (err) {
-            res.status(501).json({ errors: ["Internal server error"] });
+            if(err === false){
+                res.status(404).json({ errors: ["User not found"] });
+            }else{
+                res.status(501).json({ errors: ["Internal server error"] });
+            }
         });
 });
 
