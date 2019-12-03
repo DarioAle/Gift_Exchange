@@ -9,6 +9,19 @@ let notLoggedNavbar = document.getElementById('not-logged-navbar');
 
 let user;
 
+function daysSincePublished(/*String*/ date) {
+    let now = Date.now();
+    let datePublished =  Date.parse(date);
+    
+    console.log(now + " " + datePublished);
+
+    const diffTime = Math.abs(now - datePublished);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    console.log(diffDays);
+
+    return diffDays;
+}
+
 function renderNavbar(){
     // console.log("Hola");
     if(notLoggedNavbar != null){
@@ -94,20 +107,25 @@ function renderHorizontalGiftCard(gift){
     return html;
 }
 
+
 function renderVerticalGiftCard(gift) {
     // console.log(gift.imagen[0]);
+
+    // Days elapsed since it was published.
+    let diffDays = daysSincePublished(gift.date);
+
     let html = 
     `
     <div class="col-12 col-lg-4 col xl-3 px-4 px-lg-2 mb-3">
         <div class="card post-card shadow-sm bg-white rounded">
             <a href = 'giftDetail.html?gift=${3}'>
-                <img src=".${"https://randomuser.me/api/portraits/men/94.jpg"}" class="card-img-top" alt="...">
+                <img src="${gift.image[0]}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
                 <h5 class="card-title">${gift.nombrePost}</h5>
-                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
-                <p class="card-text">${gift.isNewGift}</p>
-                <small>Publicado hace <span>${gift.date}</span></small>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Publicado por: ${gift.owner}</a></h6>
+                <p class="card-text">${gift.isNewGift ? "Nuevo" : "Usado" }</p>
+                <small>Publicado hace <span>${diffDays} ${diffDays  == 1 ? "día" : "días" }</span></small>
             </div>
         </div>
     </div>

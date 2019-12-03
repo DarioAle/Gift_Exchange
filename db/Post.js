@@ -6,6 +6,7 @@ const chalk = require('chalk');
 // ------- Projecting only a few colums from 
 const postProjectionMask = {
     _id: 0,
+    id : 1,
     nombrePost: 1,
     descripcionPost: 1,
     isNewGift: 1,
@@ -17,6 +18,7 @@ const postProjectionMask = {
     interesados : 1,
     comments : 1,
     aqcuired : 1,
+    image : 1,
     aquiredBy : 1
 };
 
@@ -65,7 +67,8 @@ const postSchema = db.Schema({
         type : [String]
     },
     image: {
-        type: [String]
+        type: [String],
+        rquired : true
     },
     aquiredBy : {
         type : String
