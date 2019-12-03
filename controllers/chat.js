@@ -3,12 +3,14 @@
 const express = require('express');
 const router = express.Router();
 const config = require('./../shared');
-const Chat = require('./../db/Chat')
+const Chat = require('./../db/Chat');
+const Post = require('./../db/Post');
+const authMiddleware = require('./../middlewares/authMiddleware');
 
 // /api/chat/:postId
 router.route('/:postId')
-    .get((req, res) => {
-        Chat.getConversations(req.params.postId, new Date().getTime())
+    .get(authMiddleware.authenticate, (req, res) => {
+        Chat.getAllMessages(req.params.postId, req.query.timestamp)
             .then(docs => {
                 res.json(docs).end();
             })
@@ -17,8 +19,8 @@ router.route('/:postId')
                 res.status(500).json({errors:["Internal error"]}).end();
             });
     })
-    .post((req, res) => {
-        Chat.createMessage(req.body.timestamp, req.body.reciever, req.user.username, req.body.message, req.body.post)
+    .post(authMiddleware.authenticate, (req, res) => {
+        Chat.createMessage(req.body.timestamp, req.body.reciever, req.user.usuario, req.body.message, req.body.post)
             .then(doc => {
                 res.status(201).json(doc).end();
             })
@@ -28,8 +30,14 @@ router.route('/:postId')
             })
     })
 
-router.get('/', (req, res) => {
-    res.sendStatus(501)
-})
+router.get('/', authMiddleware.authenticate, (req, res) => {
+    Chat.getConversations(req.user.usuario)
+        .then(docs => {
+            res.json(docs).end();
+        })
+        .catch(err => {
+            res.status(401).json({errors:[err]}).end();
+        })
+});
 
 module.exports = router;

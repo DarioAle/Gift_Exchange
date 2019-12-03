@@ -3,21 +3,29 @@
 let warperActivas = document.getElementById('warper-activas');
 let warperInactivas = document.getElementById('warper-inactivas');
 
-
-
-function getAGifts(pub, w) {
+function getAGifts() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `${BASE_URL}/gifts?pub=${pub}&publicadoPor=${window.sessionStorage.getItem("username")}`)
+    xhr.open('GET', `${BASE_URL}/posts/history`);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.onload =  function (evt) {
         if (xhr.status == 200) {
             let gifts = JSON.parse(xhr.response);
-            if(gifts.length == 0){
-                w.innerHTML = SIN_RESULTADOS;
-            }
             console.log(gifts);
+            warperInactivas.innerHTML = "";
+            warperActivas.innerHTML = "";
             for(let i = 0; i < gifts.length; i++){
-                gifts[i].redirectURL = `http://127.0.0.1:5500/winner-selector.html?gift=${gifts[i].id}`;
-                w.innerHTML += renderHorizontalGiftCard(gifts[i]);
+                gifts[i].redirectURL = `/winner-selector.html?gift=${gifts[i].id}`;
+                if(gifts[i].postIsActive){
+                    warperActivas.innerHTML += renderHorizontalGiftCard(gifts[i]);
+                }else{
+                    warperInactivas.innerHTML += renderHorizontalGiftCard(gifts[i]);
+                }
+            }
+            if(warperActivas.innerHTML == ""){
+                warperActivas.innerHTML = SIN_RESULTADOS;
+            }
+            if(warperInactivas.innerHTML == ""){
+                warperInactivas.innerHTML = SIN_RESULTADOS;
             }
             return;
         } else {
@@ -27,5 +35,4 @@ function getAGifts(pub, w) {
     xhr.send();
 }
 
-getAGifts('activo', warperActivas);
-getAGifts('inactivo', warperInactivas);
+getAGifts();

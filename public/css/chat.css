@@ -1,42 +1,37 @@
+#chat-frame {
+    display: felx;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: calc(100% - 38px);
+}
+#chat-contents{
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+}
 #sidepanel {
     background-color: #29252a;
     color: #dad0d0;
-    width: 100%;
     height: 100vh;
-    margin-top: -60px;
-    padding-top: 60px;
+    flex: 30%;
 }
 #content-panel {
     height: 100vh;
     margin-top: -60px;
     padding-top: 70px;
-}
-/* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {
-    #sidepanel{
-        width: 40%;
-        float: left;
-    }
-    #content-panel {
-        width: 60%;
-        padding-left: 5px;
-        padding-right: 5px;
-        float: right;
-    }
-}
-
-/* Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
-    #sidepanel{
-        width: 25%;
-        float: left;
-    }
-    #content-panel {
-        width: 75%;
-        padding-left: 10px;
-        padding-right: 10px;
-        float: right;
-    }
+    flex: 70%;
+    display: felx;
+    flex-direction: column;
 }
 
 #sidepanel ul {
@@ -47,6 +42,9 @@
     overflow: hidden;
     text-decoration: none;
     border-bottom: 1px solid #545c6c;
+}
+.contact {
+    display: block;
 }
 .contact-image-warpper {
     width: 40%;
@@ -65,11 +63,25 @@
     display: inline;
 }
 
+#content-panel #message-warp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    height: 85%;
+}
+
+#content-panel #mesage-send{
+    align-items: flex-end;
+    height: 15%;
+}
+
 #content-panel .message-container {
     width: 100%;
     display: flex;
     padding-top: 10px;
     height: fit-contents;
+    align-items: flex-end;
 }
 #content-panel .message-container.sender{
     flex-direction: row-reverse;
@@ -80,7 +92,7 @@
     width: fit-content;
     padding: 10px;
     margin: 10px;
-    display: flexbox;
+    align-items: flex-end;
 }
 #content-panel .message.sender{
     background-color: #67474c ;
@@ -107,4 +119,15 @@ div#message-send #btn-message-send {
     padding: 10px;
     background-color: #dad0d0;
 
+}
+
+#message-warp {
+    width: 100%;
+    padding: 10px;
+    overflow: scroll;
+}
+
+#message-send {
+    width: 100%;
+    padding: 10px;
 }
