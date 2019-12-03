@@ -30,6 +30,8 @@
     margin-top: -60px;
     padding-top: 70px;
     flex: 70%;
+    display: felx;
+    flex-direction: column;
 }
 
 #sidepanel ul {
@@ -58,11 +60,25 @@
     display: inline;
 }
 
+#content-panel #message-warp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    height: 85%;
+}
+
+#content-panel #mesage-send{
+    align-items: flex-end;
+    height: 15%;
+}
+
 #content-panel .message-container {
     width: 100%;
     display: flex;
     padding-top: 10px;
     height: fit-contents;
+    align-items: flex-end;
 }
 #content-panel .message-container.sender{
     flex-direction: row-reverse;
@@ -73,7 +89,7 @@
     width: fit-content;
     padding: 10px;
     margin: 10px;
-    display: flexbox;
+    align-items: flex-end;
 }
 #content-panel .message.sender{
     background-color: #67474c ;
@@ -105,6 +121,7 @@ div#message-send #btn-message-send {
 #message-warp {
     width: 100%;
     padding: 10px;
+    overflow: scroll;
 }
 
 #message-send {
