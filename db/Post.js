@@ -21,6 +21,11 @@ const postProjectionMask = {
 };
 
 const postSchema = db.Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true
+    },
     nombrePost: {
         type: String,
         required: true
@@ -58,6 +63,9 @@ const postSchema = db.Schema({
     },
     comments : {
         type : [String]
+    },
+    image: {
+        type: [String]
     },
     aquiredBy : {
         type : String
