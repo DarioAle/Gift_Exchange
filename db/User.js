@@ -6,6 +6,7 @@ const userProjectionMask = {
     _id: 0,
     usuario: 1,
     nombre: 1,
+    apellido: 1,
     correo: 1,
     imagen: 1,
     puntaje: 1
@@ -13,6 +14,10 @@ const userProjectionMask = {
 
 const schema = db.Schema({
     nombre: {
+        type: String,
+        required: true
+    },
+    apellido: {
         type: String,
         required: true
     },
@@ -81,8 +86,8 @@ schema.statics.findOneByUsernae = function (username) {
 
 schema.statics.registerUser = function(user) {
     console.log(user);
-    // newUser = User(user);
-    // newUser.save();
+    let newUser = User(user);
+    newUser.save();
 }
 
 // for testing
