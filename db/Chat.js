@@ -1,6 +1,7 @@
 "use strict";
 
 const db = require('./mongodb-connect');
+const Post = require('./Post');
 
 const schema = db.Schema({
     timeId: {
@@ -25,15 +26,13 @@ const schema = db.Schema({
     }
 });
 
-schema.statics.getAllMessages = function (user) {
-    return new Promise((resolve, reject) => {
-        // TODO: Get posts with state an related to 'user', then get the first of each post to render
-    });
+schema.statics.getConversations = function (usuario) {
+    return Post.getConversations(usuario);
 }
 
-schema.statics.getConversations = function (post) {
+schema.statics.getAllMessages = function (post, timestamp) {
     return new Promise((resolve, reject) => {
-        Chat.find({'post': post}, (err, documents) => {
+        Chat.find({'post': post, 'timeId': {$gt: timestamp}}, (err, documents) => {
             if(err){
                 reject(err)
                 return;
@@ -47,7 +46,7 @@ schema.statics.getConversations = function (post) {
 schema.statics.createMessage = function (timestamp, reciever, sender, message, post) {
     return new Promise((resolve, reject) => {
         let entry = new Chat({
-            timeId: timestamp,
+            "timeId": timestamp,
             reciever,
             sender,
             post, 

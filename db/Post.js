@@ -6,7 +6,7 @@ const chalk = require('chalk');
 // ------- Projecting only a few colums from 
 const postProjectionMask = {
     _id: 0,
-    id : 1,
+    id: 1,
     nombrePost: 1,
     descripcionPost: 1,
     isNewGift: 1,
@@ -18,13 +18,13 @@ const postProjectionMask = {
     interesados : 1,
     comments : 1,
     aqcuired : 1,
-    image : 1,
+    image: 1,
     aquiredBy : 1
 };
 
 const postSchema = db.Schema({
     id: {
-        type: String,
+        type: Number,
         required: true,
         unique: true
     },
@@ -102,7 +102,38 @@ postSchema.statics.registerPost = function(post) {
     });
 }
 
-// ------------------- Regresar los regalos que tienen un acquired user para un usuario dado
+// ------------------- Regresar los regalos realcionados a una conversación
+postSchema.statics.getConversations = function(usuario){
+    return new Promise((resolve, reject) => {
+        db.model('Post').find({$and: [
+            {'postIsActive': false},
+            {$or: [
+                {'aquiredBy': usuario},
+                {'owner': usuario}
+            ]}
+        ]}, postProjectionMask, (err, docs) => {
+            if(err || docs == undefined) {
+                console.log(chalk.red("Looking for all posts in the database went wrong"));
+                reject(err);
+                return;
+            }
+            resolve(docs);
+        })
+    });
+}
+
+// --- Get the posts posted by a user
+postSchema.statics.findAllByPoster = function name(usuario) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').find({ 'owner' : usuario}, postProjectionMask, function (err, docs) {
+            if (err || docs == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(docs);
+        });
+    });
+} 
 
 // Return all post regardless of the data that is needed.
 postSchema.statics.getAllPosts = function() {
@@ -117,6 +148,7 @@ postSchema.statics.getAllPosts = function() {
         });
     });
 }
+
 
 const Post = db.model('Post', postSchema);
 

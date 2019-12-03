@@ -43,6 +43,9 @@
     text-decoration: none;
     border-bottom: 1px solid #545c6c;
 }
+.contact {
+    display: block;
+}
 .contact-image-warpper {
     width: 40%;
     max-height: 100px;
