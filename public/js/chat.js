@@ -44,7 +44,7 @@ function renderConversation(entry) {
                         </div>
                         <div class="contact-text-warpper metadata">
                             <p class="contact-name"><strong>${entry.nombrePost}</strong></p>
-                            <p class="contact-preview">${entry.lastMessage}</p>
+                            <p class="contact-preview">${""}</p>
                         </div>
                     </div>
                 </li>
