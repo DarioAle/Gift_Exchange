@@ -14,7 +14,8 @@ let passC = document.getElementById("input_pass_c");
 registerBtn.addEventListener("click", (evt) => {
     if (pass.value != passC.value)
         alert("Passwords do not match");
-    else {
+    else if (document.querySelectorAll("input:invalid").length == 0){
+        event.preventDefault();
         let xhr = new XMLHttpRequest();
         xhr.open("POST", 'http://localhost:3000/api/user/register');
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -27,11 +28,10 @@ registerBtn.addEventListener("click", (evt) => {
         }
         xhr.send(JSON.stringify(user));
         xhr.onload = (evt) => {
-            if (xhr.status == 200)
+            if (xhr.status == 201)
                 window.location.href = "/";
             else
-                alert(xhr.statusText);
+                alert(xhr.responseText);
         };
     }
-    evt.preventDefault();
 });

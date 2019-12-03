@@ -85,9 +85,16 @@ schema.statics.findOneByUsernae = function (username) {
 }
 
 schema.statics.registerUser = function(user) {
-    console.log(user);
-    let newUser = User(user);
-    newUser.save();
+    return new Promise((resolve, reject) => {
+        let newUser = User(user);
+        newUser.save((err, product) => {
+            if(err) {
+                reject(err);
+                return;
+            }
+            resolve(product);
+        });
+    });
 }
 
 // for testing
