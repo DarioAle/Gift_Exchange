@@ -1,7 +1,6 @@
 "use strict";
 
 const db = require('./mongodb-connect');
-const Gift = require('./Gift');
 
 const schema = {
     timeId: {
@@ -16,7 +15,7 @@ const schema = {
         type: String,
         required: true
     },
-    gift: {
+    post: {
         type: Number,
         required: true
     },
@@ -28,13 +27,13 @@ const schema = {
 
 schema.statics.getAllMessages = function (user) {
     return new Promise((resolve, reject) => {
-        // TODO: Get gifts with state an related to 'user', then get the first of each gift to render
+        // TODO: Get posts with state an related to 'user', then get the first of each post to render
     });
 }
 
-schema.statics.getConversations = function (gift) {
+schema.statics.getConversations = function (post) {
     return new Promise((resolve, reject) => {
-        Chat.find({'gift': gift}, (err, documents) => {
+        Chat.find({'post': post}, (err, documents) => {
             if(err){
                 reject(err)
                 return;
@@ -44,16 +43,17 @@ schema.statics.getConversations = function (gift) {
     });
 }
 
-schema.statics.createMessage = function (timestamp, reciever, sender, message, gift) {
+
+schema.statics.createMessage = function (timestamp, reciever, sender, message, post) {
     return new Promise((resolve, reject) => {
         let entry = new Chat({
             id: timestamp,
             reciever,
             sender,
-            gift, 
+            post, 
             message
         });
-        let doc = entry.save((err, product) => {
+        entry.save((err, product) => {
             if(err) {
                 reject(err);
                 return;
