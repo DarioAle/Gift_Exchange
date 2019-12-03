@@ -47,13 +47,17 @@ const schema = db.Schema({
 
 schema.statics.authenticate = function (username, password) {
     return new Promise(function (resolve, reject) {
-        db.model('User').findOne({ "username": username }, {
+        db.model('User').findOne({ "usuario": username }, {
                 _id: 0, 
                 usuario: 1, 
                 password: 1 
             }, function (err, user) {
-            if (err || user == undefined) {
+            console.log(username, password);
+            if (err) {
                 reject(err);
+                return;
+            }else if (!user) {
+                reject(false);
                 return;
             }
 
@@ -74,7 +78,7 @@ schema.statics.authenticate = function (username, password) {
 
 schema.statics.findOneByUsernae = function (username) {
     return new Promise(function (resolve, reject) {
-        db.model('User').findOne({ username }, userProjectionMask, function (err, user) {
+        db.model('User').findOne({ 'usuario': username }, userProjectionMask, function (err, user) {
             if (err || user == undefined) {
                 reject(err);
                 return;

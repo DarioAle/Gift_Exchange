@@ -47,7 +47,7 @@ schema.statics.getConversations = function (post) {
 schema.statics.createMessage = function (timestamp, reciever, sender, message, post) {
     return new Promise((resolve, reject) => {
         let entry = new Chat({
-            id: timestamp,
+            timeId: timestamp,
             reciever,
             sender,
             post, 
@@ -65,3 +65,5 @@ schema.statics.createMessage = function (timestamp, reciever, sender, message, p
 }
 
 const Chat = db.model('Chat', schema);
+
+module.exports = Chat;
