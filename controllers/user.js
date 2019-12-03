@@ -14,7 +14,8 @@ router.get('/:username', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    
+    console.log(req.body);
+    res.sendStatus(200);
 });
 
 module.exports = router;
