@@ -47,13 +47,13 @@ function removeButtonsFromHTML() {
 
 function addButtons(numberOfElements, page) {
     // removeButtonsFromHTML();
-    console.log("This is the number of elements" + numberOfElements);
+    // console.log("This is the number of elements" + numberOfElements);
 
     let unorderList = document.querySelector(".pagination");
     let v = "";
     let p = "";
     let lasPage = numberOfElements % 2 == 0 ? (numberOfElements >> 1) - 1:  (numberOfElements >> 1) + 1;
-    console.log(lasPage);
+    // console.log(lasPage);
     if(page == 1) {
         v = "disabled";
     }

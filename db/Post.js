@@ -150,6 +150,18 @@ postSchema.statics.getAllPosts = function() {
     });
 }
 
+// Return an specific user identified by it's unique id
+postSchema.statics.findOnePostById = function (idPost) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').findOne({'id' : idPost}, postProjectionMask, (err,doc) =>{
+            if(err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(doc);
+        });
+    });
+}
 
 const Post = db.model('Post', postSchema);
 
