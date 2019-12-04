@@ -1,6 +1,6 @@
 "use strict";
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = '/api';
 const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -119,7 +119,7 @@ function renderVerticalGiftCard(gift) {
     `
     <div class="col-12 col-lg-4 col xl-3 px-4 px-lg-2 mb-3">
         <div class="card post-card shadow-sm bg-white rounded">
-            <a href = 'giftDetail.html?gift=${3}'>
+            <a href = 'giftDetail.html?gift=${gift.id}'>
                 <img src="${gift.image[0]}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">

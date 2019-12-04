@@ -74,9 +74,9 @@ function fetchMessages() {
                 console.log(timeId);
             });
             setTimeout(fetchMessages, 500);
+            conversationWarper.scrollTop = conversationWarper.scrollHeight;
         } else if (xhr.status == 401) {
             alert("Unauth");
-            setTimeout(fetchMessages, 500);
         }
     }
     xhr.send();
@@ -116,6 +116,7 @@ function sendMessages(message) {
     xhr.onload = (evt) => {
         if (xhr.status == 201) {
             console.log("Cool");
+            document.getElementById('in-message-text').value = "";
         }
     }
     let timeId = new Date().getTime();
