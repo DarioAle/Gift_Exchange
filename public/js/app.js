@@ -68,7 +68,7 @@ function renderHorizontalUserCard(user, modal){
             <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                            <img src=".${user.imagen}" class="card-img" style alt="${user.id}">
+                            <img src="${user.imagen}" class="card-img" style alt="${user.id}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
