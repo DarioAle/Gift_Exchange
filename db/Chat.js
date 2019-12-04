@@ -32,8 +32,8 @@ schema.statics.getConversations = function (usuario) {
 
 schema.statics.getAllMessages = function (post, timestamp) {
     return new Promise((resolve, reject) => {
-        Chat.find({'post': post, 'timeId': {$gt: timestamp}}, (err, documents) => {
-            if(err){
+        Chat.find({ 'post': post, 'timeId': { $gt: timestamp } }, (err, documents) => {
+            if (err) {
                 reject(err)
                 return;
             }
@@ -49,11 +49,11 @@ schema.statics.createMessage = function (timestamp, reciever, sender, message, p
             "timeId": timestamp,
             reciever,
             sender,
-            post, 
+            post,
             message
         });
         entry.save((err, product) => {
-            if(err) {
+            if (err) {
                 reject(err);
                 return;
             }

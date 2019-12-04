@@ -8,20 +8,24 @@ const postModel = require('../db/Post');
 const usereModel = require('../db/Post');
 const authMiddleware = require('./../middlewares/authMiddleware');
 
-// /posts/winner-selector/:giftId
-router.route('/winner-selector/:giftId')
-    .get(authMiddleware.authenticate, (req, res) => {
-        res.send(501);
-    })
-    .patch(authMiddleware.authenticate, (req, res) => {
-        res.send(501);
-    });
+// /api/posts/winner-selector/:postId
+router.patch('/winner-selector/:postId', authMiddleware.authenticate, (req, res) => {
+    postModel.setWinner(req.params.postId, req.user.usuario, req.body.aquiredBy)
+        .then(doc => {
+            console.warn(doc);
+            res.json(doc).end();
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({err: ["Internal server error"]});
+        })
+});
 
 // /posts/histoy
 router.get('/history', authMiddleware.authenticate, (req, res) => {
     postModel.findAllByPoster(req.user.usuario)
         .then(docs => res.json(docs).end)
-        .catch(err => res.status(500).json({err: ["Internal Server Error"]}));
+        .catch(err => res.status(500).json({ err: ["Internal Server Error"] }));
 })
 
 router.route('/gift/:postId')
@@ -35,8 +39,39 @@ router.route('/gift/:postId')
                      console.log(chalk.red("Not bringing from DB " + err));
                      res.status(500).send()
                     })
-        
     })
+        
+router.get('/adquired', authMiddleware.authenticate, (req, res) => {
+    console.log("GG");
+    let categoria = req.query.categoria || new RegExp(".*");
+    let nombre =  new RegExp(".*");
+    if(req.query.nombre){
+        nombre = new RegExp(".*" + req.query.nombre + ".*");
+    }
+    postModel.getAdquiredByUser(req.user.usuario, categoria, nombre)
+        .then(docs => {
+            res.json(docs);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(404);
+        });        
+});
+
+router.route('/p/:postId')
+    .get((req, res) => {
+        postModel.findOneByPostId(req.params.postId)
+            .then(doc => {
+                res.json(doc);
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(404);
+            })
+    })
+
+
+
 
 // Requests made in the fron page where all the available posts 
 // are shown

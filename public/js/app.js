@@ -30,12 +30,12 @@ function renderNavbar(){
     }
     if(window.sessionStorage.getItem("token") != undefined){
         let xhr = new XMLHttpRequest();
-        let username = window.sessionStorage.getItem("username");
-        xhr.open("GET", `${BASE_URL}/users/${username}`);
+        let token = window.sessionStorage.getItem("token");
+        xhr.open("POST", `${BASE_URL}/user/validate`);
+        xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
-                console.log(user);
                 if(notLoggedNavbar != null){
                     notLoggedNavbar.hidden = true;
                     loggedInNavbar.hidden = false;
@@ -45,7 +45,7 @@ function renderNavbar(){
                 loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
-                }); 
+                });
                 return;
             }
         }
@@ -54,9 +54,10 @@ function renderNavbar(){
 }
 
 function loadGift(callback){
-    let giftId = urlParams.get('gift');
+    let postId = urlParams.get('postId');
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `${BASE_URL}/gifts/${giftId}`);
+    xhr.open('GET', `${BASE_URL}/posts/p/${postId}`);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.onload = callback(xhr);
     xhr.send();
 }
@@ -67,7 +68,7 @@ function renderHorizontalUserCard(user, modal){
             <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                            <img src=".${user.imagen}" class="card-img" style alt="${user.id}">
+                            <img src="${user.imagen}" class="card-img" style alt="${user.id}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -95,7 +96,7 @@ function renderHorizontalGiftCard(gift){
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombrePost}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
                         <p class="card-text">${gift.descripcionPost}</p>
                         <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
                         <small>Publicado el <span>${gift.date}</span></small>

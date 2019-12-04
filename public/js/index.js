@@ -12,7 +12,11 @@ function loadMain(limit, number) {
     let pageNumber = localStorage.global_pageNumber || 1;
     localStorage.global_page_counter = localStorage.global_pageNumber;
     let xhr = new XMLHttpRequest();
+<<<<<<< HEAD
     xhr.open("GET", BASE_URL + `/posts/main?pagina=${pageNumber}&limit=${pageLimit}`);
+=======
+    xhr.open("GET", BASE_URL + "/posts/main");
+>>>>>>> dev-server
     xhr.send();
     
     xhr.onload = () => {

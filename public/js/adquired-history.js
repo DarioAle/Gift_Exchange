@@ -6,11 +6,15 @@ let nameFilter = document.getElementById('input-name-filter');
 
 function getAdquiredGifts() {
     let xhr = new XMLHttpRequest();
-    let queryString = `${BASE_URL}/gifts?adquiridoPor=${window.sessionStorage.getItem("username")}&pub=inactivo`;
+    let queryString = `${BASE_URL}/posts/adquired?u=1`;
     if(catFilter.value != -1){
         queryString += "&categoria=" + catFilter.value;
     }
+    if(nameFilter.value != ""){
+        queryString += "&nombre=" + nameFilter.value;
+    }
     xhr.open('GET', queryString);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     warper.innerHTML = "";
     xhr.onload =  function (evt) {
         if (xhr.status == 200) {
@@ -32,5 +36,6 @@ function getAdquiredGifts() {
 }
 
 catFilter.addEventListener('change', (evt) => getAdquiredGifts());
+nameFilter.addEventListener('change', (evt) => getAdquiredGifts())
 
 getAdquiredGifts();

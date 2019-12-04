@@ -2,6 +2,7 @@
 
 // TODO: Get render sender and reciever
 
+let sender;
 let reciever;
 let postId = 4;
 let pagenumber = 0;
@@ -39,10 +40,10 @@ function renderSenderMessage(message) {
 
 function renderConversation(entry) {
     let html = `
-    <li class="contact" data-post-id="${entry.id}">
+    <li class="contact" data-post-id="${entry.id}" data-post-owner="${entry.owner}" data-post-aquired-by="${entry.aquiredBy}">
                     <div>
                         <div class="contact-image-warpper">
-                            <img src="${ ""}" alt="${entry.nombrePost}" />
+                            <img src="${entry.image[0]}" alt="${entry.nombrePost}" />
                         </div>
                         <div class="contact-text-warpper metadata">
                             <p class="contact-name"><strong>${entry.nombrePost}</strong></p>
@@ -63,22 +64,20 @@ function fetchMessages() {
         if (xhr.status == 200) {
             messages = JSON.parse(xhr.response);
             messages.forEach((message, index) => {
-
-                /*
-                if(message.sender == user.usuario){
+                if (message.sender == user.usuario) {
                     conversationWarper.innerHTML += renderSenderMessage(message)
-                }else{
+                } else {
                     conversationWarper.innerHTML += renderRecieverMessage(message);
                 }
-                */
-                conversationWarper.innerHTML += renderRecieverMessage(message);
+
                 timeId = timeId > message.timeId ? timeId : message.timeId;
                 console.log(timeId);
             });
+            setTimeout(fetchMessages, 500);
         } else if (xhr.status == 401) {
             alert("Unauth");
+            setTimeout(fetchMessages, 500);
         }
-        setTimeout(fetchMessages, 5000);
     }
     xhr.send();
 }
@@ -121,13 +120,13 @@ function sendMessages(message) {
     }
     let timeId = new Date().getTime();
     let newMsg = {
-        "reciever": "jtec",
+        "reciever": reciever,
+        "sender": sender,
         "message": message,
         "post": postId,
         "timestamp": timeId
     };
     timeId += 1;
-    conversationWarper.innerHTML += renderSenderMessage(newMsg);
     xhr.send(JSON.stringify(newMsg));
 }
 
@@ -135,9 +134,12 @@ function onContactClick(evt) {
     let element = event.target.closest(".contact");
     console.log(element);
     postId = element.getAttribute('data-post-id');
+    sender = user.usuario;
+    reciever = element.getAttribute('data-post-owner') == sender ? element.getAttribute('data-post-aquired-by') : element.getAttribute('data-post-owner');
     console.log(postId);
     timeId = 0;
     conversationWarper.innerHTML = "";
+    console.log(sender, reciever);
     fetchMessages();
 }
 
