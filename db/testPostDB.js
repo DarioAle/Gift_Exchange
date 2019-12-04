@@ -2,19 +2,22 @@ const postModel = require('./Post');
 const chalk = require('chalk');
 
 let FirstPost = {
-    nombrePost : "Chaleco Naranja",
-    descripcionPost : "Chaleco verde caliente con interior de peluche",
-    isNewGift : false,
+    id : 5,
+    nombrePost : "Cartera",
+    descripcionPost : "Cartera para que no te roben tu identidad",
+    isNewGift : true,
     date : new Date(),
     owner : "sandriuxgn",
-    category : "ropa",
+    category : "Accesorios",
     quantity : 1,
     postIsActive : true,
-    interesados : ["Charlie, Darío, Senpai"],
-    comments : ["Hola, creo que ese color de verde está medio feo"]
+    interesados : ["Mariana"],
+    comments : ["Que bonita cartera, dámela"],
+    image : ["http://localhost:3000/img/wallet-0.jpg"],
+    aquiredBy : undefined
 }
 
-// postModel.registerPost(FirstPost);
+postModel.registerPost(FirstPost).then(o => o).catch(e => console.log(e));
 
 
 
@@ -25,4 +28,4 @@ let FirstPost = {
 
 // console.log(chalk.green("cameholtur".match(regex)));
 
-postModel.getAllPosts().then(u => console.log(u)).catch( e => console.log(chalk.red("You screwed it " + e)));
+// postModel.getAllPosts().then(u => console.log(u)).catch( e => console.log(chalk.red("You screwed it " + e)));

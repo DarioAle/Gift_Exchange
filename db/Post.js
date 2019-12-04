@@ -68,7 +68,8 @@ const postSchema = db.Schema({
         type: [String]
     },
     image: {
-        type: [String]
+        type: [String],
+        rquired : true
     },
     aquiredBy: {
         type: String
@@ -88,15 +89,16 @@ postSchema.statics.findOneByPostName = function (postname) {
     });
 }
 
-
-postSchema.statics.registerPost = function (post) {
+// ---------------------- Register a new entry of a post -------------------------
+postSchema.statics.registerPost = function(post) {
     return new Promise((resolve, reject) => {
         let newPost = new Post(post);
         newPost.save((err, product) => {
-            if (err) {
+            if(err || product == undefined) {
                 reject(err);
                 return;
             }
+            console.log(chalk.green.bold("Post succesfully added to the database"));
             resolve(product);
         });
     });
