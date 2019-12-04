@@ -89,21 +89,12 @@ postSchema.statics.findOneByPostName = function (postname) {
     });
 }
 
-<<<<<<< HEAD
 // ---------------------- Register a new entry of a post -------------------------
 postSchema.statics.registerPost = function(post) {
     return new Promise((resolve, reject) => {
         let newPost = new Post(post);
         newPost.save((err, product) => {
             if(err || product == undefined) {
-=======
-
-postSchema.statics.registerPost = function (post) {
-    return new Promise((resolve, reject) => {
-        let newPost = new Post(post);
-        newPost.save((err, product) => {
-            if (err) {
->>>>>>> dev-server
                 reject(err);
                 return;
             }
