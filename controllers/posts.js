@@ -17,7 +17,7 @@ router.patch('/winner-selector/:postId', authMiddleware.authenticate, (req, res)
         })
         .catch(err => {
             console.error(err);
-            res.status(500).json({err: ["Internal server error"]});
+            res.status(500).json({ err: ["Internal server error"] });
         })
 });
 
@@ -44,8 +44,8 @@ router.route('/gift/:postId')
 router.get('/adquired', authMiddleware.authenticate, (req, res) => {
     console.log("GG");
     let categoria = req.query.categoria || new RegExp(".*");
-    let nombre =  new RegExp(".*");
-    if(req.query.nombre){
+    let nombre = new RegExp(".*");
+    if (req.query.nombre) {
         nombre = new RegExp(".*" + req.query.nombre + ".*");
     }
     postModel.getAdquiredByUser(req.user.usuario, categoria, nombre)
@@ -55,7 +55,7 @@ router.get('/adquired', authMiddleware.authenticate, (req, res) => {
         .catch(err => {
             console.error(err);
             res.status(404);
-        });        
+        });
 });
 
 router.route('/p/:postId')
@@ -93,20 +93,20 @@ router.route('/main')
         });
     };
 
-    let begin = qryLimit * (qrytPagina  - 1);
-    let pagedUsers = []
+        let begin = qryLimit * (qrytPagina - 1);
+        let pagedUsers = []
 
-    res.status(200);
-    postModel.getAllPosts()
+        res.status(200);
+        postModel.getAllPosts()
             .then(u => {
-                res.setHeader("x-posts-length",u.length);
-                for(let i = begin; i < begin + (qryLimit * 1); i++) {
+                res.setHeader("x-posts-length", u.length);
+                for (let i = begin; i < begin + (qryLimit * 1); i++) {
                     pagedUsers.push(u[i]);
                 }
                 res.send(pagedUsers);
             })
-            .catch( e => console.log(chalk.red("Failed Retrieving all post from db " + e)));
-        
+            .catch(e => console.log(chalk.red("Failed Retrieving all post from db " + e)));
+
     })
 
 module.exports = router;
