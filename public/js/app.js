@@ -1,6 +1,6 @@
 "use strict";
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = '/api';
 const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -8,6 +8,19 @@ let loggedInNavbar = document.getElementById('logged-navbar');
 let notLoggedNavbar = document.getElementById('not-logged-navbar');
 
 let user;
+
+function daysSincePublished(/*String*/ date) {
+    let now = Date.now();
+    let datePublished =  Date.parse(date);
+    
+    // console.log(now + " " + datePublished);
+
+    const diffTime = Math.abs(now - datePublished);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    // console.log(diffDays);
+
+    return diffDays;
+}
 
 function renderNavbar(){
     // console.log("Hola");
@@ -43,7 +56,7 @@ function renderNavbar(){
 function loadGift(callback){
     let postId = urlParams.get('postId');
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `${BASE_URL}/posts/${postId}`);
+    xhr.open('GET', `${BASE_URL}/posts/p/${postId}`);
     xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.onload = callback(xhr);
     xhr.send();
@@ -55,7 +68,7 @@ function renderHorizontalUserCard(user, modal){
             <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                            <img src=".${user.imagen}" class="card-img" style alt="${user.id}">
+                            <img src="${user.imagen}" class="card-img" style alt="${user.id}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -83,7 +96,7 @@ function renderHorizontalGiftCard(gift){
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombrePost}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
                         <p class="card-text">${gift.descripcionPost}</p>
                         <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
                         <small>Publicado el <span>${gift.date}</span></small>
@@ -95,20 +108,25 @@ function renderHorizontalGiftCard(gift){
     return html;
 }
 
+
 function renderVerticalGiftCard(gift) {
     // console.log(gift.imagen[0]);
+
+    // Days elapsed since it was published.
+    let diffDays = daysSincePublished(gift.date);
+
     let html = 
     `
     <div class="col-12 col-lg-4 col xl-3 px-4 px-lg-2 mb-3">
         <div class="card post-card shadow-sm bg-white rounded">
-            <a href = 'giftDetail.html?gift=${3}'>
-                <img src=".${gift.image[0]}" class="card-img-top" alt="...">
+            <a href = 'giftDetail.html?gift=${gift.id}'>
+                <img src="${gift.image[0]}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
                 <h5 class="card-title">${gift.nombrePost}</h5>
-                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Dario Arias</a></h6>
-                <p class="card-text">${gift.isNewGift ? "Si" : "No"}</p>
-                <small>Publicado hace <span>${gift.date}</span></small>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Publicado por: ${gift.owner}</a></h6>
+                <p class="card-text">${gift.isNewGift ? "Nuevo" : "Usado" }</p>
+                <small>Publicado hace <span>${diffDays} ${diffDays  == 1 ? "día" : "días" }</span></small>
             </div>
         </div>
     </div>

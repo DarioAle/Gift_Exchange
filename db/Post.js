@@ -50,7 +50,8 @@ const postSchema = db.Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum: ['ropa', 'electronicos', 'hogar', 'automoviles', 'accesorios', 'jugetes']
     },
     quantity: {
         type: Number,
@@ -67,7 +68,8 @@ const postSchema = db.Schema({
         type: [String]
     },
     image: {
-        type: [String]
+        type: [String],
+        rquired : true
     },
     aquiredBy: {
         type: String
@@ -87,15 +89,16 @@ postSchema.statics.findOneByPostName = function (postname) {
     });
 }
 
-
-postSchema.statics.registerPost = function (post) {
+// ---------------------- Register a new entry of a post -------------------------
+postSchema.statics.registerPost = function(post) {
     return new Promise((resolve, reject) => {
         let newPost = new Post(post);
         newPost.save((err, product) => {
-            if (err) {
+            if(err || product == undefined) {
                 reject(err);
                 return;
             }
+            console.log(chalk.green.bold("Post succesfully added to the database"));
             resolve(product);
         });
     });
@@ -167,8 +170,20 @@ postSchema.statics.findOneByPostId = function (postId) {
                 reject(err);
                 return;
             }
-            console.warn(doc);
             resolve(doc);
+        });
+    });
+}
+
+// Gets adquierdBy username
+postSchema.statics.getAdquiredByUser = function (usuario, categoria, nombre) {
+    return new Promise((resolve, reject) => {
+        db.model('Post').find({ 'aquiredBy': usuario, 'category': categoria, 'nombrePost': nombre }, postProjectionMask, (err, docs) => {
+            if (err || docs == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(docs);
         });
     });
 }
@@ -187,6 +202,18 @@ postSchema.statics.getAllPosts = function () {
     });
 }
 
+// Return an specific user identified by it's unique id
+postSchema.statics.findOnePostById = function (idPost) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').findOne({'id' : idPost}, postProjectionMask, (err,doc) =>{
+            if(err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(doc);
+        });
+    });
+}
 
 const Post = db.model('Post', postSchema);
 
