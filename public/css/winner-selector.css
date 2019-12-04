@@ -25,3 +25,7 @@ table.table td{
 #section-header img {
     width: 100%;
 }
+
+.round-image{
+    border-radius: 100%;
+}
