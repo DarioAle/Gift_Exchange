@@ -27,14 +27,31 @@ router.get('/history', authMiddleware.authenticate, (req, res) => {
         .catch(err => res.status(500).json({ err: ["Internal Server Error"] }));
 })
 
-router.route('/:postId')
+router.get('/adquired', authMiddleware.authenticate, (req, res) => {
+    console.log("GG");
+    let categoria = req.query.categoria || new RegExp(".*");
+    let nombre =  new RegExp(".*");
+    if(req.query.nombre){
+        nombre = new RegExp(".*" + req.query.nombre + ".*");
+    }
+    postModel.getAdquiredByUser(req.user.usuario, categoria, nombre)
+        .then(docs => {
+            res.json(docs);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(404);
+        });        
+});
+
+router.route('/p/:postId')
     .get((req, res) => {
         postModel.findOneByPostId(req.params.postId)
             .then(doc => {
                 res.json(doc);
             })
             .catch(err => {
-                console.err(err);
+                console.error(err);
                 res.status(404);
             })
     })

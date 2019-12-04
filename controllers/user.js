@@ -13,7 +13,7 @@ router.get('/get', (req, res) => {
 
 });
 
-router.route('/:usuario')
+router.route('/u/:usuario')
     .get((req, res) => {
         User.findOneByUsername(req.params.usuario)
             .then(doc => {
