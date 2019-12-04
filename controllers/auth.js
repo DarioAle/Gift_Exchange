@@ -35,7 +35,7 @@ router.post('/login', function (req, res) {
             if(err === false){
                 res.status(404).json({ errors: ["User not found"] });
             }else{
-                res.status(501).json({ errors: ["Internal server error"] });
+                res.status(402).json({ errors: ["Bad password"] });
             }
         });
 });

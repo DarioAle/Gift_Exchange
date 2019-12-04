@@ -28,7 +28,7 @@ router.route('/u/:usuario')
 router.post('/register', (req, res) => {
     let user = req.body;
     user.password = bcrypt.hashSync(user.password, 8);
-    user.imagen = "./public/img/du.jpg";
+    user.imagen = "/img/du.jpg";
     user.puntaje = 0;
     User.registerUser(user)
     .then(doc => {
