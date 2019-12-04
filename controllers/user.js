@@ -1,7 +1,8 @@
 'use strict';
 
 const bcrypt = require('bcryptjs');
-
+const multer = require('multer');
+const upload = multer({ dest: 'tmp/' });
 const express = require('express');
 
 const router = express.Router();
@@ -48,8 +49,9 @@ router.post('/validate', auth.authenticate, (req, res) => {
     res.status(200).send(req.user);
 });
 
-router.post('/update', auth.authenticate, (req, res) => {
+router.post('/update', auth.authenticate, upload.single('statement'), (req, res) => {
     console.log(req.body);
+    console.log(req.file);
     res.sendStatus(200);
 })
 
