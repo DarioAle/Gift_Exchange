@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
+    "test-aws": "node ./utils/imageLoader.js",
     "start": "node index.js"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/koulf/GiftExchange#readme",
   "dependencies": {
+    "aws-sdk": "^2.583.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^3.0.0",
     "cors": "^2.8.5",
