@@ -43,7 +43,7 @@ function renderNavbar(){
 function loadGift(callback){
     let postId = urlParams.get('postId');
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `${BASE_URL}/posts/${postId}`);
+    xhr.open('GET', `${BASE_URL}/posts/p/${postId}`);
     xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.onload = callback(xhr);
     xhr.send();
@@ -83,7 +83,7 @@ function renderHorizontalGiftCard(gift){
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${gift.nombrePost}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="http://127.0.0.1:5500/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
                         <p class="card-text">${gift.descripcionPost}</p>
                         <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
                         <small>Publicado el <span>${gift.date}</span></small>

@@ -19,7 +19,7 @@ warper.addEventListener('click', (evt) => {
 
 function renderUser(username, razon) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', BASE_URL + "/user/" + username);
+    xhr.open('GET', BASE_URL + "/user/u/" + username);
     xhr.onload = (evt) => {
         if (xhr.status == 200) {
             let user = JSON.parse(xhr.response);

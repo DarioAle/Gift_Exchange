@@ -3,6 +3,7 @@
 let warperActivas = document.getElementById('warper-activas');
 let warperInactivas = document.getElementById('warper-inactivas');
 
+
 function getAGifts() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `${BASE_URL}/posts/history`);

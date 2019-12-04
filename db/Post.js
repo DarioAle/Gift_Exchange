@@ -50,7 +50,8 @@ const postSchema = db.Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum: ['ropa', 'electronicos', 'hogar', 'automoviles', 'accesorios', 'jugetes']
     },
     quantity: {
         type: Number,
@@ -167,8 +168,20 @@ postSchema.statics.findOneByPostId = function (postId) {
                 reject(err);
                 return;
             }
-            console.warn(doc);
             resolve(doc);
+        });
+    });
+}
+
+// Gets adquierdBy username
+postSchema.statics.getAdquiredByUser = function (usuario, categoria, nombre) {
+    return new Promise((resolve, reject) => {
+        db.model('Post').find({ 'aquiredBy': usuario, 'category': categoria, 'nombrePost': nombre }, postProjectionMask, (err, docs) => {
+            if (err || docs == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(docs);
         });
     });
 }
