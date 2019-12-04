@@ -108,6 +108,14 @@ schema.statics.getUsers = function() {
     });
 }
 
+schema.statics.updateUser = function(user, change) {
+    // db.model('User').findOneAndUpdate()
+    let doc = Usuario.findOneAndUpdate({"usuario" : user}, {$set : change}, {new: true}, (err, docs) =>{
+        if(docs)
+            console.log(docs);
+    });
+}
+
 const User = db.model('User', schema);
 
 module.exports = User;
