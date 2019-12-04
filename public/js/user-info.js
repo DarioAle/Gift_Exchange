@@ -16,7 +16,8 @@ function fetchData() {
     xhr.onload = () => {
         if (xhr.status == 200) {
             usuario = JSON.parse(xhr.response);
-            nombreIn.value = usuario.nombre;
+            console.log(usuario);
+            nombreIn.value = usuario.usuario;
             correoIn.value = usuario.correo;
             document.getElementById("profile").setAttribute("src", "." + usuario.imagen);
         } else {
@@ -40,7 +41,7 @@ document.getElementById("updateBtn").addEventListener("click", () => {
     event.preventDefault();
 
     let updates = new FormData();
-    updates.append('nombre', nombreIn.value);
+    updates.append('usuario', nombreIn.value);
     updates.append('correo', correoIn.value)
     updates.append('password', passIn.value)
     updates.append('confpass', passCIn.value)

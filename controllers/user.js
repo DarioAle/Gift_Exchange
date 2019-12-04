@@ -49,9 +49,26 @@ router.post('/validate', auth.authenticate, (req, res) => {
     res.status(200).send(req.user);
 });
 
-router.post('/update', auth.authenticate, upload.single('statement'), (req, res) => {
+router.post('/update', upload.single('statement'), auth.authenticate, (req, res) => {
     console.log(req.body);
     console.log(req.file);
+    User.authenticate(req.user.username, req.body.password)
+        .then((result) => {
+            let change = {};
+            if (req.body.usuario != '')
+                change.usuario = req.body.usuario
+            if (req.body.confpass != '')
+                change.password = req.body.confpass
+            if (req.body.correo != '')
+                change.correo = req.body.correo
+            if (req.file != undefined) {
+                
+            }
+            User.updateUser(req.user.username, change)
+        })
+        .cath((err) => {
+            res.status(401).send("Not authorized");
+        });
     res.sendStatus(200);
 })
 
