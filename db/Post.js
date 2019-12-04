@@ -68,7 +68,8 @@ const postSchema = db.Schema({
         type: [String]
     },
     image: {
-        type: [String]
+        type: [String],
+        rquired : true
     },
     aquiredBy: {
         type: String
@@ -88,15 +89,25 @@ postSchema.statics.findOneByPostName = function (postname) {
     });
 }
 
+<<<<<<< HEAD
+// ---------------------- Register a new entry of a post -------------------------
+postSchema.statics.registerPost = function(post) {
+    return new Promise((resolve, reject) => {
+        let newPost = new Post(post);
+        newPost.save((err, product) => {
+            if(err || product == undefined) {
+=======
 
 postSchema.statics.registerPost = function (post) {
     return new Promise((resolve, reject) => {
         let newPost = new Post(post);
         newPost.save((err, product) => {
             if (err) {
+>>>>>>> dev-server
                 reject(err);
                 return;
             }
+            console.log(chalk.green.bold("Post succesfully added to the database"));
             resolve(product);
         });
     });
@@ -200,6 +211,18 @@ postSchema.statics.getAllPosts = function () {
     });
 }
 
+// Return an specific user identified by it's unique id
+postSchema.statics.findOnePostById = function (idPost) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').findOne({'id' : idPost}, postProjectionMask, (err,doc) =>{
+            if(err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(doc);
+        });
+    });
+}
 
 const Post = db.model('Post', postSchema);
 
