@@ -13,11 +13,11 @@ function daysSincePublished(/*String*/ date) {
     let now = Date.now();
     let datePublished =  Date.parse(date);
     
-    console.log(now + " " + datePublished);
+    // console.log(now + " " + datePublished);
 
     const diffTime = Math.abs(now - datePublished);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    console.log(diffDays);
+    // console.log(diffDays);
 
     return diffDays;
 }

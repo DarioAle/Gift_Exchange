@@ -23,19 +23,42 @@ router.get('/history', authMiddleware.authenticate, (req, res) => {
         .catch(err => res.status(500).json({err: ["Internal Server Error"]}));
 })
 
-router.route('/main')
-    .get((req, res) => {
-        console.log(chalk.green("Sí llegaste a la ruta"));
-        res.status(200);
-        postModel.getAllPosts()
-                .then(u => {
-                    res.send(u);
-                })
-                .catch( e => console.log(chalk.red("Failed Retrieving all post from db " + e)));
-        
-    })
-    .delete((req, res) => {
+router.route('/publ/:id')
 
+// Requests made in the fron page where all the available posts 
+// are shown
+router.route('/main')
+.get((req, res) => {
+    console.log(chalk.black.bgBlue("Sí llegaste a la ruta /main en index"));
+
+    let qrytPagina = req.query.pagina;
+    let qryLimit   = req.query.limit;
+    let qryNombre  = req.query.nombre || "";
+    
+    if(qryNombre != "") {
+        console.log("vamos a filtrar");
+        usersToSend = usersToSend.filter( (e) => {
+            return e.nombre.toUpperCase().includes(qryNombre.toUpperCase())   ||
+                e.nombre.includes(qryNombre)                               ||
+                e.apellido.toUpperCase().includes(qryNombre.toUpperCase()) ||
+                e.apellido.includes(qryNombre);
+        });
+    };
+
+    let begin = qryLimit * (qrytPagina  - 1);
+    let pagedUsers = []
+
+    res.status(200);
+    postModel.getAllPosts()
+            .then(u => {
+                res.setHeader("x-posts-length",u.length);
+                for(let i = begin; i < begin + (qryLimit * 1); i++) {
+                    pagedUsers.push(u[i]);
+                }
+                res.send(pagedUsers);
+            })
+            .catch( e => console.log(chalk.red("Failed Retrieving all post from db " + e)));
+        
     })
 
 module.exports = router;

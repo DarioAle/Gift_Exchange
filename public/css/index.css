@@ -1,3 +1,9 @@
 .post-card img{
-    min-height: 380px;
+    max-height: 100px;
+    max-width : 200px;
+}
+
+#regDis {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
