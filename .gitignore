@@ -12,3 +12,6 @@ config/jwt.key
 
 # node_modules
 node_modules/**
+
+### Temp files folder 
+tmp/**
