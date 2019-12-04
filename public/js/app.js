@@ -23,7 +23,6 @@ function renderNavbar(){
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
-                console.log(user);
                 if(notLoggedNavbar != null){
                     notLoggedNavbar.hidden = true;
                     loggedInNavbar.hidden = false;
@@ -33,7 +32,7 @@ function renderNavbar(){
                 loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
-                }); 
+                });
                 return;
             }
         }
