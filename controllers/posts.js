@@ -23,7 +23,7 @@ router.get('/history', authMiddleware.authenticate, (req, res) => {
         .catch(err => res.status(500).json({err: ["Internal Server Error"]}));
 })
 
-router.route('/publ/:id')
+router.route('/p/:')
 
 // Requests made in the fron page where all the available posts 
 // are shown
