@@ -19,7 +19,7 @@ warper.addEventListener('click', (evt) => {
 
 function renderUser(username, razon) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', BASE_URL + "/users/" + username);
+    xhr.open('GET', BASE_URL + "/user/" + username);
     xhr.onload = (evt) => {
         if (xhr.status == 200) {
             let user = JSON.parse(xhr.response);
@@ -34,12 +34,13 @@ function renderUser(username, razon) {
 function winnerGiftCallback(xhr) {
     return function (evt) {
         if (xhr.status == 200) {
+            console.log("Hola");
             gift = JSON.parse(xhr.response);
             console.log(gift);
-            spanGiftName.innerHTML = gift.nombre;
-            imgGift.src = gift.imagen[0];
+            spanGiftName.innerHTML = gift.nombrePost;
+            imgGift.src = gift.image[0];
             selectionHeader.hidden = false;
-            console.log(gift.interesados.length, gift.interesados)
+            console.log(gift.interesados.length, gift.interesados, gift);
             for (let i = 0; i < gift.interesados.length; i++) {
                 renderUser(gift.interesados[i].usuario, gift.interesados[i].razon)
             }
@@ -52,17 +53,18 @@ function winnerGiftCallback(xhr) {
 
 function onConfirmClick (evt) {
     let xhr = new XMLHttpRequest();
-    let id = urlParams.get('gift');
-    xhr.open('PATCH', `${BASE_URL}/gifts/${id}`);
+    let id = urlParams.get('postId');
+    xhr.open('PATCH', `${BASE_URL}/posts/winner-selector/${id}`);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.onload = (evt) => {
         if(xhr.status == 200){
-            window.location.href = "http://127.0.0.1:5500/gracias.html";
+            window.location.href = "/gracias.html";
         }
     }
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
-        "adquiridoPor": targetUserID,
-        "pub": "inactivo" 
+        "aquiredBy": targetUserID,
+        "postIsActive": false 
     }));
 }
 

@@ -13,6 +13,18 @@ router.get('/get', (req, res) => {
 
 });
 
+router.route('/:usuario')
+    .get((req, res) => {
+        User.findOneByUsername(req.params.usuario)
+            .then(doc => {
+                res.json(doc);
+            })
+            .catch(err => {
+                console.error(err);
+                res.sendStatus(404);
+            });
+    });
+
 router.post('/register', (req, res) => {
     let user = req.body;
     user.password = bcrypt.hashSync(user.password, 8);
@@ -31,7 +43,6 @@ router.post('/register', (req, res) => {
             res.sendStatus(520);
     });
 });
-
 router.post('/validate', auth.authenticate, (req, res) => {
     console.log(req.user);
     res.status(200).send(req.user);

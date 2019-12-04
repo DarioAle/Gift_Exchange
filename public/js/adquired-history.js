@@ -11,6 +11,7 @@ function getAdquiredGifts() {
         queryString += "&categoria=" + catFilter.value;
     }
     xhr.open('GET', queryString);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     warper.innerHTML = "";
     xhr.onload =  function (evt) {
         if (xhr.status == 200) {

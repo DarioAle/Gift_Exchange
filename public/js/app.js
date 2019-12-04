@@ -18,8 +18,8 @@ function renderNavbar(){
     if(window.sessionStorage.getItem("token") != undefined){
         let xhr = new XMLHttpRequest();
         let token = window.sessionStorage.getItem("token");
+        xhr.open("POST", `${BASE_URL}/user/validate`);
         xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
-        xhr.open("POST", `${BASE_URL}/api/validate`);
         xhr.onload = (evt) => {
             if(xhr.status == 200){
                 user = JSON.parse(xhr.response);
@@ -42,9 +42,10 @@ function renderNavbar(){
 }
 
 function loadGift(callback){
-    let giftId = urlParams.get('gift');
+    let postId = urlParams.get('postId');
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', `${BASE_URL}/gifts/${giftId}`);
+    xhr.open('GET', `${BASE_URL}/posts/${postId}`);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
     xhr.onload = callback(xhr);
     xhr.send();
 }

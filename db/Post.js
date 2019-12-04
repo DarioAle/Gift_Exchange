@@ -12,14 +12,14 @@ const postProjectionMask = {
     isNewGift: 1,
     date: 1,
     owner: 1,
-    category : 1,
-    quantity : 1,
-    postIsActive : 1,
-    interesados : 1,
-    comments : 1,
-    aqcuired : 1,
+    category: 1,
+    quantity: 1,
+    postIsActive: 1,
+    interesados: 1,
+    comments: 1,
+    aqcuired: 1,
     image: 1,
-    aquiredBy : 1
+    aquiredBy: 1
 };
 
 const postSchema = db.Schema({
@@ -52,32 +52,32 @@ const postSchema = db.Schema({
         type: String,
         required: true
     },
-    quantity : {
+    quantity: {
         type: Number,
-        required : true
+        required: true
     },
-    postIsActive : {
-        type : Boolean,
-        required : true
+    postIsActive: {
+        type: Boolean,
+        required: true
     },
-    interesados : {
-        type : [String],
+    interesados: {
+        type: [Object],
     },
-    comments : {
-        type : [String]
+    comments: {
+        type: [String]
     },
     image: {
         type: [String]
     },
-    aquiredBy : {
-        type : String
+    aquiredBy: {
+        type: String
     }
 });
 
 // --------- Find with exact matching name and return only the first instance that matchec---------------------
 postSchema.statics.findOneByPostName = function (postname) {
     return new Promise(function (resolve, reject) {
-        db.model('Post').find({ 'nombrePost' : new RegExp(".*" + postname + ".*")}, postProjectionMask, function (err, post) {
+        db.model('Post').find({ 'nombrePost': new RegExp(".*" + postname + ".*") }, postProjectionMask, function (err, post) {
             if (err || post == undefined) {
                 reject(err);
                 return;
@@ -88,11 +88,11 @@ postSchema.statics.findOneByPostName = function (postname) {
 }
 
 
-postSchema.statics.registerPost = function(post) {
+postSchema.statics.registerPost = function (post) {
     return new Promise((resolve, reject) => {
         let newPost = new Post(post);
         newPost.save((err, product) => {
-            if(err) {
+            if (err) {
                 reject(err);
                 return;
             }
@@ -102,16 +102,20 @@ postSchema.statics.registerPost = function(post) {
 }
 
 // ------------------- Regresar los regalos realcionados a una conversación
-postSchema.statics.getConversations = function(usuario){
+postSchema.statics.getConversations = function (usuario) {
     return new Promise((resolve, reject) => {
-        db.model('Post').find({$and: [
-            {'postIsActive': false},
-            {$or: [
-                {'aquiredBy': usuario},
-                {'owner': usuario}
-            ]}
-        ]}, postProjectionMask, (err, docs) => {
-            if(err || docs == undefined) {
+        db.model('Post').find({
+            $and: [
+                { 'postIsActive': false },
+                {
+                    $or: [
+                        { 'aquiredBy': usuario },
+                        { 'owner': usuario }
+                    ]
+                }
+            ]
+        }, postProjectionMask, (err, docs) => {
+            if (err || docs == undefined) {
                 console.log(chalk.red("Looking for all posts in the database went wrong"));
                 reject(err);
                 return;
@@ -124,7 +128,7 @@ postSchema.statics.getConversations = function(usuario){
 // --- Get the posts posted by a user
 postSchema.statics.findAllByPoster = function name(usuario) {
     return new Promise(function (resolve, reject) {
-        db.model('Post').find({ 'owner' : usuario}, postProjectionMask, function (err, docs) {
+        db.model('Post').find({ 'owner': usuario }, postProjectionMask, function (err, docs) {
             if (err || docs == undefined) {
                 reject(err);
                 return;
@@ -132,13 +136,48 @@ postSchema.statics.findAllByPoster = function name(usuario) {
             resolve(docs);
         });
     });
-} 
+}
+
+// --- Sets the winner ----
+postSchema.statics.setWinner = function (postId, owner, winner) {
+    return new Promise((resolve, reject) => {
+        db.model('Post').findOne({ 'id': postId, 'owner': owner }, (err, doc) => {
+            if (err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            doc.aquiredBy = winner;
+            doc.postIsActive = false;
+            doc.save((err, product) => {
+                if (err || product == undefined) {
+                    reject(err);
+                    return;
+                }
+                resolve(product);
+            });
+        });
+    });
+}
+
+// Gees a post by post id
+postSchema.statics.findOneByPostId = function (postId) {
+    return new Promise((resolve, reject) => {
+        db.model('Post').findOne({ 'id': postId }, postProjectionMask, (err, doc) => {
+            if (err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            console.warn(doc);
+            resolve(doc);
+        });
+    });
+}
 
 // Return all post regardless of the data that is needed.
-postSchema.statics.getAllPosts = function() {
-    return new Promise(function (resolve, reject)  {
-        db.model('Post').find({}, postProjectionMask, (err, docs) =>{
-            if(err || docs == undefined) {
+postSchema.statics.getAllPosts = function () {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').find({}, postProjectionMask, (err, docs) => {
+            if (err || docs == undefined) {
                 console.log(chalk.red("Looking for all posts in the database went wrong"));
                 reject(err);
                 return;
