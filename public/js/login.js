@@ -11,7 +11,9 @@ btnSubmit.addEventListener('click', (evt) => {
             window.sessionStorage.setItem("token", res)
             window.location.href = "/";
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            alert(err);
+        });
 });
 
 function login(username, password) {
@@ -19,7 +21,7 @@ function login(username, password) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", `${BASE_URL}/auth/login`);
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onload = (evt) => {
+        xhr.onload = () => {
             if (xhr.status == 201) {
                 resolve(xhr.getResponseHeader('X-Auth'));
             }else {
@@ -27,7 +29,6 @@ function login(username, password) {
             }
         };
         let user = {username, password};
-        console.log(user);
         xhr.send(JSON.stringify(user));
     });
 }

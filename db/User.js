@@ -52,7 +52,6 @@ schema.statics.authenticate = function (username, password) {
                 usuario: 1, 
                 password: 1 
             }, function (err, user) {
-            console.log(username, password);
             if (err) {
                 reject(err);
                 return;

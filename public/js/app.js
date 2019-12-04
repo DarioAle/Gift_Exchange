@@ -29,7 +29,7 @@ function renderNavbar(){
                 }else{
                     loggedInNavbar.hidden = false;
                 }
-                loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
+                // loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
                 });

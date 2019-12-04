@@ -74,15 +74,15 @@
 
     <div class="container">
         <img id="profile" src="img/sample.png" alt="Foto de perfil" style="width: 150px; height:150px; margin:50px;">
-        <form action="./updateAccount" method="POST">
+        <form>
             <h1>Actualizar información</h1>
-            <input type="number" value="{{user.id}}" name="id" style="display:none" />
+            <input type="number" name="id" style="display:none" />
             <div class="form-group">
                 <div class="col-xs-12">
                     <label for="nombre">
                         <h4>Nombre</h4>
                     </label>
-                    <input type="text" class="form-control" name="username" id="username" value="Usuario"
+                    <input type="text" class="form-control" name="username" id="name" value="Usuario"
                         title="Ingrese el nombre completo">
                 </div>
             </div>
@@ -100,7 +100,8 @@
                     <label>
                         <h4>Foto de perfil</h4>
                     </label>
-                    <button class="form-control" id="pick-photo">Seleccionar</button>
+                    <input hidden id="fileIn" type="file" class="form-control"></input>
+                    <button class="form-control" id="pictureBtn">Seleccionar</button>
                 </div>
             </div>
 
@@ -110,7 +111,7 @@
                     <label for="passConfirm">
                         <h4>Contraseña actual</h4>
                     </label>
-                    <input type="password" class="form-control" name="passConfirm" id="passConfirm"
+                    <input type="password" class="form-control" name="password" id="pass" placeholder="Ingrese su contraseña"
                         title="Ingrese su contraseña.">
                 </div>
 
@@ -125,7 +126,7 @@
             <div class="form-group">
                 <div class="col-xs-12">
                     <br>
-                    <button class="btn btn-lg btn-dark" type="submit">Actualizar</button>
+                    <button id="updateBtn" class="btn btn-lg btn-dark" type="submit">Actualizar</button>
                 </div>
             </div>
         </form>

@@ -7,11 +7,11 @@ const router = express.Router();
 const User = require('./../db/User');
 
 router.post('/login', function (req, res) {
-    if(req.body.username == undefined){
+    if (req.body.username == undefined) {
         res.status(401).json({ errors: ["No username"] });
         return;
     }
-    if(req.body.password == undefined){
+    if (req.body.password == undefined) {
         res.status(401).json({ errors: ["No password"] });
         return;
     }
@@ -19,8 +19,8 @@ router.post('/login', function (req, res) {
     User.authenticate(req.body.username, req.body.password)
         .then(function (result) {
             let token = JWT.sign({
-                    username: req.body.username
-                },
+                username: req.body.username
+            },
                 config.jwt.secret,
                 {
                     issuer: config.jwt.issuer,
@@ -32,9 +32,13 @@ router.post('/login', function (req, res) {
             res.status(201).json({ token });
         })
         .catch(function (err) {
-            if(err === false){
+            console.log(err);
+            if (err === false) {
                 res.status(404).json({ errors: ["User not found"] });
-            }else{
+            } else if (err == "Bad password") {
+                res.status(401).json({ errors: [err] });
+            }
+            else {
                 res.status(501).json({ errors: ["Internal server error"] });
             }
         });
