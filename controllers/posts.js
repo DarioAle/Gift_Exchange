@@ -13,7 +13,7 @@ const upload = multer({ dest: 'tmp/' });
 // Max ID from the post collection
 let global_max_id;
 async function getMaxIdPost() {
-    let max_post =  postModel.find().sort({id:-1}).limit(1);
+    let max_post = await postModel.find().sort({id:-1}).limit(1);
     console.log(chalk.magenta(max_post[0].id));
     return max_post[0].id;
 };
@@ -147,10 +147,13 @@ router.route('/main')
 
     })
 
-router.post('/', upload.array('statement', 4), authMiddleware.authenticate, (req, res) => {
+router.post('/', upload.array('statement', 4), authMiddleware.authenticate, async (req, res) => {
     console.log(req.body);
     console.log(req.files);
+    let maxId = await getMaxIdPost();
+    console.log("max id: " + chalk.yellow(maxId));
     let newUser = req.body;
+    newUser.id = maxId + 1;
     newUser.owner = req.user.usuario;
     newUser.date = Date.now();
     newUser.postIsActive = true;
