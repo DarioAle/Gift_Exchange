@@ -17,7 +17,7 @@ function fetchData() {
         if (xhr.status == 200) {
             usuario = JSON.parse(xhr.response);
             console.log(usuario);
-            nombreIn.value = usuario.usuario;
+            nombreIn.value = usuario.nombre;
             correoIn.value = usuario.correo;
             document.getElementById("profile").setAttribute("src", "." + usuario.imagen);
         } else {
@@ -41,7 +41,7 @@ document.getElementById("updateBtn").addEventListener("click", () => {
     event.preventDefault();
 
     let updates = new FormData();
-    updates.append('usuario', nombreIn.value);
+    updates.append('nombre', nombreIn.value);
     updates.append('correo', correoIn.value)
     updates.append('password', passIn.value)
     updates.append('confpass', passCIn.value)
@@ -53,9 +53,9 @@ document.getElementById("updateBtn").addEventListener("click", () => {
 
     xhr.onload = () => {
         if (xhr.status == 200) {
-            console.log("ok");
+            alert("ok");
         } else {
-            console.log("error");
+            alert("error");
         }
     };
     xhr.send(updates);

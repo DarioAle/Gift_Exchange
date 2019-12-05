@@ -50,13 +50,17 @@ router.post('/validate', auth.authenticate, (req, res) => {
 });
 
 router.post('/update', upload.single('statement'), auth.authenticate, (req, res) => {
+    console.log("body----------");
     console.log(req.body);
+    console.log("file----------");
     console.log(req.file);
-    User.authenticate(req.user.username, req.body.password)
+    console.log("user----------");
+    console.log(req.user.usuario);
+    User.authenticate(req.user.usuario, req.body.password)
         .then((result) => {
             let change = {};
             if (req.body.usuario != '')
-                change.usuario = req.body.usuario
+                change.nombre = req.body.nombre
             if (req.body.confpass != '')
                 change.password = req.body.confpass
             if (req.body.correo != '')
@@ -64,12 +68,15 @@ router.post('/update', upload.single('statement'), auth.authenticate, (req, res)
             if (req.file != undefined) {
                 
             }
-            User.updateUser(req.user.username, change)
+            User.updateUser(req.user.usuario, change);
+            console.log("change----------");
+            console.log(change);
+            res.sendStatus(200);
         })
-        .cath((err) => {
+        .catch((err) => {
+            console.log(err);
             res.status(401).send("Not authorized");
         });
-    res.sendStatus(200);
 })
 
 module.exports = router;

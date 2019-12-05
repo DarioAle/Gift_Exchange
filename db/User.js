@@ -109,8 +109,7 @@ schema.statics.getUsers = function() {
 }
 
 schema.statics.updateUser = function(user, change) {
-    // db.model('User').findOneAndUpdate()
-    let doc = Usuario.findOneAndUpdate({"usuario" : user}, {$set : change}, {new: true}, (err, docs) =>{
+    db.model('User').findOneAndUpdate({"usuario" : user}, {$set : change}, {new: true}, (err, docs) =>{
         if(docs)
             console.log(docs);
     });
