@@ -87,7 +87,7 @@ function renderHorizontalUserCard(user, modal){
 function renderHorizontalGiftCard(gift, button){
     let html = `
         <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card" data-post-id="${gift.id}" data-post-name="${gift.nombrePost}">
-            <a href="${user.redirectURL}">
+            <a href="${gift.redirectURL}">
                 <div class="row no-gutters">
                         <div class="col-md-3">
                             <img src="${gift.image[0]}" class="card-img" alt="${gift.image[0]}" />

@@ -65,17 +65,10 @@ continueButton.addEventListener("click", event => {
     xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
     xhr.onload = () => {
         if (xhr.status == 200) {
-            alert("Creado, falta redirijir");
-        } else {
-            alert(xhr.statusText);
-        }
-    };
-    xhr.send(formData);
-    /*
-    let s = document.querySelector("section");
-    s.removeChild(s.querySelector(".container"));
-    s.insertAdjacentHTML("afterbegin",
-        `   
+            let s = document.querySelector("section");
+            s.removeChild(s.querySelector(".container"));
+            s.insertAdjacentHTML("afterbegin",
+                `   
         <div class="container">
             <div class="row text-center suc-msg">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -90,7 +83,13 @@ continueButton.addEventListener("click", event => {
             </div>
         </div>
         `
-    );
+            );
+        } else {
+            alert(xhr.statusText);
+        }
+    };
+    xhr.send(formData);
+    /*
 
     // let postEntry = new XMLHttpRequest();
     // postEntry.open("POST", "http://127.0.0.1:3000/gifts/");
