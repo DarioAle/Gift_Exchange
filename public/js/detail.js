@@ -64,7 +64,7 @@ function loadGift(){
             prImage.src = postInfoObject.image[0];
             catHeader.innerHTML = "Categoría | " + postInfoObject.category;
             descrHead.innerHTML = postInfoObject.descripcionPost;
-            pubFecha.innerHTML = "Publicado el "+ postInfoObject.date;
+            pubFecha.innerHTML = "Publicado el "+ new Date(postInfoObject.date).toLocaleDateString('es-ES', options) ;
             nombHead.innerHTML =  postInfoObject.nombrePost;
             nombreOwner.innerHTML = postInfoObject.owner;
             ownerDetails(postInfoObject.owner);
