@@ -52,7 +52,6 @@ schema.statics.authenticate = function (username, password) {
                 usuario: 1, 
                 password: 1 
             }, function (err, user) {
-            console.log(username, password);
             if (err) {
                 reject(err);
                 return;
@@ -104,6 +103,13 @@ schema.statics.registerUser = function(user) {
 // for testing
 schema.statics.getUsers = function() {
     User.find({}, (err, docs) =>{
+        if(docs)
+            console.log(docs);
+    });
+}
+
+schema.statics.updateUser = function(user, change) {
+    db.model('User').findOneAndUpdate({"usuario" : user}, {$set : change}, {new: true}, (err, docs) =>{
         if(docs)
             console.log(docs);
     });

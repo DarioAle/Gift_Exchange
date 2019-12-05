@@ -42,7 +42,7 @@ function renderNavbar(){
                 }else{
                     loggedInNavbar.hidden = false;
                 }
-                loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
+                // loggedInNavbar.querySelector("#cuenta-a").href = `./user-info.html?id=${user.id}`;
                 loggedInNavbar.querySelectorAll('img').forEach(element => {
                     element.src = user.imagen;
                 });
@@ -68,7 +68,7 @@ function renderHorizontalUserCard(user, modal){
             <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                            <img src="${user.imagen}" class="card-img" style alt="${user.id}">
+                            <img src="${user.imagen}" class="card-img round-image" style alt="${user.id}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
