@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
 const express = require('express');
+const loadImage = require('./../utils/imageLoader');
 
 const router = express.Router();
 const User = require('./../db/User');
@@ -50,11 +51,6 @@ router.post('/validate', auth.authenticate, (req, res) => {
 });
 
 router.post('/update', upload.single('statement'), auth.authenticate, (req, res) => {
-    console.log("body----------");
-    console.log(req.body);
-    console.log("file----------");
-    console.log(req.file);
-    console.log("user----------");
     console.log(req.user.usuario);
     User.authenticate(req.user.usuario, req.body.password)
         .then((result) => {
@@ -66,12 +62,19 @@ router.post('/update', upload.single('statement'), auth.authenticate, (req, res)
             if (req.body.correo != '')
                 change.correo = req.body.correo
             if (req.file != undefined) {
-                
+                loadImage(req.file, (err, data) => {
+                    if (err) {
+                        res.status(401).send("S3 Error");
+                        return;
+                    }
+                    change.imagen = data;
+                    User.updateUser(req.user.usuario, change);
+                    res.sendStatus(200);
+                });
+            } else {
+                User.updateUser(req.user.usuario, change);
+                res.sendStatus(200);
             }
-            User.updateUser(req.user.usuario, change);
-            console.log("change----------");
-            console.log(change);
-            res.sendStatus(200);
         })
         .catch((err) => {
             console.log(err);

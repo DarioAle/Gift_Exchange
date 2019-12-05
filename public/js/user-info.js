@@ -19,7 +19,7 @@ function fetchData() {
             console.log(usuario);
             nombreIn.value = usuario.nombre;
             correoIn.value = usuario.correo;
-            document.getElementById("profile").setAttribute("src", "." + usuario.imagen);
+            document.getElementById("profile").setAttribute("src", usuario.imagen);
         } else {
             alert(xhr.statusText);
         }
