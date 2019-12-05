@@ -64,7 +64,7 @@ continueButton.addEventListener("click", event => {
     xhr.open('PUT', BASE_URL + "/posts/newGiftEntry");
     xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
     xhr.onload = () => {
-        if (xhr.status == 200) {
+        if (xhr.status == 201) {
             let s = document.querySelector("section");
             s.removeChild(s.querySelector(".container"));
             s.insertAdjacentHTML("afterbegin",
