@@ -140,7 +140,8 @@ function logout() {
     window.sessionStorage.removeItem("token");
     window.location.href = '/';
 }
-
-document.querySelector("a.dropdown-item[href='#']").addEventListener('click', logout);
+let drpDwn = document.querySelector("a.dropdown-item[href='#']");
+if(drpDwn != undefined)
+    drpDwn.addEventListener('click', logout);
 
 renderNavbar();

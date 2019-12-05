@@ -17,7 +17,7 @@ registerBtn.addEventListener("click", (evt) => {
     else if (document.querySelectorAll("input:invalid").length == 0){
         event.preventDefault();
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", 'http://localhost:3000/api/user/register');
+        xhr.open("POST", `${BASE_URL}/user/register`);
         xhr.setRequestHeader("Content-Type", "application/json");
         let user = {
             nombre : name.value,

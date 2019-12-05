@@ -158,7 +158,7 @@ router.route('/newGiftEntry')
         postObject.postIsActive = true;
         postModel.registerPost(postObject)
                  .then(doc =>{ 
-                     console.log(chalk.blue("Post added succesfully" + doc))
+                     console.log(chalk.blue("Post added succesfully\n" + doc))
                      res.status(201).send();
                  })
                  .catch(e => console.log(chalk.red("Error adding new post " + e)))
