@@ -11,9 +11,8 @@ const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
 
 // Max ID from the post collection
-let global_max_id;
 async function getMaxIdPost() {
-    let max_post = await postModel.find().sort({id:-1}).limit(1);
+    let max_post =   await postModel.find().sort({id:-1}).limit(1);
     console.log(chalk.magenta(max_post[0].id));
     return max_post[0].id;
 };
@@ -170,20 +169,19 @@ router.post('/', upload.array('statement', 4), authMiddleware.authenticate, asyn
         });
 });
 router.route('/newGiftEntry')
-    .put(authMiddleware.authenticate, (req, res) => {
+    .put(authMiddleware.authenticate, async (req, res) => {
         console.log(chalk.cyan("ruta new giftEntry"));
-        let maxId = getMaxIdPost();
+        let maxId = await getMaxIdPost();
         console.log("max id: " + chalk.yellow(maxId));
         let postObject = req.body;
-        postObject.id = maxId;
-        console.log(typeof(postObject.id) + " " + typeof(maxId))
-        return;
+        postObject.id = maxId + 1;
         postObject.date = new Date();
         postObject.owner = req.user.usuario;
         postObject.postIsActive = true;
         postModel.registerPost(postObject)
                  .then(doc =>{ 
                      console.log(chalk.blue("Post added succesfully" + doc))
+                     res.status(201).send();
                  })
                  .catch(e => console.log(chalk.red("Error adding new post " + e)))
     })
