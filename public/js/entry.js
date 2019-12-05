@@ -43,23 +43,34 @@ continueButton.addEventListener("click", event => {
     event.preventDefault();
 
     console.log("Estás dentro del evento continue");
-    let valuesFilled = {
-        "id": (Math.random() * 500) / 10,
-        "nombre": rigthForm.querySelector("input").value,
-        "descripcion": rigthForm.querySelector("textarea").value,
-        "imagen": ["/img/wallet-2.jpg"],
-        "estado": "usado",
-        "publicadoPor": "pedro.paramo",
-        "creacion": "2019-11-18",
-        "categoria": "otros",
-        "edicion": "2019-11-18",
-        "cantidad": 1,
-        "pub": "activo",
-        "interesados": []
-    }
+    // TODO: Validate input
+
+    let formData = new FormData();
+    formData.append("nombrePost", document.getElementById('id-5dacebf4bc693').value);
+    formData.append('descripcionPost', document.getElementById('id-5dacebf4bc69d').value);
+    formData.append('isNewGift', document.getElementById('input-nuevo').value);
+    formData.append('category', document.getElementById('input-cat').value);
+    formData.append('quantity', document.getElementById('input-cantidad').value);
+    formData.append('statement', document.getElementById('image0').files)
+
+    console.log(formData);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '');
+    xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            alert("Creado, falta redirijir");
+        } else {
+            alert(xhr.statusText);
+        }
+    };
+    // xhr.send(formData);
+    /*
     let s = document.querySelector("section");
     s.removeChild(s.querySelector(".container"));
-    s.insertAdjacentHTML("afterbegin", 
+    s.insertAdjacentHTML("afterbegin",
         `   
         <div class="container">
             <div class="row text-center suc-msg">
@@ -88,13 +99,14 @@ continueButton.addEventListener("click", event => {
     //     if (postEntry.status != 201) {
     //         console.log("Algo salió mal");
     //         console.log(postEntry.responseText);
-            
+
     //     } else {
     //         console.log("Si lo recibió y se almacenó el regalo");
     //         console.log(postEntry.responseText);
     //     }
     // }
     // postEntry.send(JSON.stringify(valuesFilled));
+    */
 });
 
 

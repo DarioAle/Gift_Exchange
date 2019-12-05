@@ -51,7 +51,6 @@ router.post('/validate', auth.authenticate, (req, res) => {
 });
 
 router.post('/update', upload.single('statement'), auth.authenticate, (req, res) => {
-    console.log(req.user.usuario);
     User.authenticate(req.user.usuario, req.body.password)
         .then((result) => {
             let change = {};
@@ -78,8 +77,17 @@ router.post('/update', upload.single('statement'), auth.authenticate, (req, res)
         })
         .catch((err) => {
             console.log(err);
-            res.status(401).send("Not authorized");
+            res.status(401).send(err);
         });
 })
+
+router.get('/get', auth.authenticate, (req, res) => {
+    User.getUsers()
+    .then((users) => res.status(200).send(users))
+    .catch((err) => {
+        console.log(err);
+        res.status(401).send(err);
+    });
+});
 
 module.exports = router;
