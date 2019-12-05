@@ -19,6 +19,7 @@ function getAGifts() {
                 if(gifts[i].postIsActive){
                     warperActivas.innerHTML += renderHorizontalGiftCard(gifts[i]);
                 }else{
+                    // gifts[i].redirectURL = "#";
                     warperInactivas.innerHTML += renderHorizontalGiftCard(gifts[i]);
                 }
             }
