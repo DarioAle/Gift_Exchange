@@ -202,7 +202,7 @@ postSchema.statics.getAllPosts = function () {
     });
 }
 
-// Return an specific user identified by it's unique id
+// Return an specific post identified by it's unique id
 postSchema.statics.findOnePostById = function (idPost) {
     return new Promise(function (resolve, reject) {
         db.model('Post').findOne({'id' : idPost}, postProjectionMask, (err,doc) =>{
@@ -213,6 +213,19 @@ postSchema.statics.findOnePostById = function (idPost) {
             resolve(doc);
         });
     });
+}
+
+// Update when someone adds to have a reason
+postSchema.statics.updateComments = function (idPost) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').findOne({'id' : idPost}, (err,doc) => {
+            if(err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(doc);
+        })
+    })
 }
 
 const Post = db.model('Post', postSchema);
