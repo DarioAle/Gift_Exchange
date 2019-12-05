@@ -228,6 +228,20 @@ postSchema.statics.updateComments = function (idPost) {
     })
 }
 
+postSchema.statics.deleteOneById = function(postId) {
+    return new Promise((resolve, reject) => {
+        db.model('Post').findOne({'id': postId}).remove().exec((err, res) => {
+            if(err){
+                console.error(err);
+                reject(err);
+                return
+            }
+            console.info(res);
+            resolve(res)
+        })
+    });
+}
+
 const Post = db.model('Post', postSchema);
 
 module.exports = Post;

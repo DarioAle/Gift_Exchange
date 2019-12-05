@@ -84,27 +84,26 @@ function renderHorizontalUserCard(user, modal){
     return html;
 }
 
-function renderHorizontalGiftCard(gift){
+function renderHorizontalGiftCard(gift, modal){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card">
+        <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card" data-post-id="${gift.id}" data-post-name="${gift.nombrePost}">
+            <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
-                    <div class="col-md-3">
-                        <a href="${gift.redirectURL}">
+                        <div class="col-md-3">
                             <img src="${gift.image[0]}" class="card-img" alt="${gift.image[0]}" />
-                        </a>
-                    </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">${gift.nombrePost}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
-                        <p class="card-text">${gift.descripcionPost}</p>
-                        <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
-                        <small>Publicado el <span>${gift.date}</span></small>
+                        </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${gift.nombrePost}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
+                            <p class="card-text">${gift.descripcionPost}</p>
+                            <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
+                            <small>Publicado el <span>${gift.date}</span></small>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    `;
+            </a>
+        </div>`;
     return html;
 }
 

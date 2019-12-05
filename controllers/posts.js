@@ -90,6 +90,17 @@ router.route('/p/:postId')
                 res.status(404);
             })
     })
+    .delete(authMiddleware.authenticate, (req, res) => {
+        postModel.deleteOneById(req.params.postId)
+            .then(doc => {
+                console.log(doc);
+                res.send();
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({err: ["Delete error"]});
+            });
+    });
 
 
 // Requests made in the fron page where all the available posts 
