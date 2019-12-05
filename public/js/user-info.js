@@ -53,9 +53,10 @@ document.getElementById("updateBtn").addEventListener("click", () => {
 
     xhr.onload = () => {
         if (xhr.status == 200) {
-            alert("ok");
+            alert("Updated");
+            window.location.href = "/user-info.html";
         } else {
-            alert("error");
+            alert(xhr.responseText);
         }
     };
     xhr.send(updates);
