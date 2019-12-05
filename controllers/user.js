@@ -81,5 +81,13 @@ router.post('/update', upload.single('statement'), auth.authenticate, (req, res)
         });
 })
 
+router.get('/get', auth.authenticate, (req, res) => {
+    User.getUsers()
+    .then((users) => res.status(200).send(users))
+    .catch((err) => {
+        console.log(err);
+        res.status(401).send(err);
+    });
+});
 
 module.exports = router;
