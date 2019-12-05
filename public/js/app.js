@@ -126,7 +126,7 @@ function renderVerticalGiftCard(gift) {
             </a>
             <div class="card-body">
                 <h5 class="card-title">${gift.nombrePost}</h5>
-                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Publicado por: ${gift.owner}</a></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="/user-details.html?id=${user.usuario}">Publicado por: ${gift.owner}</a></h6>
                 <p class="card-text">${gift.isNewGift ? "Nuevo" : "Usado" }</p>
                 <small>Publicado hace <span>${diffDays} ${diffDays  == 1 ? "día" : "días" }</span></small>
             </div>
