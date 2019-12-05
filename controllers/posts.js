@@ -9,10 +9,11 @@ const usereModel = require('../db/Post');
 const authMiddleware = require('./../middlewares/authMiddleware');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
+const imageLoader = require('./../utils/imageLoader');
 
 // Max ID from the post collection
 async function getMaxIdPost() {
-    let max_post =   await postModel.find().sort({id:-1}).limit(1);
+    let max_post = await postModel.find().sort({ id: -1 }).limit(1);
     console.log(chalk.magenta(max_post[0].id));
     return max_post[0].id;
 };
@@ -41,36 +42,36 @@ router.route('/gift/:postId')
     .get((req, res) => {
         console.log(chalk.magenta("ruta /gift/" + req.params.postId))
         postModel.findOnePostById(req.params.postId)
-                 .then(doc => {
-                     res.status(200).send(doc)
-                    })
-                 .catch(err => {
-                     console.log(chalk.red("Not bringing from DB " + err));
-                     res.status(500).send()
-                    })
+            .then(doc => {
+                res.status(200).send(doc)
+            })
+            .catch(err => {
+                console.log(chalk.red("Not bringing from DB " + err));
+                res.status(500).send()
+            })
     })
     .patch(authMiddleware.authenticate, (req, res) => {
         console.log(chalk.magenta("Patching ruta /gift/" + req.params.postId))
-        
-        
+
+
         postModel.updateComments(req.params.postId)
-                 .then(doc => {
-                     doc.interesados.push({'usuario' : req.user.usuario, 'razon' : req.body.razon});
-                     doc.save((err, doc) => {
-                         if(err || doc == undefined) {
-                            console.log(chalk.red("Error trying to add interested array"))
-                            return;
-                         }
-                        res.status(200).end();
-                        })
-                        console.log(chalk.bgWhite.blue("Saved and updated with reason"))
-                    })
-                 .catch(err => {
-                     console.log(chalk.red("Not bringing from DB " + err));
-                     res.status(500).send()
-                    })
+            .then(doc => {
+                doc.interesados.push({ 'usuario': req.user.usuario, 'razon': req.body.razon });
+                doc.save((err, doc) => {
+                    if (err || doc == undefined) {
+                        console.log(chalk.red("Error trying to add interested array"))
+                        return;
+                    }
+                    res.status(200).end();
+                })
+                console.log(chalk.bgWhite.blue("Saved and updated with reason"))
+            })
+            .catch(err => {
+                console.log(chalk.red("Not bringing from DB " + err));
+                res.status(500).send()
+            })
     })
-        
+
 router.get('/adquired', authMiddleware.authenticate, (req, res) => {
     console.log("GG");
     let categoria = req.query.categoria || new RegExp(".*");
@@ -105,7 +106,7 @@ router.route('/p/:postId')
                 res.send();
             })
             .catch(err => {
-                res.status(500).json({err: ["Delete error"]});
+                res.status(500).json({ err: ["Delete error"] });
             });
     });
 
@@ -114,21 +115,21 @@ router.route('/p/:postId')
 // are shown
 router.route('/main')
     .get((req, res) => {
-    console.log(chalk.green.bgBlue("Sí llegaste a la ruta /main en index"));
+        console.log(chalk.green.bgBlue("Sí llegaste a la ruta /main en index"));
 
-    let qrytPagina = req.query.pagina;
-    let qryLimit   = req.query.limit;
-    let qryNombre  = req.query.nombre || "";
-    
-    if(qryNombre != "") {
-        console.log("vamos a filtrar");
-        usersToSend = usersToSend.filter( (e) => {
-            return e.nombre.toUpperCase().includes(qryNombre.toUpperCase())   ||
-                e.nombre.includes(qryNombre)                               ||
-                e.apellido.toUpperCase().includes(qryNombre.toUpperCase()) ||
-                e.apellido.includes(qryNombre);
-        });
-    };
+        let qrytPagina = req.query.pagina;
+        let qryLimit = req.query.limit;
+        let qryNombre = req.query.nombre || "";
+
+        if (qryNombre != "") {
+            console.log("vamos a filtrar");
+            usersToSend = usersToSend.filter((e) => {
+                return e.nombre.toUpperCase().includes(qryNombre.toUpperCase()) ||
+                    e.nombre.includes(qryNombre) ||
+                    e.apellido.toUpperCase().includes(qryNombre.toUpperCase()) ||
+                    e.apellido.includes(qryNombre);
+            });
+        };
 
         let begin = qryLimit * (qrytPagina - 1);
         let pagedUsers = []
@@ -169,7 +170,7 @@ router.post('/', upload.array('statement', 4), authMiddleware.authenticate, asyn
         });
 });
 router.route('/newGiftEntry')
-    .put(authMiddleware.authenticate, async (req, res) => {
+    .put(upload.single('statement', 4), authMiddleware.authenticate, async (req, res) => {
         console.log(chalk.cyan("ruta new giftEntry"));
         let maxId = await getMaxIdPost();
         console.log("max id: " + chalk.yellow(maxId));
@@ -178,12 +179,32 @@ router.route('/newGiftEntry')
         postObject.date = new Date();
         postObject.owner = req.user.usuario;
         postObject.postIsActive = true;
+        postObject.interesados = [];
+        postObject.comments = [];
+        postObject.image = [];
         postModel.registerPost(postObject)
-                 .then(doc =>{ 
-                     console.log(chalk.blue("Post added succesfully" + doc))
-                     res.status(201).send();
-                 })
-                 .catch(e => console.log(chalk.red("Error adding new post " + e)))
+            .then(doc => {
+                console.log(chalk.blue("Post added succesfully" + doc))
+                imageLoader(req.file, (err, data) => {
+                    if (err) {
+                        console.error(err);
+                        res.sendStatus(500);
+                    } else {
+                        doc.image.push(data);
+                        console.log(doc);
+                        doc.save((err, t) => {
+                            if (err) {
+                                console.error(err);
+                                res.sendStatus(500);
+                            } else {
+                                console.log(t);
+                                res.status(201).json(t);
+                            }
+                        })
+                    }
+                });
+            })
+            .catch(e => console.log(chalk.red("Error adding new post " + e)))
     })
 
 module.exports = router;

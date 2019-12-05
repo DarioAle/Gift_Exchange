@@ -56,12 +56,12 @@ continueButton.addEventListener("click", event => {
     formData.append('isNewGift', document.getElementById('input-nuevo').value);
     formData.append('category', document.getElementById('input-cat').value);
     formData.append('quantity', document.getElementById('input-cantidad').value);
-    formData.append('statement', document.getElementById('image0').files);
+    formData.append('statement', document.getElementById('image0').files[0]);
 
     console.log(formData);
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', BASE_URL + "/posts");
+    xhr.open('PUT', BASE_URL + "/posts/newGiftEntry");
     xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
     xhr.onload = () => {
         if (xhr.status == 200) {
