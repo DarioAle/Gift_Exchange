@@ -55,11 +55,11 @@ router.post('/update', upload.single('statement'), auth.authenticate, (req, res)
         .then((result) => {
             let change = {};
             if (req.body.usuario != '')
-                change.nombre = req.body.nombre
+                change.nombre = req.body.nombre;
             if (req.body.confpass != '')
-                change.password = req.body.confpass
+                change.password = bcrypt.hashSync(req.body.confpass, 8);
             if (req.body.correo != '')
-                change.correo = req.body.correo
+                change.correo = req.body.correo;
             if (req.file != undefined) {
                 loadImage(req.file, (err, data) => {
                     if (err) {
