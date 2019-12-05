@@ -9,8 +9,6 @@ const usereModel = require('../db/Post');
 const authMiddleware = require('./../middlewares/authMiddleware');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
-<<<<<<< HEAD
-=======
 
 // Max ID from the post collection
 let global_max_id;
@@ -19,7 +17,6 @@ async function getMaxIdPost() {
     console.log(chalk.magenta(max_post[0].id));
     return max_post[0].id;
 };
->>>>>>> f75584d6ee0945cf0de3cb7145c84e8d10d62607
 
 // /api/posts/winner-selector/:postId
 router.patch('/winner-selector/:postId', authMiddleware.authenticate, (req, res) => {
