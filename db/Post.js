@@ -215,14 +215,6 @@ postSchema.statics.findOnePostById = function (idPost) {
     });
 }
 
-// Return an specific post identified by it's unique id
-// postSchema.statics.findMaxIndex = function () {
-//     return new Promise(function (resolve, reject) {
-//         db.model('Post').find().sort({id: -1}).limit(1)
-//     });
-// }
-
-
 // Update when someone adds to have a reason
 postSchema.statics.updateComments = function (idPost) {
     return new Promise(function (resolve, reject) {
