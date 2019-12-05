@@ -98,3 +98,9 @@ div.col-lg-6.camera-icon:hover {
     display: flex;
     justify-content: center;
 }
+
+.btn-success, .btn-success:hover, .btn-success:active {
+    color: #fff;
+    background-color: #51679C;
+    border-color : #51679C;
+}

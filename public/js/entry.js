@@ -80,11 +80,11 @@ continueButton.addEventListener("click", event => {
             <div class="row text-center suc-msg">
                 <div class="col-sm-6 col-sm-offset-3">
                     <br><br>
-                    <h2 style="color:#0fad00">Éxito</h2>
+                    <h2 style="color:#51679C">Éxito</h2>
                     <h3>Querido usuario</h3>
                     <p style="font-size:20px;color:#5C5C5C;">Gracias por hacer un nuevo regalo, seguro harás muy feliz a alguien</p>
-                    <a href="giftEntry.html" class="btn btn-success">     Dar otro regalo     </a>
-                    <a href="index.html" class="btn btn-success">     Inicio     </a>
+                    <a  href="giftEntry.html" class="btn btn-success">     Dar otro regalo     </a>
+                    <a  href="index.html" class="btn btn-success">     Inicio     </a>
                     <br><br>
                 </div>
             </div>

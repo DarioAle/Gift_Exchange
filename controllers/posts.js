@@ -9,6 +9,17 @@ const usereModel = require('../db/Post');
 const authMiddleware = require('./../middlewares/authMiddleware');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
+<<<<<<< HEAD
+=======
+
+// Max ID from the post collection
+let global_max_id;
+async function getMaxIdPost() {
+    let max_post =  postModel.find().sort({id:-1}).limit(1);
+    console.log(chalk.magenta(max_post[0].id));
+    return max_post[0].id;
+};
+>>>>>>> f75584d6ee0945cf0de3cb7145c84e8d10d62607
 
 // /api/posts/winner-selector/:postId
 router.patch('/winner-selector/:postId', authMiddleware.authenticate, (req, res) => {
@@ -106,7 +117,7 @@ router.route('/p/:postId')
 // Requests made in the fron page where all the available posts 
 // are shown
 router.route('/main')
-.get((req, res) => {
+    .get((req, res) => {
     console.log(chalk.green.bgBlue("Sí llegaste a la ruta /main en index"));
 
     let qrytPagina = req.query.pagina;
@@ -158,5 +169,23 @@ router.post('/', upload.array('statement', 4), authMiddleware.authenticate, (req
             res.sendStatus(500);
         });
 });
+router.route('/newGiftEntry')
+    .put(authMiddleware.authenticate, (req, res) => {
+        console.log(chalk.cyan("ruta new giftEntry"));
+        let maxId = getMaxIdPost();
+        console.log("max id: " + chalk.yellow(maxId));
+        let postObject = req.body;
+        postObject.id = maxId;
+        console.log(typeof(postObject.id) + " " + typeof(maxId))
+        return;
+        postObject.date = new Date();
+        postObject.owner = req.user.usuario;
+        postObject.postIsActive = true;
+        postModel.registerPost(postObject)
+                 .then(doc =>{ 
+                     console.log(chalk.blue("Post added succesfully" + doc))
+                 })
+                 .catch(e => console.log(chalk.red("Error adding new post " + e)))
+    })
 
 module.exports = router;
