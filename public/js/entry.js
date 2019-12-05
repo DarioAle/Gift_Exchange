@@ -26,7 +26,12 @@ picUpload.forEach((e, i) => {
         console.log("This file was changed");
         isFileUploaded = true;
         enableButton();
-        divPic[i].setAttribute("src", `./img/wallet-${i}.jpg`)
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            divPic[i].setAttribute("src", e.target.result);
+        }
+        reader.readAsDataURL(document.getElementById('image0').files[0]);
     });
 });
 
@@ -51,27 +56,19 @@ continueButton.addEventListener("click", event => {
     formData.append('isNewGift', document.getElementById('input-nuevo').value);
     formData.append('category', document.getElementById('input-cat').value);
     formData.append('quantity', document.getElementById('input-cantidad').value);
-    formData.append('statement', document.getElementById('image0').files)
+    formData.append('statement', document.getElementById('image0').files[0]);
 
     console.log(formData);
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', '');
-    xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    xhr.open('PUT', BASE_URL + "/posts/newGiftEntry");
     xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
     xhr.onload = () => {
         if (xhr.status == 200) {
-            alert("Creado, falta redirijir");
-        } else {
-            alert(xhr.statusText);
-        }
-    };
-    // xhr.send(formData);
-    /*
-    let s = document.querySelector("section");
-    s.removeChild(s.querySelector(".container"));
-    s.insertAdjacentHTML("afterbegin",
-        `   
+            let s = document.querySelector("section");
+            s.removeChild(s.querySelector(".container"));
+            s.insertAdjacentHTML("afterbegin",
+                `   
         <div class="container">
             <div class="row text-center suc-msg">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -86,7 +83,13 @@ continueButton.addEventListener("click", event => {
             </div>
         </div>
         `
-    );
+            );
+        } else {
+            alert(xhr.statusText);
+        }
+    };
+    xhr.send(formData);
+    /*
 
     // let postEntry = new XMLHttpRequest();
     // postEntry.open("POST", "http://127.0.0.1:3000/gifts/");

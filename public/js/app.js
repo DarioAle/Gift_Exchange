@@ -87,7 +87,7 @@ function renderHorizontalUserCard(user, modal){
 function renderHorizontalGiftCard(gift, button){
     let html = `
         <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card" data-post-id="${gift.id}" data-post-name="${gift.nombrePost}">
-            <a href="${user.redirectURL}">
+            <a href="${gift.redirectURL}">
                 <div class="row no-gutters">
                         <div class="col-md-3">
                             <img src="${gift.image[0]}" class="card-img" alt="${gift.image[0]}" />
@@ -126,7 +126,7 @@ function renderVerticalGiftCard(gift) {
             </a>
             <div class="card-body">
                 <h5 class="card-title">${gift.nombrePost}</h5>
-                <h6 class="card-subtitle mb-2 text-muted"><a href="/user-details.html?id=${user.usuario}">Publicado por: ${gift.owner}</a></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="/user-details.html?id=${gift.owner}">Publicado por: ${gift.owner}</a></h6>
                 <p class="card-text">${gift.isNewGift ? "Nuevo" : "Usado" }</p>
                 <small>Publicado hace <span>${diffDays} ${diffDays  == 1 ? "día" : "días" }</span></small>
             </div>
