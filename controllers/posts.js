@@ -93,11 +93,9 @@ router.route('/p/:postId')
     .delete(authMiddleware.authenticate, (req, res) => {
         postModel.deleteOneById(req.params.postId)
             .then(doc => {
-                console.log(doc);
                 res.send();
             })
             .catch(err => {
-                console.log(err);
                 res.status(500).json({err: ["Delete error"]});
             });
     });

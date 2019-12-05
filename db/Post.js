@@ -236,7 +236,6 @@ postSchema.statics.deleteOneById = function(postId) {
                 reject(err);
                 return
             }
-            console.info(res);
             resolve(res)
         })
     });

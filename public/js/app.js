@@ -84,15 +84,15 @@ function renderHorizontalUserCard(user, modal){
     return html;
 }
 
-function renderHorizontalGiftCard(gift, modal){
+function renderHorizontalGiftCard(gift, button){
     let html = `
         <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card" data-post-id="${gift.id}" data-post-name="${gift.nombrePost}">
-            <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
+            <a href="${user.redirectURL}">
                 <div class="row no-gutters">
                         <div class="col-md-3">
                             <img src="${gift.image[0]}" class="card-img" alt="${gift.image[0]}" />
                         </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body">
                             <h5 class="card-title">${gift.nombrePost}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
@@ -100,6 +100,9 @@ function renderHorizontalGiftCard(gift, modal){
                             <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
                             <small>Publicado el <span>${gift.date}</span></small>
                         </div>
+                    </div>
+                    <div class="col-md-2" style="align-items:center; justify-content: center; line-height:200px; height: 200px;">
+                        ${button ? button : '' }
                     </div>
                 </div>
             </a>
