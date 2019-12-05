@@ -100,11 +100,15 @@ schema.statics.registerUser = function(user) {
     });
 }
 
-// for testing
 schema.statics.getUsers = function() {
-    User.find({}, (err, docs) =>{
-        if(docs)
-            console.log(docs);
+    return new Promise((resolve, reject) => {
+        db.model('User').find({}, (err, docs) =>{
+            if(err) {
+                reject(err);
+                return;
+            }
+            resolve(docs);
+        });
     });
 }
 

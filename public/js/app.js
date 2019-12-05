@@ -136,4 +136,11 @@ function renderVerticalGiftCard(gift) {
     return html;
 }
 
+function logout() {
+    window.sessionStorage.removeItem("token");
+    window.location.href = '/';
+}
+
+document.querySelector("a.dropdown-item[href='#']").addEventListener('click', logout);
+
 renderNavbar();

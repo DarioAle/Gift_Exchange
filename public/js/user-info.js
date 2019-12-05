@@ -1,7 +1,5 @@
 "use strict";
 
-let usuario;
-
 let nombreIn = document.getElementById("name");
 let correoIn = document.getElementById("email");
 let passIn = document.getElementById("pass");
@@ -9,6 +7,7 @@ let passCIn = document.getElementById("newPass");
 
 function fetchData() {
 
+    let usuario;
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `${BASE_URL}/user/me`);
     xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
@@ -53,9 +52,10 @@ document.getElementById("updateBtn").addEventListener("click", () => {
 
     xhr.onload = () => {
         if (xhr.status == 200) {
-            alert("ok");
+            alert("Updated");
+            window.location.href = "/user-info.html";
         } else {
-            alert("error");
+            alert(xhr.responseText);
         }
     };
     xhr.send(updates);
