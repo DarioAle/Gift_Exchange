@@ -3,6 +3,7 @@
 const BASE_URL = '/api';
 const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 let loggedInNavbar = document.getElementById('logged-navbar');
 let notLoggedNavbar = document.getElementById('not-logged-navbar');
@@ -97,8 +98,8 @@ function renderHorizontalGiftCard(gift, button){
                             <h5 class="card-title">${gift.nombrePost}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
                             <p class="card-text">${gift.descripcionPost}</p>
-                            <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
-                            <small>Publicado el <span>${gift.date}</span></small>
+                            <small>Estado <span>${gift.isNewGift ? "Nuevo" : "Usado"}</span></small><br>
+                            <small>Publicado el <span>${new Date(gift.date).toLocaleDateString('es-ES', options) }</span></small>
                         </div>
                     </div>
                     <div class="col-md-2" style="align-items:center; justify-content: center; line-height:200px; height: 200px;">
