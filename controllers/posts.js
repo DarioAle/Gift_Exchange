@@ -40,6 +40,27 @@ router.route('/gift/:postId')
                      res.status(500).send()
                     })
     })
+    .patch(authMiddleware.authenticate, (req, res) => {
+        console.log(chalk.magenta("Patching ruta /gift/" + req.params.postId))
+        
+        
+        postModel.updateComments(req.params.postId)
+                 .then(doc => {
+                     doc.interesados.push({'usuario' : req.user.usuario, 'razon' : req.body.razon});
+                     doc.save((err, doc) => {
+                         if(err || doc == undefined) {
+                            console.log(chalk.red("Error trying to add interested array"))
+                            return;
+                         }
+                        res.status(200).end();
+                        })
+                        console.log(chalk.bgWhite.blue("Saved and updated with reason"))
+                    })
+                 .catch(err => {
+                     console.log(chalk.red("Not bringing from DB " + err));
+                     res.status(500).send()
+                    })
+    })
         
 router.get('/adquired', authMiddleware.authenticate, (req, res) => {
     console.log("GG");
@@ -69,8 +90,6 @@ router.route('/p/:postId')
                 res.status(404);
             })
     })
-
-
 
 
 // Requests made in the fron page where all the available posts 
