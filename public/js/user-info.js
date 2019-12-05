@@ -35,8 +35,6 @@ pictureBtn.addEventListener("click", () => {
     fileIn.click();
 });
 
-
-
 document.getElementById("updateBtn").addEventListener("click", () => {
     event.preventDefault();
 

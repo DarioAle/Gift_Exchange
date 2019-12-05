@@ -7,6 +7,24 @@ const config = require('./../shared');
 const postModel = require('../db/Post');
 const usereModel = require('../db/Post');
 const authMiddleware = require('./../middlewares/authMiddleware');
+const multer = require('multer');
+const upload = multer({ dest: 'tmp/' });
+
+// Max ID from the post collection
+async function getMaxIdPost() {
+    let max_id;
+       await postModel.find().sort({id:-1}).limit(1);
+        console.log("Inside callback " + userpost[0].id);
+        max_id = userpost[0].id;
+    
+    console.log("Inside fucntion " + max_id);
+};
+
+
+getMaxIdPost();
+
+
+
 
 // /api/posts/winner-selector/:postId
 router.patch('/winner-selector/:postId', authMiddleware.authenticate, (req, res) => {
