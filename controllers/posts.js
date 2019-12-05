@@ -7,6 +7,8 @@ const config = require('./../shared');
 const postModel = require('../db/Post');
 const usereModel = require('../db/Post');
 const authMiddleware = require('./../middlewares/authMiddleware');
+const multer = require('multer');
+const upload = multer({ dest: 'tmp/' });
 
 // /api/posts/winner-selector/:postId
 router.patch('/winner-selector/:postId', authMiddleware.authenticate, (req, res) => {
@@ -136,5 +138,25 @@ router.route('/main')
             .catch(e => console.log(chalk.red("Failed Retrieving all post from db " + e)));
 
     })
+
+router.post('/', upload.array('statement', 4), authMiddleware.authenticate, (req, res) => {
+    console.log(req.body);
+    console.log(req.files);
+    let newUser = req.body;
+    newUser.owner = req.user.usuario;
+    newUser.date = Date.now();
+    newUser.postIsActive = true;
+    newUser.interesados = [];
+    newUser.comments = [];
+    newUser.image = [];
+    postModel.registerPost(newUser)
+        .then(doc => {
+            res.status(201).json(doc);
+        })
+        .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;
