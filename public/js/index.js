@@ -3,16 +3,17 @@
 let mainGrid = document.querySelector(".grid");
 let giftArray;
 let global_page_counter;
-let global_pageLimit;
+const global_pageLimit = 6;
 let global_pageNumber;
+
+
 
 // Load the page before anything and add all the cards to the maing page
 function loadMain(limit, number) {
-    let pageLimit = localStorage.global_pageLimit || 2;
     let pageNumber = localStorage.global_pageNumber || 1;
     localStorage.global_page_counter = localStorage.global_pageNumber;
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", BASE_URL + `/posts/main?pagina=${pageNumber}&limit=${pageLimit}`);
+    xhr.open("GET", BASE_URL + `/posts/main?pagina=${pageNumber}&limit=${global_pageLimit}`);
     xhr.send();
     
     xhr.onload = () => {
@@ -52,8 +53,8 @@ function addButtons(numberOfElements, page) {
     let unorderList = document.querySelector(".pagination");
     let v = "";
     let p = "";
-    let lasPage = numberOfElements % 2 == 0 ? (numberOfElements >> 1) - 1:  (numberOfElements >> 1) + 1;
-    // console.log(lasPage);
+    let lasPage = Math.ceil(numberOfElements /  global_pageLimit);
+     console.log("This is the las page " + lasPage);
     if(page == 1) {
         v = "disabled";
     }
@@ -64,8 +65,13 @@ function addButtons(numberOfElements, page) {
     let previous = `<li class='page-item'><a class='btn page-link ${v}' onclick="pressPrevious()" href='#'>Previous</a></li>`;
     unorderList.insertAdjacentHTML("beforeend", previous);
 
-    for(let i = 0; i < (numberOfElements / 2); i++) {
-        let element = `<li class='page-item'><a class='page-link' onclick="pressPageButton('${i + 1}')" href='#'>${i + 1}</a></li>`;
+    for(let i = 0; i < (numberOfElements / global_pageLimit); i++) {
+        let style ="";
+        // console.log("Comparing indexes " + ((i + 1) == localStorage.global_page_counter));
+        if((i + 1) == localStorage.global_page_counter) {
+            style = "background-color : black";
+        }
+        let element = `<li class='page-item'><a style="${style}" class='page-link' onclick="pressPageButton('${i + 1}')" href='#'>${i + 1}</a></li>`;
         unorderList.insertAdjacentHTML("beforeend", element);
 
     }
@@ -87,7 +93,7 @@ function pressPrevious() {
 }
 
 function pressPageButton(page) {
-    localStorage.global_pageLimit = 2;
+    // localStorage.global_pageLimit = global_pageLimit;
     localStorage.global_pageNumber = page ;
     localStorage.global_page_counter = page;
 
@@ -95,4 +101,4 @@ function pressPageButton(page) {
 }
 
 
-loadMain(localStorage.global_pageLimit,localStorage.global_pageNumber);
+loadMain(global_pageLimit,localStorage.global_pageNumber);
