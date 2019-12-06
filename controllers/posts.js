@@ -5,7 +5,7 @@ const router = express.Router();
 const chalk = require('chalk');
 const config = require('./../shared');
 const postModel = require('../db/Post');
-const usereModel = require('../db/Post');
+const usereModel = require('../db/User');
 const authMiddleware = require('./../middlewares/authMiddleware');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
@@ -110,6 +110,22 @@ router.route('/p/:postId')
             });
     });
 
+router.patch('/p/:postId/finalize', authMiddleware.authenticate, (req, res) => {
+    let postId = req.params.postId;
+    let score = req.body.score;
+    postModel.finalize(postId)
+        .then(owner => {
+            return usereModel.updateScore(owner, score);
+        })
+        .then(doc => {
+            console.log("HOla", doc);
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        })
+}); 
 
 // Requests made in the fron page where all the available posts 
 // are shown

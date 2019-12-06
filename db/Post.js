@@ -19,7 +19,8 @@ const postProjectionMask = {
     comments: 1,
     aqcuired: 1,
     image: 1,
-    aquiredBy: 1
+    aquiredBy: 1,
+    finalized: 1
 };
 
 const postSchema = db.Schema({
@@ -73,7 +74,11 @@ const postSchema = db.Schema({
     },
     aquiredBy: {
         type: String
-    }
+    },
+    finalized: {
+        type: Boolean,
+        required: true
+    },
 });
 
 // --------- Find with exact matching name and return only the first instance that matchec---------------------
@@ -89,9 +94,26 @@ postSchema.statics.findOneByPostName = function (postname) {
     });
 }
 
+// ---- Finalize a post ----
+postSchema.statics.finalize = function(postId){
+    return new Promise((resolve, reject) => {
+        db.model('Post').findOne({ 'id': postId }, (err, doc) => {
+            doc.finalized = true;
+            doc.save((err, data) => {
+                if(err){
+                    reject(err);
+                    return;         
+                }
+                resolve(doc.owner);
+            })
+        });
+    })
+}
+
 // ---------------------- Register a new entry of a post -------------------------
 postSchema.statics.registerPost = function(post) {
     return new Promise((resolve, reject) => {
+        post.finalized = false;
         let newPost = new Post(post);
         newPost.save((err, product) => {
             if(err || product == undefined) {
@@ -110,6 +132,7 @@ postSchema.statics.getConversations = function (usuario) {
         db.model('Post').find({
             $and: [
                 { 'postIsActive': false },
+                { 'finalized': false },
                 {
                     $or: [
                         { 'aquiredBy': usuario },
