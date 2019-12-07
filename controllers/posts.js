@@ -151,11 +151,12 @@ router.route('/main')
         };
 
         let begin = qryLimit * (qrytPagina - 1);
-        let pagedUsers = []
+        let pagedUsers = [];
 
         res.status(200);
         postModel.getAllPosts()
-            .then(u => {
+            .then(x => {
+                let u = x.filter(e => e.postIsActive);
                 res.setHeader("x-posts-length", u.length);
                 for (let i = begin; i < begin + (qryLimit * 1); i++) {
                     pagedUsers.push(u[i]);
