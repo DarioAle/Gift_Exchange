@@ -134,7 +134,7 @@ router.patch('/p/:postId/finalize', authMiddleware.authenticate, (req, res) => {
 // are shown
 router.route('/main')
     .get((req, res) => {
-        console.log(chalk.green.bgBlue("Sí llegaste a la ruta /main en index"));
+        console.log(chalk.green("Sí llegaste a la ruta /main en index"));
 
         let qrytPagina = req.query.pagina;
         let qryLimit = req.query.limit;

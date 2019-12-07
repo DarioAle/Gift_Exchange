@@ -75,7 +75,7 @@ function renderHorizontalUserCard(user, modal){
                         <div class="card-body">
                                 <h5 class="card-title">${user.nombre}</h5>
                                 <p class="card-text">${user.usuario}</p>
-                                <small>Puntaje <span>${user.puntaje}</span></small>
+                                <small>Puntaje <span>${user.puntaje.toFixed(2)}</span></small>
                         </div>
                     </div>
                 </div>

@@ -6,15 +6,19 @@ let global_page_counter;
 const global_pageLimit = 6;
 let global_pageNumber;
 
+let catFilter  = document.getElementById('input-cat-filter');
+let nameFilter = document.getElementById('input-name-filter');
+
+catFilter.addEventListener('change', () => loadMain());
+nameFilter.addEventListener('change', () => loadMain());
 
 
 // Load the page before anything and add all the cards to the maing page
 function loadMain(limit, number) {
-    let pageNumber = localStorage.global_pageNumber || 1;
-    localStorage.global_page_counter = localStorage.global_pageNumber;
-    let xhr = new XMLHttpRequest();
-    // xhr.open("GET", "http://localhost:3000/api/posts/main?pagina=1&limit=6");
+    let pageNumber = global_pageNumber || 1;
+    global_page_counter = global_pageNumber;
 
+    let xhr = new XMLHttpRequest();
     xhr.open("GET", BASE_URL + `/posts/main?pagina=${pageNumber}&limit=${global_pageLimit}`);
     xhr.send();
     
@@ -23,17 +27,17 @@ function loadMain(limit, number) {
             console.log("Algo salió mal");
             console.log(xhr.responseText)
         } else {
-            console.log(xhr.response);
             giftArray = JSON.parse(xhr.responseText);
-            // console.table(giftArray);
+            console.log("values");
+            console.log(catFilter.value);
+            console.log(nameFilter.value);
+
             let htmlArray = giftArray.map(e=> {
             if(e)
                 return renderVerticalGiftCard(e);
             }).join("");
 
-            mainGrid.insertAdjacentHTML("afterbegin", htmlArray);
-            // localStorage.token = JSON.parse(xhr.response).token;
-            // console.log("Este es tu token: " + localStorage.token);
+            mainGrid.innerHTML = htmlArray;
             let numberOfElemets = xhr.getResponseHeader("x-posts-length");
             removeButtonsFromHTML();
             addButtons(numberOfElemets, pageNumber);
@@ -54,10 +58,10 @@ function addButtons(numberOfElements, page) {
     // console.log("This is the number of elements" + numberOfElements);
 
     let unorderList = document.querySelector(".pagination");
+    unorderList.innerHTML = "";
     let v = "";
     let p = "";
     let lasPage = Math.ceil(numberOfElements /  global_pageLimit);
-     console.log("This is the las page " + lasPage);
     if(page == 1) {
         v = "disabled";
     }
@@ -70,8 +74,7 @@ function addButtons(numberOfElements, page) {
 
     for(let i = 0; i < (numberOfElements / global_pageLimit); i++) {
         let style ="";
-        // console.log("Comparing indexes " + ((i + 1) == localStorage.global_page_counter));
-        if((i + 1) == localStorage.global_page_counter) {
+        if((i + 1) == global_page_counter) {
             style = "background-color : black";
         }
         let element = `<li class='page-item'><a style="${style}" class='page-link' onclick="pressPageButton('${i + 1}')" href='#'>${i + 1}</a></li>`;
@@ -83,25 +86,24 @@ function addButtons(numberOfElements, page) {
 }
 
 function pressNext() {
-    localStorage.global_page_counter++;
-    pressPageButton(localStorage.global_page_counter);
+    global_page_counter++;
+    pressPageButton(global_page_counter);
 
 }
 
 
 function pressPrevious() {
-    localStorage.global_page_counter--;
-    pressPageButton(localStorage.global_page_counter);
+    global_page_counter--;
+    pressPageButton(global_page_counter);
     
 }
 
 function pressPageButton(page) {
-    // localStorage.global_pageLimit = global_pageLimit;
-    localStorage.global_pageNumber = page ;
-    localStorage.global_page_counter = page;
+    global_pageNumber = page ;
+    global_page_counter = page;
 
-    location.reload();
+    loadMain();// location.reload();
 }
 
 
-loadMain(global_pageLimit,localStorage.global_pageNumber);
+loadMain(global_pageLimit, global_pageNumber);

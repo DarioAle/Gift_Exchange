@@ -1,5 +1,11 @@
 "use strict";
 
+function redirect() {
+    if(localStorage.getItem('token') == undefined)
+        window.location.href = '/login.html';
+    else
+        document.querySelector("body").removeAttribute("hidden");
+}
 
 function fetchData() {
     let xhr = new XMLHttpRequest();
