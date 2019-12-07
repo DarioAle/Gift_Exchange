@@ -1,7 +1,7 @@
 "use strict";
 
 function redirect() {
-    if(localStorage.getItem('token') == undefined)
+    if(sessionStorage.getItem('token') == undefined)
         window.location.href = '/login.html';
     else
         document.querySelector("body").removeAttribute("hidden");
