@@ -13,12 +13,15 @@ function loadMain(limit, number) {
     let pageNumber = localStorage.global_pageNumber || 1;
     localStorage.global_page_counter = localStorage.global_pageNumber;
     let xhr = new XMLHttpRequest();
+    // xhr.open("GET", "http://localhost:3000/api/posts/main?pagina=1&limit=6");
+
     xhr.open("GET", BASE_URL + `/posts/main?pagina=${pageNumber}&limit=${global_pageLimit}`);
     xhr.send();
     
     xhr.onload = () => {
         if (xhr.status != 200) {
             console.log("Algo salió mal");
+            console.log(xhr.responseText)
         } else {
             console.log(xhr.response);
             giftArray = JSON.parse(xhr.responseText);

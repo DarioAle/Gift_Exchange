@@ -32,9 +32,9 @@ filters.addEventListener("change", () => {
         });
     else if (option == 2)
         users.sort((a, b) => {
-            if (a.nombre > b.nombre)
+            if (a.nombre.toUpperCase() > b.nombre.toUpperCase())
                 return 1;
-            if (a.nombre < b.nombre)
+            if (a.nombre.toUpperCase() < b.nombre.toUpperCase())
                 return -1;
             return 0;
         });
