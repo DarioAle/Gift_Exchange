@@ -30,7 +30,7 @@ registerBtn.addEventListener("click", (evt) => {
         xhr.onload = (evt) => {
             if (xhr.status == 201) {
                 alert("You can login now");
-                window.location.href = "/";
+                window.location.href = "/login.html";
             }
             else
                 alert(xhr.responseText);

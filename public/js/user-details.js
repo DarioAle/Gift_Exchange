@@ -15,7 +15,7 @@ function fetchData() {
             document.getElementById("id-user").innerHTML = usuario.usuario;
             document.getElementById("name").innerHTML = usuario.nombre;
             document.getElementById("mail").innerHTML = usuario.correo;
-            document.getElementById("points").innerHTML = usuario.puntaje;
+            document.getElementById("points").innerHTML = usuario.puntaje.toFixed(2);
         } else {
             alert(xhr.statusText);
         }
