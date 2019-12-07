@@ -38,6 +38,7 @@ router.get('/history', authMiddleware.authenticate, (req, res) => {
         .catch(err => res.status(500).json({ err: ["Internal Server Error"] }));
 })
 
+// Give details of a gift and add reasons on why you deserve it
 router.route('/gift/:postId')
     .get((req, res) => {
         console.log(chalk.magenta("ruta /gift/" + req.params.postId))
@@ -72,6 +73,7 @@ router.route('/gift/:postId')
             })
     })
 
+// Gifts that you have received happily    
 router.get('/adquired', authMiddleware.authenticate, (req, res) => {
     console.log("GG");
     let categoria = req.query.categoria || new RegExp(".*");
@@ -89,6 +91,7 @@ router.get('/adquired', authMiddleware.authenticate, (req, res) => {
         });
 });
 
+// Delete a post
 router.route('/p/:postId')
     .get((req, res) => {
         postModel.findOneByPostId(req.params.postId)
@@ -169,6 +172,8 @@ router.post('/', upload.array('statement', 4), authMiddleware.authenticate, asyn
             res.sendStatus(500);
         });
 });
+
+// ad a post associated to a user
 router.route('/newGiftEntry')
     .put(upload.single('statement', 4), authMiddleware.authenticate, async (req, res) => {
         console.log(chalk.cyan("ruta new giftEntry"));
@@ -207,4 +212,23 @@ router.route('/newGiftEntry')
             .catch(e => console.log(chalk.red("Error adding new post " + e)))
     })
 
+router.get('/favorites',  authMiddleware.authenticate, (req, res) => {
+    const username = req.query.username;
+    console.log(chalk.bgWhite.yellow("Looking for favorites for: " + username))
+    postModel.getAllPosts()
+             .then(u => {
+                let favorites = u.map((e, i) => {
+                    let filtered = e.interesados.filter( e => {
+                        return e.usuario == username;
+                    });
+                    if (filtered.length != 0)
+                        return e;
+                }).filter(e => e != null);
+                res.status(200).send(favorites);
+             })
+             .catch(e => {
+                 console.log(chalk.red("Failed finding favorites " + e))
+                 res.status(500).send()
+             });
+});
 module.exports = router;
