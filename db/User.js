@@ -39,11 +39,43 @@ const schema = db.Schema({
         type: String,
         required: true
     },
+    evaluaciones: {
+        type: Number,
+        required: true
+    },
     puntaje: {
         type: Number,
         required: true
     }
 });
+
+schema.statics.updateScore = function(username, score) {
+    return new Promise((resolve, reject) => {
+        db.model('User').findOne({ "usuario" : username }, (err, doc) => {
+            let evaluaciones = 0;
+            if(err){
+                reject(err);
+                return;
+            }
+            score = score * 1.0;
+            evaluaciones = 1.0 * (doc.evaluaciones || 1);
+            console.log(evaluaciones, typeof(evaluaciones));
+            let current = evaluaciones * doc.puntaje;
+            console.log(current, typeof(current));
+            console.log(score, typeof(score));
+            console.log((evaluaciones + 1.0), typeof((evaluaciones + 1.0)));
+            doc.puntaje = (current + score) / (evaluaciones + 1.0);
+            doc.evaluaciones = evaluaciones + 1.0;
+            doc.save((err, data) => {
+                if(err){
+                    reject(err);
+                    return;
+                }
+                resolve(data);
+            })
+        });
+    });
+}
 
 schema.statics.authenticate = function (username, password) {
     return new Promise(function (resolve, reject) {
@@ -89,6 +121,8 @@ schema.statics.findOneByUsername = function (username) {
 
 schema.statics.registerUser = function(user) {
     return new Promise((resolve, reject) => {
+        user.puntaje = 1;
+        user.evaluaciones = 0;
         let newUser = User(user);
         newUser.save((err, product) => {
             if(err) {

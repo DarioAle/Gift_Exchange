@@ -16,8 +16,8 @@ function fetchData() {
         if (xhr.status == 200) {
             usuario = JSON.parse(xhr.response);
             console.log(usuario);
-            nombreIn.value = usuario.nombre;
-            correoIn.value = usuario.correo;
+            nombreIn.placeholder = usuario.nombre;
+            correoIn.placeholder = usuario.correo;
             document.getElementById("profile").setAttribute("src", usuario.imagen);
         } else {
             alert(xhr.statusText);

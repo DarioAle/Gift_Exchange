@@ -5,7 +5,7 @@ const router = express.Router();
 const chalk = require('chalk');
 const config = require('./../shared');
 const postModel = require('../db/Post');
-const usereModel = require('../db/Post');
+const usereModel = require('../db/User');
 const authMiddleware = require('./../middlewares/authMiddleware');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/' });
@@ -111,12 +111,28 @@ router.route('/p/:postId')
             });
     });
 
+router.patch('/p/:postId/finalize', authMiddleware.authenticate, (req, res) => {
+    let postId = req.params.postId;
+    let score = req.body.score;
+    postModel.finalize(postId)
+        .then(owner => {
+            return usereModel.updateScore(owner, score);
+        })
+        .then(doc => {
+            console.log("HOla", doc);
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
+        })
+});
 
 // Requests made in the fron page where all the available posts 
 // are shown
 router.route('/main')
     .get((req, res) => {
-        console.log(chalk.green.bgBlue("Sí llegaste a la ruta /main en index"));
+        console.log(chalk.green("Sí llegaste a la ruta /main en index"));
 
         let qrytPagina = req.query.pagina;
         let qryLimit = req.query.limit;
@@ -133,11 +149,16 @@ router.route('/main')
         };
 
         let begin = qryLimit * (qrytPagina - 1);
-        let pagedUsers = []
+        let pagedUsers = [];
 
         res.status(200);
         postModel.getAllPosts()
-            .then(u => {
+            .then(x => {
+                let u = x.filter(e => e.postIsActive);
+                if (req.query.namefilter != undefined)
+                    u = u.filter(e => e.nombrePost.toUpperCase().match(req.query.namefilter.toUpperCase() + ".*"));
+                if (req.query.catfilter != undefined)
+                    u = u.filter(e => e.category == req.query.catfilter);
                 res.setHeader("x-posts-length", u.length);
                 for (let i = begin; i < begin + (qryLimit * 1); i++) {
                     pagedUsers.push(u[i]);
