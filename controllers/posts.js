@@ -128,7 +128,7 @@ router.patch('/p/:postId/finalize', authMiddleware.authenticate, (req, res) => {
             console.error(err);
             res.sendStatus(500);
         })
-}); 
+});
 
 // Requests made in the fron page where all the available posts 
 // are shown
@@ -157,6 +157,10 @@ router.route('/main')
         postModel.getAllPosts()
             .then(x => {
                 let u = x.filter(e => e.postIsActive);
+                if (req.query.namefilter != undefined)
+                    u = u.filter(e => e.nombrePost.toUpperCase().match(req.query.namefilter.toUpperCase() + ".*"));
+                if (req.query.catfilter != undefined)
+                    u = u.filter(e => e.category == req.query.catfilter);
                 res.setHeader("x-posts-length", u.length);
                 for (let i = begin; i < begin + (qryLimit * 1); i++) {
                     pagedUsers.push(u[i]);
@@ -229,23 +233,23 @@ router.route('/newGiftEntry')
             .catch(e => console.log(chalk.red("Error adding new post " + e)))
     })
 
-router.get('/favorites',  authMiddleware.authenticate, (req, res) => {
+router.get('/favorites', authMiddleware.authenticate, (req, res) => {
     const username = req.query.username;
     console.log(chalk.bgWhite.yellow("Looking for favorites for: " + username))
     postModel.getAllPosts()
-             .then(u => {
-                let favorites = u.map((e, i) => {
-                    let filtered = e.interesados.filter( e => {
-                        return e.usuario == username;
-                    });
-                    if (filtered.length != 0)
-                        return e;
-                }).filter(e => e != null);
-                res.status(200).send(favorites);
-             })
-             .catch(e => {
-                 console.log(chalk.red("Failed finding favorites " + e))
-                 res.status(500).send()
-             });
+        .then(u => {
+            let favorites = u.map((e, i) => {
+                let filtered = e.interesados.filter(e => {
+                    return e.usuario == username;
+                });
+                if (filtered.length != 0)
+                    return e;
+            }).filter(e => e != null);
+            res.status(200).send(favorites);
+        })
+        .catch(e => {
+            console.log(chalk.red("Failed finding favorites " + e))
+            res.status(500).send()
+        });
 });
 module.exports = router;
