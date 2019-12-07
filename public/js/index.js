@@ -21,9 +21,6 @@ function loadMain(limit, number) {
 
     let url = BASE_URL + `/posts/main?pagina=${pageNumber}&limit=${global_pageLimit}`;
 
-    console.log(nameFilter.value);
-    console.log(catFilter.value);
-
     if (nameFilter.value != "")
         url += `&namefilter=${nameFilter.value}`
     if (catFilter.value != "no")
@@ -45,7 +42,6 @@ function loadMain(limit, number) {
             }).join("");
             mainGrid.innerHTML = htmlArray;
             let numberOfElemets = xhr.getResponseHeader("x-posts-length");
-            console.log(numberOfElemets);
             removeButtonsFromHTML();
             addButtons(numberOfElemets, pageNumber);
         }
