@@ -9,13 +9,17 @@ let global_pageNumber;
 let catFilter = document.getElementById('input-cat-filter');
 let nameFilter = document.getElementById('input-name-filter');
 
-catFilter.addEventListener('change', () => loadMain());
-nameFilter.addEventListener('keyup', () => loadMain());
+catFilter.addEventListener('change', () => filter());
+nameFilter.addEventListener('keyup', () => filter());
 
+function filter(){
+    global_pageNumber = 1;
+    loadMain();
+}
 
 // Load the page before anything and add all the cards to the maing page
-function loadMain(limit, number) {
-    console.log("into");
+function loadMain() {
+    
     let pageNumber = global_pageNumber || 1;
     global_page_counter = global_pageNumber;
 
@@ -109,4 +113,4 @@ function pressPageButton(page) {
 }
 
 
-loadMain(global_pageLimit, global_pageNumber);
+loadMain();
