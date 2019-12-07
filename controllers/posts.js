@@ -53,8 +53,6 @@ router.route('/gift/:postId')
     })
     .patch(authMiddleware.authenticate, (req, res) => {
         console.log(chalk.magenta("Patching ruta /gift/" + req.params.postId))
-
-
         postModel.updateComments(req.params.postId)
             .then(doc => {
                 doc.interesados.push({ 'usuario': req.user.usuario, 'razon': req.body.razon });
@@ -212,23 +210,57 @@ router.route('/newGiftEntry')
             .catch(e => console.log(chalk.red("Error adding new post " + e)))
     })
 
-router.get('/favorites',  authMiddleware.authenticate, (req, res) => {
-    const username = req.query.username;
-    console.log(chalk.bgWhite.yellow("Looking for favorites for: " + username))
-    postModel.getAllPosts()
-             .then(u => {
-                let favorites = u.map((e, i) => {
-                    let filtered = e.interesados.filter( e => {
-                        return e.usuario == username;
+router.route('/favorites')
+    .get(authMiddleware.authenticate, (req, res) => {
+        const username = req.user.usuario;
+        console.log(chalk.bgWhite.yellow("Looking for favorites for: " + username))
+        postModel.getAllPosts()
+                .then(u => {
+                    let favorites = u.map(e => {
+                        let filtered= [];
+                        if(e.postIsActive) {
+                            filtered = e.interesados.filter( e => {
+                                return e.usuario == username;
+                            });
+                        } 
+                        if (filtered.length != 0)
+                            return e;
+                    }).filter(e => e != null);
+                    res.status(200).send(favorites);
+                })
+                .catch(e => {
+                    console.log(chalk.red("Failed finding favorites " + e))
+                    res.status(500).send()
+                });
+    })
+    .delete(authMiddleware.authenticate, (req, res) => {
+        const username = req.user.usuario;
+        const postId = req.query.postId;
+        console.log(chalk.bgWhite.magenta("ruta delete /favorites/" + postId))
+        // Using updateCOmments because it uses a more useful projection mask 
+        // That allows me to save more easily, didn't want to rewrite code
+        postModel.updateComments(postId)
+                 .then(doc => {
+                    let i = doc.interesados.findIndex(elem => {
+                        return elem.usuario == username;
                     });
-                    if (filtered.length != 0)
-                        return e;
-                }).filter(e => e != null);
-                res.status(200).send(favorites);
-             })
-             .catch(e => {
-                 console.log(chalk.red("Failed finding favorites " + e))
-                 res.status(500).send()
-             });
-});
+                    if(i == -1) {
+                        res.status(404).send({username : "Not found"})
+                        return;
+                    }
+
+                    doc.interesados.splice(i, 1);
+                    doc.save((err, doc) => {
+                        if (err || doc == undefined) {
+                            console.log(chalk.red("Error trying to delete from interested array" + err + "\n" + doc))
+                            return;
+                        }
+                        console.log(chalk.bgWhite.blue("Saved and removed form interested array"))
+                        res.status(200).end();
+                    })
+                 }).catch(err => {
+                     console.log(chalk.bold.red("Could not delete from interested array " + err))
+                     res.status(502)
+                    });
+    })
 module.exports = router;
