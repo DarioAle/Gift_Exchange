@@ -52,7 +52,7 @@ const postSchema = db.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['ropa', 'electronicos', 'hogar', 'automoviles', 'accesorios', 'jugetes']
+        enum: ['ropa', 'electronicos', 'hogar', 'automoviles', 'accesorios', 'juguetes']
     },
     quantity: {
         type: Number,

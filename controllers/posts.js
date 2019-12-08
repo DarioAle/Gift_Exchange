@@ -58,12 +58,12 @@ router.route('/gift/:postId')
                 doc.interesados.push({ 'usuario': req.user.usuario, 'razon': req.body.razon });
                 doc.save((err, doc) => {
                     if (err || doc == undefined) {
-                        console.log(chalk.red("Error trying to add interested array"))
+                        console.log(chalk.red("Error trying to add interested array  " + err))
                         return;
                     }
                     res.status(200).end();
+                    console.log(chalk.bgWhite.blue("Saved and updated with reason"))
                 })
-                console.log(chalk.bgWhite.blue("Saved and updated with reason"))
             })
             .catch(err => {
                 console.log(chalk.red("Not bringing from DB " + err));
