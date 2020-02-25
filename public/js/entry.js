@@ -26,7 +26,12 @@ picUpload.forEach((e, i) => {
         console.log("This file was changed");
         isFileUploaded = true;
         enableButton();
-        divPic[i].setAttribute("src", `./img/wallet-${i}.jpg`)
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            divPic[i].setAttribute("src", e.target.result);
+        }
+        reader.readAsDataURL(document.getElementById('image0').files[0]);
     });
 });
 
@@ -43,39 +48,48 @@ continueButton.addEventListener("click", event => {
     event.preventDefault();
 
     console.log("Estás dentro del evento continue");
-    let valuesFilled = {
-        "id": (Math.random() * 500) / 10,
-        "nombre": rigthForm.querySelector("input").value,
-        "descripcion": rigthForm.querySelector("textarea").value,
-        "imagen": ["/img/wallet-2.jpg"],
-        "estado": "usado",
-        "publicadoPor": "pedro.paramo",
-        "creacion": "2019-11-18",
-        "categoria": "otros",
-        "edicion": "2019-11-18",
-        "cantidad": 1,
-        "pub": "activo",
-        "interesados": []
-    }
-    let s = document.querySelector("section");
-    s.removeChild(s.querySelector(".container"));
-    s.insertAdjacentHTML("afterbegin", 
-        `   
+    // TODO: Validate input
+
+    let formData = new FormData();
+    formData.append("nombrePost", document.getElementById('id-5dacebf4bc693').value);
+    formData.append('descripcionPost', document.getElementById('id-5dacebf4bc69d').value);
+    formData.append('isNewGift', document.getElementById('input-nuevo').value);
+    formData.append('category', document.getElementById('input-cat').value);
+    formData.append('quantity', document.getElementById('input-cantidad').value);
+    formData.append('statement', document.getElementById('image0').files[0]);
+
+    console.log(formData);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('PUT', BASE_URL + "/posts/newGiftEntry");
+    xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
+    xhr.onload = () => {
+        if (xhr.status == 201) {
+            let s = document.querySelector("section");
+            s.removeChild(s.querySelector(".container"));
+            s.insertAdjacentHTML("afterbegin",
+                `   
         <div class="container">
             <div class="row text-center suc-msg">
                 <div class="col-sm-6 col-sm-offset-3">
                     <br><br>
-                    <h2 style="color:#0fad00">Éxito</h2>
+                    <h2 style="color:#51679C">Éxito</h2>
                     <h3>Querido usuario</h3>
                     <p style="font-size:20px;color:#5C5C5C;">Gracias por hacer un nuevo regalo, seguro harás muy feliz a alguien</p>
-                    <a href="giftEntry.html" class="btn btn-success">     Dar otro regalo     </a>
-                    <a href="index.html" class="btn btn-success">     Inicio     </a>
+                    <a  href="giftEntry.html" class="btn btn-success">     Dar otro regalo     </a>
+                    <a  href="index.html" class="btn btn-success">     Inicio     </a>
                     <br><br>
                 </div>
             </div>
         </div>
         `
-    );
+            );
+        } else {
+            alert(xhr.statusText);
+        }
+    };
+    xhr.send(formData);
+    /*
 
     // let postEntry = new XMLHttpRequest();
     // postEntry.open("POST", "http://127.0.0.1:3000/gifts/");
@@ -88,13 +102,14 @@ continueButton.addEventListener("click", event => {
     //     if (postEntry.status != 201) {
     //         console.log("Algo salió mal");
     //         console.log(postEntry.responseText);
-            
+
     //     } else {
     //         console.log("Si lo recibió y se almacenó el regalo");
     //         console.log(postEntry.responseText);
     //     }
     // }
     // postEntry.send(JSON.stringify(valuesFilled));
+    */
 });
 
 

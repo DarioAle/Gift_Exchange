@@ -19,7 +19,8 @@ const postProjectionMask = {
     comments: 1,
     aqcuired: 1,
     image: 1,
-    aquiredBy: 1
+    aquiredBy: 1,
+    finalized: 1
 };
 
 const postSchema = db.Schema({
@@ -51,7 +52,7 @@ const postSchema = db.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['ropa', 'electronicos', 'hogar', 'automoviles', 'accesorios', 'jugetes']
+        enum: ['ropa', 'electronicos', 'hogar', 'automoviles', 'accesorios', 'juguetes']
     },
     quantity: {
         type: Number,
@@ -73,7 +74,11 @@ const postSchema = db.Schema({
     },
     aquiredBy: {
         type: String
-    }
+    },
+    finalized: {
+        type: Boolean,
+        required: true
+    },
 });
 
 // --------- Find with exact matching name and return only the first instance that matchec---------------------
@@ -89,9 +94,26 @@ postSchema.statics.findOneByPostName = function (postname) {
     });
 }
 
+// ---- Finalize a post ----
+postSchema.statics.finalize = function(postId){
+    return new Promise((resolve, reject) => {
+        db.model('Post').findOne({ 'id': postId }, (err, doc) => {
+            doc.finalized = true;
+            doc.save((err, data) => {
+                if(err){
+                    reject(err);
+                    return;         
+                }
+                resolve(doc.owner);
+            })
+        });
+    })
+}
+
 // ---------------------- Register a new entry of a post -------------------------
 postSchema.statics.registerPost = function(post) {
     return new Promise((resolve, reject) => {
+        post.finalized = false;
         let newPost = new Post(post);
         newPost.save((err, product) => {
             if(err || product == undefined) {
@@ -110,6 +132,7 @@ postSchema.statics.getConversations = function (usuario) {
         db.model('Post').find({
             $and: [
                 { 'postIsActive': false },
+                { 'finalized': false },
                 {
                     $or: [
                         { 'aquiredBy': usuario },
@@ -202,7 +225,7 @@ postSchema.statics.getAllPosts = function () {
     });
 }
 
-// Return an specific user identified by it's unique id
+// Return an specific post identified by it's unique id
 postSchema.statics.findOnePostById = function (idPost) {
     return new Promise(function (resolve, reject) {
         db.model('Post').findOne({'id' : idPost}, postProjectionMask, (err,doc) =>{
@@ -212,6 +235,32 @@ postSchema.statics.findOnePostById = function (idPost) {
             }
             resolve(doc);
         });
+    });
+}
+
+// Update when someone adds to have a reason
+postSchema.statics.updateComments = function (idPost) {
+    return new Promise(function (resolve, reject) {
+        db.model('Post').findOne({'id' : idPost}, (err,doc) => {
+            if(err || doc == undefined) {
+                reject(err);
+                return;
+            }
+            resolve(doc);
+        })
+    })
+}
+
+postSchema.statics.deleteOneById = function(postId) {
+    return new Promise((resolve, reject) => {
+        db.model('Post').findOne({'id': postId}).remove().exec((err, res) => {
+            if(err){
+                console.error(err);
+                reject(err);
+                return
+            }
+            resolve(res)
+        })
     });
 }
 

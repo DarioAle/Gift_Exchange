@@ -1,7 +1,5 @@
 "use strict";
 
-let usuario;
-
 let nombreIn = document.getElementById("name");
 let correoIn = document.getElementById("email");
 let passIn = document.getElementById("pass");
@@ -9,6 +7,7 @@ let passCIn = document.getElementById("newPass");
 
 function fetchData() {
 
+    let usuario;
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `${BASE_URL}/user/me`);
     xhr.setRequestHeader('x-auth', window.sessionStorage.getItem("token"));
@@ -16,9 +15,10 @@ function fetchData() {
     xhr.onload = () => {
         if (xhr.status == 200) {
             usuario = JSON.parse(xhr.response);
-            nombreIn.value = usuario.nombre;
-            correoIn.value = usuario.correo;
-            document.getElementById("profile").setAttribute("src", "." + usuario.imagen);
+            console.log(usuario);
+            nombreIn.placeholder = usuario.nombre;
+            correoIn.placeholder = usuario.correo;
+            document.getElementById("profile").setAttribute("src", usuario.imagen);
         } else {
             alert(xhr.statusText);
         }
@@ -33,8 +33,6 @@ pictureBtn.addEventListener("click", () => {
     event.preventDefault();
     fileIn.click();
 });
-
-
 
 document.getElementById("updateBtn").addEventListener("click", () => {
     event.preventDefault();
@@ -52,9 +50,10 @@ document.getElementById("updateBtn").addEventListener("click", () => {
 
     xhr.onload = () => {
         if (xhr.status == 200) {
-            console.log("ok");
+            alert("Updated");
+            window.location.href = "/user-info.html";
         } else {
-            console.log("error");
+            alert(xhr.responseText);
         }
     };
     xhr.send(updates);

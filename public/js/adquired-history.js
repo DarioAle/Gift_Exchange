@@ -36,6 +36,6 @@ function getAdquiredGifts() {
 }
 
 catFilter.addEventListener('change', (evt) => getAdquiredGifts());
-nameFilter.addEventListener('change', (evt) => getAdquiredGifts())
+nameFilter.addEventListener('change', (evt) => getAdquiredGifts());
 
 getAdquiredGifts();

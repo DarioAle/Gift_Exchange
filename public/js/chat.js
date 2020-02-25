@@ -11,6 +11,34 @@ let messages = [];
 let btnSend = document.getElementById('btn-message-send');
 let timeId = 0;
 let conversationsWarper = document.getElementById('conversations-warper');
+let timeoutFun;
+let score = 5;
+let postName;
+
+let finalyModaNameSpan = document.getElementById('finaly-moda-name-span');
+let finalyBtnConfirm = document.getElementById('finaly-btn-confirm');
+
+function onConfirmClick(evt) {
+    clearTimeout(timeoutFun);
+    $("#finaly-modal").modal('hide');
+    let xhr = new XMLHttpRequest();
+    xhr.open('PATCH', `${BASE_URL}/posts/p/${postId}/finalize`);
+    xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = (evt) => {
+        if (xhr.status == 200) {
+            conversationWarper.innerHTML = "";
+            document.getElementById('btn-message-close').hidden = true;
+            fetchConversations();
+        }
+    }
+    score = document.querySelector('input[type="radio"]:checked').value || 5;
+    console.log(score);
+    xhr.send(JSON.stringify({
+        postId,
+        score
+    }));
+}
 
 function renderRecieverMessage(message) {
     let html = `
@@ -40,7 +68,7 @@ function renderSenderMessage(message) {
 
 function renderConversation(entry) {
     let html = `
-    <li class="contact" data-post-id="${entry.id}" data-post-owner="${entry.owner}" data-post-aquired-by="${entry.aquiredBy}">
+    <li class="contact" data-post-id="${entry.id}" data-post-name="${entry.nombrePost}" data-post-owner="${entry.owner}" data-post-aquired-by="${entry.aquiredBy}">
                     <div>
                         <div class="contact-image-warpper">
                             <img src="${entry.image[0]}" alt="${entry.nombrePost}" />
@@ -73,7 +101,7 @@ function fetchMessages() {
                 timeId = timeId > message.timeId ? timeId : message.timeId;
                 console.log(timeId);
             });
-            setTimeout(fetchMessages, 500);
+            timeoutFun = setTimeout(fetchMessages, 500);
             conversationWarper.scrollTop = conversationWarper.scrollHeight;
         } else if (xhr.status == 401) {
             alert("Unauth");
@@ -85,6 +113,7 @@ function fetchMessages() {
 function fetchConversations() {
     let url = `${BASE_URL}/chat`;
     let xhr = new XMLHttpRequest();
+    conversationsWarper.innerHTML = "";
     xhr.open('GET', url);
     console.log("Fetch conversations");
     xhr.setRequestHeader('x-auth', sessionStorage.getItem('token'));
@@ -141,6 +170,10 @@ function onContactClick(evt) {
     timeId = 0;
     conversationWarper.innerHTML = "";
     console.log(sender, reciever);
+    if(sender != element.getAttribute('data-post-owner')){
+        document.getElementById('btn-message-close').hidden = false;
+    }
+    finalyModaNameSpan.innerText = element.getAttribute('data-post-name');
     fetchMessages();
 }
 
@@ -150,5 +183,9 @@ function onMessageSned(evt) {
 }
 
 btnSend.addEventListener('click', onMessageSned);
+finalyBtnConfirm.addEventListener('click', onConfirmClick);
+document.getElementById('btn-message-close').addEventListener('click', (evt) => {
+    $("#finaly-modal").modal('show');
+})
 
 fetchConversations();

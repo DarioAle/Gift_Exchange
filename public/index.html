@@ -59,6 +59,7 @@
                         <a class="dropdown-item" href="./post-history.html">Mis Publicaciones</a>
                         <a class="dropdown-item" href="./user-list.html">Usuarios</a>
                         <a class="dropdown-item" href="./chat.html">Chat</a>
+                        <a class="dropdown-item" href="./favoritos.html">Favoritos</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Salir</a>
                     </div>
@@ -96,16 +97,36 @@
         <div class="container mb-5 px-0">
             <div class="row">
                 <div class="col">
-                    <h1 id="regDis" class="mb-1">Regalos disponibles</h1>
-                    <div class="row grid px-1 px-lg-2">
+                    <h1 id="regDis" class="mb-1 pb-5 pt-5">Regalos disponibles</h1>
+
+                    <div class="pb-5">
+                        <div class="form-group">
+                            <label for="input-name-filter">Nombre</label>
+                            <input type="text" class="form-control" id="input-name-filter" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="input-cat-filter">Categoría</label>
+                            <select class="form-control" id="input-cat-filter">
+                                <option selected value="no">Seleciona</option>
+                                <option value="ropa">Ropa</option>
+                                <option value="electronicos">Electrónicos</option>
+                                <option value="hogar">Hogar</option>
+                                <option value="automoviles">Automóviles</option>
+                                <option value="accesorios">Accesorios</option>
+                                <option value="juguetes">Juguetes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row grid px-1 px-lg-2 pt-5">
 
 
                     </div>
                 </div>
             </div>
-            <nav class="row mt-3 " aria-label="Page navigation">
+            <nav id="pageNavigation" class="row mt-3 " aria-label="Page navigation">
                 <ul id="pageButtons" class="pagination">
-                    
+
                 </ul>
             </nav>
         </div>

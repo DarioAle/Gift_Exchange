@@ -3,6 +3,7 @@
 const BASE_URL = '/api';
 const SIN_RESULTADOS = '<div class="col-12"><img class="not-found" src="/img/eastwood-page-not-found.png"/> Sin resultados</div>';
 const urlParams = new URLSearchParams(window.location.search);
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 let loggedInNavbar = document.getElementById('logged-navbar');
 let notLoggedNavbar = document.getElementById('not-logged-navbar');
@@ -68,13 +69,13 @@ function renderHorizontalUserCard(user, modal){
             <a href="${user.redirectURL}" ${modal ? 'data-toggle="modal" data-target="#' + modal + '"' : ''}>
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                            <img src="${user.imagen}" class="card-img" style alt="${user.id}">
+                            <img src="${user.imagen}" class="card-img round-image" style alt="${user.id}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                                 <h5 class="card-title">${user.nombre}</h5>
                                 <p class="card-text">${user.usuario}</p>
-                                <small>Puntaje <span>${user.puntaje}</span></small>
+                                <small>Puntaje <span>${user.puntaje.toFixed(2)}</span></small>
                         </div>
                     </div>
                 </div>
@@ -84,27 +85,29 @@ function renderHorizontalUserCard(user, modal){
     return html;
 }
 
-function renderHorizontalGiftCard(gift){
+function renderHorizontalGiftCard(gift, button){
     let html = `
-        <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card">
+        <div class="card mb-3 shadow-sm col-md-12 gift-horizontal-card" data-post-id="${gift.id}" data-post-name="${gift.nombrePost}">
+            <a href="${gift.redirectURL}">
                 <div class="row no-gutters">
-                    <div class="col-md-3">
-                        <a href="${gift.redirectURL}">
+                        <div class="col-md-3">
                             <img src="${gift.image[0]}" class="card-img" alt="${gift.image[0]}" />
-                        </a>
+                        </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title">${gift.nombrePost}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
+                            <p class="card-text">${gift.descripcionPost}</p>
+                            <small>Estado <span>${gift.isNewGift ? "Nuevo" : "Usado"}</span></small><br>
+                            <small>Publicado el <span>${new Date(gift.date).toLocaleDateString('es-ES', options) }</span></small>
+                        </div>
                     </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">${gift.nombrePost}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Publicado por <a href="/user-details.html?id=${gift.owner}">${gift.owner}</a></h6>
-                        <p class="card-text">${gift.descripcionPost}</p>
-                        <small>Estado <span>${gift.isNewGift ? "Si" : "No"}</span></small><br>
-                        <small>Publicado el <span>${gift.date}</span></small>
+                    <div class="col-md-2" style="align-items:center; justify-content: center; line-height:200px; height: 200px;">
+                        ${button ? button : '' }
                     </div>
                 </div>
-            </div>
-        </div>
-    `;
+            </a>
+        </div>`;
     return html;
 }
 
@@ -124,7 +127,7 @@ function renderVerticalGiftCard(gift) {
             </a>
             <div class="card-body">
                 <h5 class="card-title">${gift.nombrePost}</h5>
-                <h6 class="card-subtitle mb-2 text-muted"><a href="#">Publicado por: ${gift.owner}</a></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="/user-details.html?id=${gift.owner}">Publicado por: ${gift.owner}</a></h6>
                 <p class="card-text">${gift.isNewGift ? "Nuevo" : "Usado" }</p>
                 <small>Publicado hace <span>${diffDays} ${diffDays  == 1 ? "día" : "días" }</span></small>
             </div>
@@ -133,5 +136,13 @@ function renderVerticalGiftCard(gift) {
     `;
     return html;
 }
+
+function logout() {
+    window.sessionStorage.removeItem("token");
+    window.location.href = '/';
+}
+let drpDwn = document.querySelector("a.dropdown-item[href='#']");
+if(drpDwn != undefined)
+    drpDwn.addEventListener('click', logout);
 
 renderNavbar();

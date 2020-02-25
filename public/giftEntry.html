@@ -58,6 +58,7 @@
                         <a class="dropdown-item" href="./post-history.html">Mis Publicaciones</a>
                         <a class="dropdown-item" href="./user-list.html">Usuarios</a>
                         <a class="dropdown-item" href="./chat.html">Chat</a>
+                        <a class="dropdown-item" href="./favoritos.html">Favoritos</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Salir</a>
                     </div>
@@ -112,7 +113,7 @@
                                 <label data-input="image_paths[1]">
                                     <img src="./img/cam-icon-last.png">
                                     <div>
-                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                        <input name="images[1]" type="file" value="" id="image1" accept="image/*">
                                     </div>
                                 </label>
                             </span>
@@ -125,7 +126,7 @@
                                 <label data-input="image_paths[1]">
                                     <img src="./img/cam-icon-last.png">
                                     <div>
-                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                        <input name="images[1]" type="file" value="" id="image2" accept="image/*">
                                     </div>
                                 </label>
                             </span>
@@ -135,7 +136,7 @@
                                 <label data-input="image_paths[1]">
                                     <img src="./img/cam-icon-last.png">
                                     <div>
-                                        <input name="images[1]" type="file" value="" id="image0" accept="image/*">
+                                        <input name="images[1]" type="file" value="" id="image3" accept="image/*">
                                     </div>
                                 </label>
                             </span>
@@ -172,11 +173,45 @@
                             </div>
                         </div>
                         <div class="row mt-4" wfd-id="92">
-                            <div class="col mb-5" wfd-id="93">
+                            <div class="col" wfd-id="93">
                                 <div class="form-group" wfd-id="94"><label for="id-5dacebf4bc69d"
                                         wfd-id="95">Descripción del regalo</label><textarea
                                         name="product[s_product_description]" class="form-control" id="id-5dacebf4bc69d"
                                         rows="4" wfd-id="228"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input-nuevo">Estado</label>
+                                    <select class="form-control" id="input-nuevo">
+                                        <option selected value="-1">Seleciona</option>
+                                        <option value="true">Nuevo</option>
+                                        <option value="false">Viejo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label for="input-cat">Categoría</label>
+                                    <select class="form-control" id="input-cat">
+                                        <option selected value="-1">Seleciona</option>
+                                        <option value="ropa">Ropa</option>
+                                        <option value="electronicos">Electrónocos</option>
+                                        <option value="hogar">Hogar</option>
+                                        <option value="automoviles">Automóviles</option>
+                                        <option value="accesorios">Accesorios</option>
+                                        <option value="jugetes">Jugetes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input-cantidad">Canridad</label>
+                                    <input class="form-control" id="input-cantidad" type="number" min="1" value="1"/>
+                                </div>
                             </div>
                         </div>
                     </form>
