@@ -7,7 +7,10 @@ let btnSubmit = document.getElementById('login-btn-sbmit');
 btnSubmit.addEventListener('click', (evt) => {
     evt.preventDefault();
     login(inputUsername.value, inputPassword.value)
-        .then(res => window.sessionStorage.setItem("username", res))
+        .then(res => {
+            window.sessionStorage.setItem("username", res)
+            window.location.href = "./index.html";
+        })
         .catch(err => console.error(err));
 });
 

@@ -53,6 +53,7 @@ filters.addEventListener("change", () => {
 function renderUsers() {
     let html = "";
     users.forEach(element => {
+        element.redirectURL = `http://127.0.0.1:5500/user-details.html?id=${element.id}`
         html += renderHorizontalUserCard(element);
     });
     document.getElementById("users-cont").innerHTML = html;

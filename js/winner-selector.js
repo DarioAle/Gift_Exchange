@@ -25,7 +25,7 @@ function renderUser(username, razon) {
             let user = JSON.parse(xhr.response);
             user.redirectURL = "#";
             user.usuario = razon;
-            warper.innerHTML += renderHorizontalUserCard(user);
+            warper.innerHTML += renderHorizontalUserCard(user, 'selection-modal');
         }
     }
     xhr.send();
