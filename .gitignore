@@ -1,0 +1,17 @@
+######################
+#    config files    #
+######################
+# aws-keys
+config/aws-keys.json
+# database
+config/database.json
+# server parameters
+config/parameters.json
+# JWT key
+config/jwt.key
+
+# node_modules
+node_modules/**
+
+### Temp files folder 
+tmp/**
