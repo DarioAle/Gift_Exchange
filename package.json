@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/koulf/GiftExchange#readme",
   "dependencies": {
-    "aws-sdk": "^2.583.0",
+    "aws-sdk": "^2.814.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^3.0.0",
     "cors": "^2.8.5",
